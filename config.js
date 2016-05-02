@@ -19,6 +19,7 @@ System.config({
     "babel": "npm:babel-core@5.8.38",
     "babel-runtime": "npm:babel-runtime@5.8.38",
     "core-js": "npm:core-js@1.2.6",
+    "uri": "github:medialize/URI.js@1.18.0",
     "github:aurelia/http-client@0.13.0": {
       "aurelia-pal": "github:aurelia/pal@0.3.0",
       "aurelia-path": "github:aurelia/path@0.11.0",

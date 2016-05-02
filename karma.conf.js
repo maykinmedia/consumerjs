@@ -6,21 +6,24 @@ module.exports = function(config) {
         autoWatch: true,
         singleRun: true,
         browsers: ['Chrome'],
-        frameworks: ['jspm', 'jasmine', 'es6-shim'],
+        frameworks: ['jspm', 'jasmine-ajax', 'jasmine', 'es6-shim'],
         reporters: ['spec'],
 
         jspm: {
             config: 'config.js',
-            loadFiles: [paths.tests + '*.js'],
+            loadFiles: [paths.tests],
             serveFiles: [
-                'jspm_packages/',
-                'src/'
+                'jspm_packages/**/*',
+                'src/*',
+                'dist/*',
             ]
         },
 
         proxies: {
             '/jspm_packages/': '/base/jspm_packages/',
             '/tests/': '/base/tests/',
+            '/src/': '/base/src/',
+            '/dist/': '/base/dist/',
         },
     });
 };

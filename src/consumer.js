@@ -1,5 +1,6 @@
 import { HttpClient } from 'aurelia/http-client';
 import { initialize } from 'aurelia/pal-browser';
+import URI from "uri";
 
 
 /**
@@ -43,7 +44,8 @@ export class Consumer {
      * @returns {Promise}
      */
     get(path = '', query = {}) {
-        return this.request('get', path, query);
+        let uri = URI.build({'path': path, 'query': URI.buildQuery(query)});
+        return this.request('get', uri, {});
     }
 
     /**
@@ -96,7 +98,8 @@ export class Consumer {
      * @returns {ConsumerObject|ConsumerObject[]}
      */
     requestSuccess(data) {
-        return this.parse(data.response);
+        let result = this.parse(data.response);
+        return Promise.resolve(result);
     }
 
     /**
@@ -143,6 +146,6 @@ export class Consumer {
      * @returns {HttpResponseMessage} data
      */
     requestFailed(data) {
-        return data;
+        return Promise.reject(data);
     }
 }
