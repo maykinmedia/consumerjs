@@ -1,5 +1,5 @@
 {
-  "name": "consumerjs",
+  "name": "ConsumerJS",
   "version": "1.0.0",
   "description": "API consuming made easy",
   "main": "dist/consumerjs.js",
