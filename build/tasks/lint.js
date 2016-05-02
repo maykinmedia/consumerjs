@@ -1,17 +1,12 @@
 var gulp = require('gulp');
-var sourcemaps = require('gulp-sourcemaps');
-var babel = require('gulp-babel');
-var concat = require('gulp-concat');
+var jshint = require('gulp-jshint');
 
 var paths = require('../paths');
 
 var jsName = paths.packageName + '.js';
 
-gulp.task('build', ['clean'], function () {
+gulp.task('lint', function() {
   return gulp.src(paths.source)
-    .pipe(sourcemaps.init())
-    .pipe(babel())
-    .pipe(concat(jsName))
-    .pipe(sourcemaps.write('.'))
-    .pipe(gulp.dest(paths.output));
+    .pipe(jshint())
+    .pipe(jshint.reporter('default'))
 });

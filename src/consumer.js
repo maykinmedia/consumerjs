@@ -108,7 +108,7 @@ export class Consumer {
         let object = JSON.parse(json);
 
         if (Array.isArray(object)) {
-            return this.parseList(object)
+            return this.parseList(object);
         }
         return this.parseScalar(object);
     }
