@@ -1,0 +1,6 @@
+### Dependencies ###
+jspm_packages
+node_modules
+
+### IDE ###
+.idea
