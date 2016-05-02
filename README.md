@@ -2,6 +2,8 @@
 
 A REST API consumer (data store) built on top of [aurelia-http-client](https://github.com/aurelia/http-client).
 
+ConsumerJS is build to provide a better developer experience while object-orientated programming with remote objects. ConsumerJS fetches data and casts these to named objects so they can have properties and methods.
+
 ## Installation
 
 1. Install and configure [jspm](http://jspm.io): `npm install -g jspm` `jspm init`
