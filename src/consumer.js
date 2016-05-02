@@ -98,20 +98,46 @@ export class Consumer {
      * Callback for request
      * Gets called if request resolve successfully
      * @param {HttpResponseMessage} data
-     * @returns {ConsumerObject}
+     * @returns {ConsumerObject|ConsumerObject[]}
      */
     requestSuccess(data) {
         return this.parse(data.response);
     }
 
     /**
-     * Parses JSON string to ConsumerObject
+     * Parses JSON string to a single or list of ConsumerObject instance(s)
      * @param {String} data
-     * @returns {ConsumerObject}
+     * @returns {ConsumerObject|ConsumerObject[]}
      */
     parse(json) {
-        console.log(json)
         let object = JSON.parse(json);
+
+        if (Array.isArray(object)) {
+            return this.parseList(object)
+        }
+        return this.parseScalar(object);
+    }
+
+    /**
+     * Parses anonymous objects to a list of ConsumerObjects
+     * @param {Object[]} array
+     * @returns {ConsumerObject[]}
+     */
+    parseList(array) {
+        let list = [];
+
+        for (let object of array) {
+            list.push(new this.objectClass(object));
+        }
+        return list;
+    }
+
+    /**
+     * Parses anonymous object to a single ConsumerObject
+     * @param {Object} object
+     * @returns {ConsumerObject}
+     */
+    parseScalar(object) {
         return new this.objectClass(object);
     }
 

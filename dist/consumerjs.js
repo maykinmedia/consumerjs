@@ -204,7 +204,7 @@ var Consumer = exports.Consumer = function () {
          * Callback for request
          * Gets called if request resolve successfully
          * @param {HttpResponseMessage} data
-         * @returns {ConsumerObject}
+         * @returns {ConsumerObject|ConsumerObject[]}
          */
 
     }, {
@@ -214,16 +214,70 @@ var Consumer = exports.Consumer = function () {
         }
 
         /**
-         * Parses JSON string to ConsumerObject
+         * Parses JSON string to a single or list of ConsumerObject instance(s)
          * @param {String} data
-         * @returns {ConsumerObject}
+         * @returns {ConsumerObject|ConsumerObject[]}
          */
 
     }, {
         key: 'parse',
         value: function parse(json) {
-            console.log(json);
             var object = JSON.parse(json);
+
+            if (Array.isArray(object)) {
+                return this.parseList(object);
+            }
+            return this.parseScalar(object);
+        }
+
+        /**
+         * Parses anonymous objects to a list of ConsumerObjects
+         * @param {Object[]} array
+         * @returns {ConsumerObject[]}
+         */
+
+    }, {
+        key: 'parseList',
+        value: function parseList(array) {
+            var list = [];
+
+            var _iteratorNormalCompletion = true;
+            var _didIteratorError = false;
+            var _iteratorError = undefined;
+
+            try {
+                for (var _iterator = array[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+                    var object = _step.value;
+
+                    list.push(new this.objectClass(object));
+                }
+            } catch (err) {
+                _didIteratorError = true;
+                _iteratorError = err;
+            } finally {
+                try {
+                    if (!_iteratorNormalCompletion && _iterator.return) {
+                        _iterator.return();
+                    }
+                } finally {
+                    if (_didIteratorError) {
+                        throw _iteratorError;
+                    }
+                }
+            }
+
+            return list;
+        }
+
+        /**
+         * Parses anonymous object to a single ConsumerObject
+         * @param {Object} object
+         * @returns {ConsumerObject}
+         */
+
+    }, {
+        key: 'parseScalar',
+        value: function parseScalar(object) {
             return new this.objectClass(object);
         }
 
