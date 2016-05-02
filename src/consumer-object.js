@@ -21,8 +21,10 @@ export class ConsumerObject {
         let keys = Object.keys(data);
 
         for (let i in keys) {
-            let key = keys[i];
-            this[key] = data[key];
+            if (keys.hasOwnProperty(i)) {
+                let key = keys[i];
+                this[key] = data[key];
+            }
         }
     }
 }
