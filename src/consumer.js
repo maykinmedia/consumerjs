@@ -7,27 +7,22 @@ import { initialize } from 'aurelia/pal-browser';
  * @class
  */
 export class Consumer {
-    /** Base API endpoint */
-    endpoint = '';
-
-    /** Class to instantiate data to */
-    objectClass = {};
-
-    /** HttpClient instance */
-    client = new HttpClient().configure(x => {
-        x.withBaseUrl(this.endpoint);
-    });
-
     /**
      * Constructor
-     * Sets endpoint to retrieve data from and class to cast result to
-     * Initializes Aurelia/pal-browser
+     * Sets this.endpoint to endpoint
+     * Sets this.objectClass to objectClass
+     * Sets this.client to new configured HttpClient
+     * Initializes Aurelia browser abstraction
      * @param {String} endpoint Base endpoint for this API
      * @param {ConsumerObject} objectClass Class to cast results to
      */
     constructor(endpoint, objectClass) {
         this.endpoint = endpoint;
         this.objectClass = objectClass;
+
+        this.client = new HttpClient().configure(x => {
+            x.withBaseUrl(this.endpoint);
+        });
 
         initialize();
     }
