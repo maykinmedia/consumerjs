@@ -5,7 +5,7 @@ var concat = require('gulp-concat');
 
 var paths = require('../paths');
 
-var jsName = paths.packageName + '.js';
+var jsName = (paths.packageName + '.js').toLowerCase();
 
 gulp.task('build', ['clean'], function () {
   return gulp.src(paths.source)

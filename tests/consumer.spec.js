@@ -1,4 +1,4 @@
-import { Consumer, ConsumerObject } from '/dist/ConsumerJS';
+import { Consumer, ConsumerObject } from '/dist/consumerjs';
 
 
 describe('Consumer', function() {
