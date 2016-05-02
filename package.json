@@ -1,5 +1,5 @@
 {
-  "name": "ConsumerJS",
+  "name": "consumerjs",
   "version": "1.0.0",
   "description": "A REST API consumer (data store) built on top of [aurelia-http-client](https://github.com/aurelia/http-client).",
   "main": "dist/consumerjs.js",
@@ -45,5 +45,17 @@
     "karma-spec-reporter": "0.0.26",
     "require-dir": "^0.3.0",
     "vinyl-paths": "^2.1.0"
-  }
+  },
+  "directories": {
+    "test": "tests"
+  },
+  "dependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/maykinmedia/ConsumerJS.git"
+  },
+  "bugs": {
+    "url": "https://github.com/maykinmedia/ConsumerJS/issues"
+  },
+  "homepage": "https://github.com/maykinmedia/ConsumerJS#readme"
 }
