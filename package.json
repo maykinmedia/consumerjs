@@ -33,7 +33,14 @@
     "gulp-insert": "^0.5.0",
     "gulp-jshint": "^2.0.0",
     "gulp-sourcemaps": "^2.0.0-alpha",
+    "jasmine-core": "^2.4.1",
     "jshint": "^2.9.2",
+    "karma": "^0.13.22",
+    "karma-chrome-launcher": "^0.2.3",
+    "karma-es6-shim": "^0.2.3",
+    "karma-jasmine": "^0.3.8",
+    "karma-jspm": "^2.1.0",
+    "karma-spec-reporter": "0.0.26",
     "require-dir": "^0.3.0",
     "vinyl-paths": "^2.1.0"
   }
