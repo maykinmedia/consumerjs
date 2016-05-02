@@ -1,3 +1,6 @@
+### Build
+dist
+
 ### Dependencies ###
 jspm_packages
 node_modules
