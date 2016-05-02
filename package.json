@@ -12,7 +12,7 @@
     "consumer"
   ],
   "author": "Sven van de Scheur <svenvandescheur@gmail.com> (https://svenv.nl)",
-  "license": "ISC",
+  "license": "MIT",
   "jspm": {
     "dependencies": {
       "aurelia/http-client": "github:aurelia/http-client@^0.13.0",
