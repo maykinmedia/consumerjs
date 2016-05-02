@@ -10,7 +10,7 @@ export class ConsumerObject {
      */
     constructor(data, consumer) {
         this.createFromObject(data);
-        this.consumer = consumer;
+        this.__consumer__ = consumer;
     }
 
     /**
