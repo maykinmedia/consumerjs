@@ -5,17 +5,12 @@
 export class ConsumerObject {
   /**
    * Creates a new object
-   * @param {Object} [data] Data to parse
-   * @param {Consumer} [consumer] Consumer instance for this object
+   * @param {Object} data Data to parse
+   * @param {Consumer} consumer Consumer instance for this object
    */
   constructor(data,  consumer) {
-    if (typeof data !== 'undefined') {
-      this.createFromObject(data);
-    }
-
-    if (typeof consumer !== 'undefined') {
-      this.consumer = consumer;
-    }
+    this.createFromObject(data);
+    this.consumer = consumer;
   }
 
   /**

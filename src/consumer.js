@@ -127,7 +127,7 @@ export class Consumer {
         let list = [];
 
         for (let object of array) {
-            list.push(new this.objectClass(object));
+            list.push(new this.objectClass(object, this));
         }
         return list;
     }
@@ -138,7 +138,7 @@ export class Consumer {
      * @returns {ConsumerObject}
      */
     parseScalar(object) {
-        return new this.objectClass(object);
+        return new this.objectClass(object, this);
     }
 
     /**

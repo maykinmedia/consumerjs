@@ -1,0 +1,5 @@
+{
+    "comments": false,
+    "compact": true,
+    "presets": ["es2015", "stage-1"]
+}
