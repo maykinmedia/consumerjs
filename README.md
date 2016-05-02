@@ -1,6 +1,6 @@
 # ConsumerJS
 
-A REST API consumer (data store) built on top of [aurelia-http-client](https://github.com/aurelia/http-client)
+A REST API consumer (data store) built on top of [aurelia-http-client](https://github.com/aurelia/http-client).
 
 ## Installation
 
