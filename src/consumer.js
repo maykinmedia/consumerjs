@@ -23,10 +23,11 @@ export class Consumer {
     constructor(endpoint, objectClass, options=null) {
         this.csrfCookie = 'csrftoken';
         this.csrfHeader = 'X-CSRFToken';
-        this.endpoint = endpoint;
         this.defaultHeaders = {};
         this.defaultParameters = {};
+        this.endpoint = endpoint;
         this.objectClass = objectClass;
+        this.unserializableFields = ['__consumer__'];
 
         this.client = new HttpClient().configure(x => {
             x.withBaseUrl(this.endpoint);
@@ -113,6 +114,9 @@ export class Consumer {
         let uri = URI(path);
         uri.addQuery(this.defaultParameters);
 
+        // Serialize data
+        data = this.serialize(data);
+
         // Return promise
         return this.client[method](uri.toString(), data)
             .then(this.requestSuccess.bind(this))
@@ -120,7 +124,8 @@ export class Consumer {
     }
 
     /**
-     * Returns whether the request is save (should not mutate any data)
+     * Returns whether the request is safe (should not mutate any data)
+     * @returns {Boolean}
      */
     isSafeMethod(method) {
         let saveMethods = ['GET', 'HEAD', 'OPTIONS', 'TRACE'];
@@ -139,6 +144,7 @@ export class Consumer {
     /**
      * Wrapper for Cookies.get
      * @param {String} name
+     * @returns {String}
      */
     getCookie(name) {
         return Cookies.get(name);
@@ -153,6 +159,23 @@ export class Consumer {
         this.client.configure(x => {
             x.withHeader(name, value);
         });
+    }
+
+    /**
+     * Serializes data
+     * Excludes fields marked in this.unserializableFields
+     * @param {ConsumerObject|Object} data
+     * @returns {Object}
+     */
+    serialize(data) {
+        let object = {};
+
+        for (let key of Object.keys(data)) {
+            if (!this.unserializableFields.includes(key)) {
+                object[key] = data[key];
+            }
+        }
+        return object;
     }
 
     /**
