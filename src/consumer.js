@@ -16,14 +16,21 @@ export class Consumer {
      * Initializes Aurelia browser abstraction
      * @param {String} endpoint Base endpoint for this API
      * @param {ConsumerObject} objectClass Class to cast results to
+     * @param {Object} [options] Additional configuration
      */
-    constructor(endpoint, objectClass) {
+    constructor(endpoint, objectClass, options=null) {
         this.endpoint = endpoint;
+        this.defaultParameters = {};
         this.objectClass = objectClass;
 
         this.client = new HttpClient().configure(x => {
             x.withBaseUrl(this.endpoint);
         });
+
+        if (options) {
+            Object.assign(this, options);
+        }
+
 
         initialize();
     }
@@ -85,7 +92,9 @@ export class Consumer {
      * @param {Object} data Data payload
      */
     request(method, path, data) {
-        return this.client[method](path, data)
+        let uri = URI.build({'path': path, 'query': URI.buildQuery(this.defaultParameters)});
+
+        return this.client[method](uri, data)
             .then(this.requestSuccess.bind(this))
             .catch(this.requestFailed.bind(this));
     }

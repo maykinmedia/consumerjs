@@ -15,6 +15,9 @@ describe('Consumer', function() {
           .stubRequest('http://example.com/api/posts/202?foo=bar')
           .andReturn({ status: 200, responseText: '[{"title":"FooBar"}, {"title":"FooBaz"}]' });
         jasmine.Ajax
+          .stubRequest('http://example.com/api/posts/203?api_key=ABC')
+          .andReturn({ status: 203, responseText: '[{"title":"FooBar"}, {"title":"FooBaz"}]' });
+        jasmine.Ajax
           .stubRequest('http://example.com/api/posts/404')
           .andReturn({ status: 404 });
 
@@ -156,6 +159,25 @@ describe('Consumer', function() {
                 expect(request.method).toBe('PUT');
                 expect(request.params).toBe('{"foo":"bar"}');
                 expect(request.url).toBe('http://example.com/api/posts/200');
+                done();
+            });
+    });
+
+    it('should support default properties', function(done) {
+        class Post extends ConsumerObject {}
+
+        let options = {
+                defaultParameters: {
+                    'api_key': 'ABC',
+                }
+            },
+            consumer = new Consumer('http://example.com/api', Post, options);
+
+        consumer.get('/posts/203')
+            .then(() => {
+                let request = jasmine.Ajax.requests.mostRecent();
+                expect(request.method).toBe('GET');
+                expect(request.url).toBe('http://example.com/api/posts/203?api_key=ABC');
                 done();
             });
     });
