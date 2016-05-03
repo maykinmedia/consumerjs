@@ -276,4 +276,21 @@ describe('Consumer', function() {
                 done();
             });
     });
+
+    it('should allow submitting ConsumerObject instances', function(done) {
+        class Post extends ConsumerObject {}
+
+        let consumer = new Consumer('http://example.com/api', Post);
+        consumer.get('/posts/200')
+            .then(data => {
+                expect(data.constructor.name).toBe('Post');
+                expect(data.__consumer__.constructor.name).toBe('Consumer');
+                expect(data.title).toBe('FooBar');
+
+                consumer.post('/posts/200', data)
+                    .then(data => {
+                        done();
+                    })
+            });
+    });
 });
