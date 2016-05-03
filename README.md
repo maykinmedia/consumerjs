@@ -1,6 +1,6 @@
 # ConsumerJS
 
-A REST API consumer (data store) built on top of [aurelia-http-client](https://github.com/aurelia/http-client).
+A REST API consumer (data store) built on top of [aurelia-http-client](https://github.com/aurelia/http-client) with built-in (Django) csrf support.
 
 ConsumerJS is build to provide a better developer experience while object-orientated programming with remote objects. ConsumerJS fetches data and casts these to named objects so they can have properties and methods.
 
