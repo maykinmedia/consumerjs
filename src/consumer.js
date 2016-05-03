@@ -100,7 +100,7 @@ export class Consumer {
      */
     request(method, path, data) {
         // Set csrf token if needed
-        if (!this.isSaveMethod(method) && this.csrfCookie && this.csrfHeader) {
+        if (!this.isSafeMethod(method) && this.csrfCookie && this.csrfHeader) {
             this.addCsrfToken();
         }
 
@@ -122,7 +122,7 @@ export class Consumer {
     /**
      * Returns whether the request is save (should not mutate any data)
      */
-    isSaveMethod(method) {
+    isSafeMethod(method) {
         let saveMethods = ['GET', 'HEAD', 'OPTIONS', 'TRACE'];
         return saveMethods.includes(method.toUpperCase());
     }
