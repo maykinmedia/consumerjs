@@ -1,5 +1,6 @@
 import { HttpClient } from 'aurelia/http-client';
 import { initialize } from 'aurelia/pal-browser';
+import Cookies from 'js-cookie/js-cookie';
 import URI from "uri";
 
 
@@ -13,13 +14,17 @@ export class Consumer {
      * Sets this.endpoint to endpoint
      * Sets this.objectClass to objectClass
      * Sets this.client to new configured HttpClient
+     * Assigns options to this
      * Initializes Aurelia browser abstraction
      * @param {String} endpoint Base endpoint for this API
      * @param {ConsumerObject} objectClass Class to cast results to
      * @param {Object} [options] Additional configuration
      */
     constructor(endpoint, objectClass, options=null) {
+        this.csrfCookie = 'csrftoken';
+        this.csrfHeader = 'X-CSRFToken';
         this.endpoint = endpoint;
+        this.defaultHeaders = {};
         this.defaultParameters = {};
         this.objectClass = objectClass;
 
@@ -30,7 +35,6 @@ export class Consumer {
         if (options) {
             Object.assign(this, options);
         }
-
 
         initialize();
     }
@@ -95,12 +99,60 @@ export class Consumer {
      * @param {Object} data Data payload
      */
     request(method, path, data) {
+        // Set csrf token if needed
+        if (!this.isSaveMethod(method) && this.csrfCookie && this.csrfHeader) {
+            this.addCsrfToken();
+        }
+
+        // Set default headers
+        for (let header of Object.keys(this.defaultHeaders)) {
+            this.addHeader(header, this.defaultHeaders[header]);
+        }
+
+        // Build query
         let uri = URI(path);
         uri.addQuery(this.defaultParameters);
 
+        // Return promise
         return this.client[method](uri.toString(), data)
             .then(this.requestSuccess.bind(this))
             .catch(this.requestFailed.bind(this));
+    }
+
+    /**
+     * Returns whether the request is save (should not mutate any data)
+     */
+    isSaveMethod(method) {
+        let saveMethods = ['GET', 'HEAD', 'OPTIONS', 'TRACE'];
+        return saveMethods.includes(method.toUpperCase());
+    }
+
+    /**
+     * Looks for cookie this.csrfCookie and passes it's value to this.csrfHeader
+     */
+    addCsrfToken() {
+        let csrfToken = this.getCookie(this.csrfCookie);
+        this.defaultHeaders[this.csrfHeader] = csrfToken;
+        this.addHeader(this.csrfHeader, csrfToken);
+    }
+
+    /**
+     * Wrapper for Cookies.get
+     * @param {String} name
+     */
+    getCookie(name) {
+        return Cookies.get(name);
+    }
+
+    /**
+     * Adds a header to all future request
+     * @param {String} name
+     * @param {String} value
+     */
+    addHeader(name, value) {
+        this.client.configure(x => {
+            x.withHeader(name, value);
+        });
     }
 
     /**

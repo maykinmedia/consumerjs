@@ -203,4 +203,77 @@ describe('Consumer', function() {
                 done();
             });
     });
+
+    it('should support csrf', function(done) {
+        class Post extends ConsumerObject {}
+
+        let consumer = new Consumer('http://example.com/api', Post);
+
+        spyOn(consumer, 'getCookie').and.returnValue('ABC');
+
+        consumer.post('/posts/200')
+            .then(() => {
+                let request = jasmine.Ajax.requests.mostRecent();
+                expect(request.requestHeaders[consumer.csrfHeader]).toBe('ABC');
+                expect(request.method).toBe('POST');
+                expect(request.url).toBe('http://example.com/api/posts/200');
+                done();
+            });
+    });
+
+    it('should ignore csrf on safe requests', function(done) {
+        class Post extends ConsumerObject {}
+
+        let consumer = new Consumer('http://example.com/api', Post);
+
+        spyOn(consumer, 'getCookie').and.returnValue('ABC');
+
+        consumer.get('/posts/200')
+            .then(() => {
+                let request = jasmine.Ajax.requests.mostRecent();
+                expect(request.requestHeaders[consumer.csrfHeader]).toBeUndefined();
+                expect(request.method).toBe('GET');
+                expect(request.url).toBe('http://example.com/api/posts/200');
+                done();
+            });
+    });
+
+    it('should support custom headers', function(done) {
+        class Post extends ConsumerObject {}
+
+        let consumer = new Consumer('http://example.com/api', Post);
+        consumer.addHeader('X-Requested-With', 'Commodore 64');
+
+        consumer.get('/posts/200')
+            .then(() => {
+                let request = jasmine.Ajax.requests.mostRecent();
+                expect(request.requestHeaders['X-Requested-With']).toBe('Commodore 64');
+                expect(request.method).toBe('GET');
+                expect(request.url).toBe('http://example.com/api/posts/200');
+                done();
+            });
+    });
+
+    it('should support default headers', function(done) {
+        class Post extends ConsumerObject {}
+
+        let options = {
+                defaultHeaders: {
+                    'api_key': 'ABC',
+                },
+                defaultParameters: {
+                    'foo': 'bar',
+                }
+            },
+            consumer = new Consumer('http://example.com/api', Post, options);
+
+        consumer.get('/posts/202')
+            .then(() => {
+                let request = jasmine.Ajax.requests.mostRecent();
+                expect(request.requestHeaders.api_key).toBe('ABC');
+                expect(request.method).toBe('GET');
+                expect(request.url).toBe('http://example.com/api/posts/202?foo=bar');
+                done();
+            });
+    });
 });
