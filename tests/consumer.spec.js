@@ -288,9 +288,9 @@ describe('Consumer', function() {
                 expect(data.title).toBe('FooBar');
 
                 consumer.post('/posts/200', data)
-                    .then(data => {
+                    .then(() => {
                         done();
-                    })
+                    });
             });
     });
 });
