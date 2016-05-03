@@ -85,8 +85,7 @@ export class Consumer {
      * @param {Object} data Data payload
      */
     request(method, path, data) {
-        let url = this.endpoint + path;
-        return this.client[method](url, data)
+        return this.client[method](path, data)
             .then(this.requestSuccess.bind(this))
             .catch(this.requestFailed.bind(this));
     }
