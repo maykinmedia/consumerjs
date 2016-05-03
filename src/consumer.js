@@ -61,8 +61,9 @@ export class Consumer {
      * @param {Object} data Data payload
      * @returns {Promise}
      */
-    patch(path = '', data = {}) {
-        return this.request('patch', path, data);
+    patch(path = '', data = {}, query = {}) {
+        let uri = URI.build({'path': path, 'query': URI.buildQuery(query)});
+        return this.request('patch', uri, data);
     }
 
     /**
@@ -71,8 +72,9 @@ export class Consumer {
      * @param {Object} data Data payload
      * @returns {Promise}
      */
-    post(path = '', data = {}) {
-        return this.request('post', path, data);
+    post(path = '', data = {}, query = {}) {
+        let uri = URI.build({'path': path, 'query': URI.buildQuery(query)});
+        return this.request('post', uri, data);
     }
 
     /**
@@ -81,8 +83,9 @@ export class Consumer {
      * @param {Object} data Data payload
      * @returns {Promise}
      */
-    put(path = '', data = {}) {
-        return this.request('put', path, data);
+    put(path = '', data = {}, query = {}) {
+        let uri = URI.build({'path': path, 'query': URI.buildQuery(query)});
+        return this.request('put', uri, data);
     }
 
     /**
@@ -92,9 +95,10 @@ export class Consumer {
      * @param {Object} data Data payload
      */
     request(method, path, data) {
-        let uri = URI.build({'path': path, 'query': URI.buildQuery(this.defaultParameters)});
+        let uri = URI(path);
+        uri.addQuery(this.defaultParameters);
 
-        return this.client[method](uri, data)
+        return this.client[method](uri.toString(), data)
             .then(this.requestSuccess.bind(this))
             .catch(this.requestFailed.bind(this));
     }
