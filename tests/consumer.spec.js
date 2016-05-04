@@ -305,4 +305,34 @@ describe('Consumer', function() {
                     });
             });
     });
+
+    it('should support a single parser method for both list and scalar', function(done) {
+        class Post extends ConsumerObject {}
+        class PostConsumer extends Consumer {
+            constructor() {
+                super();
+                this.endpoint = 'http://example.com/api';
+                this.objectClass = Post;
+            }
+
+            parseEntity(data) {
+                let object = new this.objectClass(data, this);
+                object.fruit = 'banana';
+                return object;
+            }
+        }
+
+        let consumer = new PostConsumer();
+        consumer.get('/posts/200')
+            .then(data => {
+                expect(data.fruit).toBe('banana');
+                done();
+            });
+
+        consumer.get('/posts/201')
+        .then(data => {
+            expect(data[0].fruit).toBe('banana');
+            done();
+        });
+    });
 });

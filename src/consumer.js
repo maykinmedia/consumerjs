@@ -208,6 +208,7 @@ export class Consumer {
 
     /**
      * Parses anonymous objects to a list of ConsumerObjects
+     * Gets called when result JSON.parse is an array
      * @param {Object[]} array
      * @returns {ConsumerObject[]}
      */
@@ -215,9 +216,19 @@ export class Consumer {
         let list = [];
 
         for (let object of array) {
-            list.push(new this.objectClass(object, this));
+            list.push(this.parseEntity(object));
         }
         return list;
+    }
+
+    /**
+     * Parses anonymous object to a single ConsumerObject
+     * Gets called when result JSON.parse is not an array
+     * @param {Object} object
+     * @returns {ConsumerObject}
+     */
+    parseScalar(object) {
+        return this.parseEntity(object);
     }
 
     /**
@@ -225,7 +236,7 @@ export class Consumer {
      * @param {Object} object
      * @returns {ConsumerObject}
      */
-    parseScalar(object) {
+    parseEntity(object) {
         return new this.objectClass(object, this);
     }
 
