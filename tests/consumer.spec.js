@@ -30,16 +30,22 @@ describe('Consumer', function() {
         jasmine.Ajax.uninstall();
     });
 
-    it('should instantiate', function() {
+    it('should instantiate', function(done) {
         class Post extends ConsumerObject {}
 
         let consumer = new Consumer('http://example.com/api', Post);
         expect(consumer.constructor.name).toBe('Consumer');
         expect(consumer.endpoint).toBe('http://example.com/api');
         expect(consumer.objectClass.name).toBe('Post');
+
+        consumer.get('/posts/200')
+            .then(data => {
+                expect(data.constructor.name).toBe('Post');
+                done();
+            });
     });
 
-    it('should extend', function() {
+    it('should extend', function(done) {
         class Post extends ConsumerObject {}
         class PostConsumer extends Consumer {
             constructor() {
@@ -53,6 +59,12 @@ describe('Consumer', function() {
         expect(consumer.constructor.name).toBe('PostConsumer');
         expect(consumer.endpoint).toBe('http://example.com/api');
         expect(consumer.objectClass.name).toBe('Post');
+
+        consumer.get('/posts/200')
+            .then(data => {
+                expect(data.constructor.name).toBe('Post');
+                done();
+            });
     });
 
     it('should resolve with a single ConsumerObject', function(done) {
