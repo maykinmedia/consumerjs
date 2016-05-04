@@ -114,11 +114,11 @@ describe('Consumer', function() {
         class Post extends ConsumerObject {}
 
         let consumer = new Consumer('http://example.com/api', Post);
-        consumer.delete('/posts/200', {foo: 'bar'})
+        consumer.delete('/posts/202', {foo: 'bar'})
             .then(() => {
                 let request = jasmine.Ajax.requests.mostRecent();
                 expect(request.method).toBe('DELETE');
-                expect(request.url).toBe('http://example.com/api/posts/200');
+                expect(request.url).toBe('http://example.com/api/posts/202?foo=bar');
                 done();
             });
     });
@@ -140,12 +140,12 @@ describe('Consumer', function() {
         class Post extends ConsumerObject {}
 
         let consumer = new Consumer('http://example.com/api', Post);
-        consumer.patch('/posts/200', {foo: 'bar'})
+        consumer.patch('/posts/202', {foo: 'baz'}, {foo: 'bar'})
             .then(() => {
                 let request = jasmine.Ajax.requests.mostRecent();
                 expect(request.method).toBe('PATCH');
-                expect(request.params).toBe('{"foo":"bar"}');
-                expect(request.url).toBe('http://example.com/api/posts/200');
+                expect(request.params).toBe('{"foo":"baz"}');
+                expect(request.url).toBe('http://example.com/api/posts/202?foo=bar');
                 done();
             });
     });
@@ -154,12 +154,12 @@ describe('Consumer', function() {
         class Post extends ConsumerObject {}
 
         let consumer = new Consumer('http://example.com/api', Post);
-        consumer.post('/posts/200', {foo: 'bar'})
+        consumer.post('/posts/202', {foo: 'baz'}, {foo: 'bar'})
             .then(() => {
                 let request = jasmine.Ajax.requests.mostRecent();
                 expect(request.method).toBe('POST');
-                expect(request.params).toBe('{"foo":"bar"}');
-                expect(request.url).toBe('http://example.com/api/posts/200');
+                expect(request.params).toBe('{"foo":"baz"}');
+                expect(request.url).toBe('http://example.com/api/posts/202?foo=bar');
                 done();
             });
     });
@@ -168,12 +168,12 @@ describe('Consumer', function() {
         class Post extends ConsumerObject {}
 
         let consumer = new Consumer('http://example.com/api', Post);
-        consumer.put('/posts/200', {foo: 'bar'})
+        consumer.put('/posts/202', {foo: 'baz'}, {foo: 'bar'})
             .then(() => {
                 let request = jasmine.Ajax.requests.mostRecent();
                 expect(request.method).toBe('PUT');
-                expect(request.params).toBe('{"foo":"bar"}');
-                expect(request.url).toBe('http://example.com/api/posts/200');
+                expect(request.params).toBe('{"foo":"baz"}');
+                expect(request.url).toBe('http://example.com/api/posts/202?foo=bar');
                 done();
             });
     });
@@ -304,5 +304,35 @@ describe('Consumer', function() {
                         done();
                     });
             });
+    });
+
+    it('should support a single parser method for both list and scalar', function(done) {
+        class Post extends ConsumerObject {}
+        class PostConsumer extends Consumer {
+            constructor() {
+                super();
+                this.endpoint = 'http://example.com/api';
+                this.objectClass = Post;
+            }
+
+            parseEntity(data) {
+                let object = new this.objectClass(data, this);
+                object.fruit = 'banana';
+                return object;
+            }
+        }
+
+        let consumer = new PostConsumer();
+        consumer.get('/posts/200')
+            .then(data => {
+                expect(data.fruit).toBe('banana');
+                done();
+            });
+
+        consumer.get('/posts/201')
+        .then(data => {
+            expect(data[0].fruit).toBe('banana');
+            done();
+        });
     });
 });
