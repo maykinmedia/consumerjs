@@ -21,6 +21,7 @@ export class Consumer {
      * @param {Object} [options] Additional configuration
      */
     constructor(endpoint, objectClass, options=null) {
+        this.client = new HttpClient();
         this.csrfCookie = 'csrftoken';
         this.csrfHeader = 'X-CSRFToken';
         this.defaultHeaders = {};
@@ -28,10 +29,6 @@ export class Consumer {
         this.endpoint = endpoint;
         this.objectClass = objectClass;
         this.unserializableFields = ['__consumer__'];
-
-        this.client = new HttpClient().configure(x => {
-            x.withBaseUrl(this.endpoint);
-        });
 
         if (options) {
             Object.assign(this, options);
@@ -98,8 +95,14 @@ export class Consumer {
      * @param {String} method The method to use
      * @param {String} path Path on the endpoint
      * @param {Object} data Data payload
+     * @returns {Promise}
      */
     request(method, path, data) {
+        // Set base url
+        this.client.configure(x => {
+            x.withBaseUrl(this.endpoint);
+        });
+
         // Set csrf token if needed
         if (!this.isSafeMethod(method) && this.csrfCookie && this.csrfHeader) {
             this.addCsrfToken();
