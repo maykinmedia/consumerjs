@@ -40,10 +40,12 @@ export class Consumer {
     /**
      * Performs a DELETE request
      * @param {String} path Path on the endpoint
+     * @param {Object} query Query parameters
      * @returns {Promise}
      */
-    delete(path = '') {
-        return this.request('delete', path, {});
+    delete(path = '', query = {}) {
+        let uri = URI.build({'path': path, 'query': URI.buildQuery(query)});
+        return this.request('delete', uri, {});
     }
 
     /**
