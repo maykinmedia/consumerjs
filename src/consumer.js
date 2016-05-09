@@ -1,6 +1,6 @@
+import { Cookie } from 'aurelia-cookie';
 import { HttpClient } from 'aurelia/http-client';
 import { initialize } from 'aurelia/pal-browser';
-import Cookies from 'js-cookie/js-cookie';
 import URI from "uri";
 
 
@@ -147,12 +147,12 @@ export class Consumer {
     }
 
     /**
-     * Wrapper for Cookies.get
+     * Wrapper for Cookie.get
      * @param {String} name
      * @returns {String}
      */
     getCookie(name) {
-        return Cookies.get(name);
+        return Cookie.get(name);
     }
 
     /**
