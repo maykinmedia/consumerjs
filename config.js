@@ -14,12 +14,12 @@ System.config({
   },
 
   map: {
+    "aurelia-cookie": "npm:aurelia-cookie@1.0.4",
     "aurelia/http-client": "github:aurelia/http-client@0.13.0",
     "aurelia/pal-browser": "github:aurelia/pal-browser@0.3.0",
     "babel": "npm:babel-core@5.8.38",
     "babel-runtime": "npm:babel-runtime@5.8.38",
     "core-js": "npm:core-js@1.2.6",
-    "js-cookie/js-cookie": "github:js-cookie/js-cookie@2.1.1",
     "uri": "github:medialize/URI.js@1.18.0",
     "github:aurelia/http-client@0.13.0": {
       "aurelia-pal": "github:aurelia/pal@0.3.0",
