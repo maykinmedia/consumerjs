@@ -1,6 +1,6 @@
 <?xml version="1.0" ?>
 <!DOCTYPE coverage SYSTEM "http://cobertura.sourceforge.net/xml/coverage-04.dtd">
-<coverage lines-valid="2"  lines-covered="2"  line-rate="1"  branches-valid="113"  branches-covered="84"  branch-rate="0.7434000000000001"  timestamp="1464625217042" complexity="0" version="0.1">
+<coverage lines-valid="2"  lines-covered="2"  line-rate="1"  branches-valid="113"  branches-covered="84"  branch-rate="0.7434000000000001"  timestamp="1464625442466" complexity="0" version="0.1">
 <sources>
 	<source>/Users/svenvandescheur/PycharmProjects/MaykinMedia/consumer.js</source>
 </sources>
