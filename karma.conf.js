@@ -4,10 +4,17 @@ var paths = require('./build/paths');
 module.exports = function(config) {
     config.set({
         autoWatch: true,
-        singleRun: true,
         browsers: ['Chrome'],
         frameworks: ['jspm', 'jasmine-ajax', 'jasmine', 'es6-shim'],
-        reporters: ['spec'],
+        reporters: ['coverage', 'spec',],
+        singleRun: true,
+
+        coverageReporter: {
+            reporters: [
+                {type: 'cobertura', subdir: '.', file: 'js.xml'},
+                {type: 'html', subdir: 'html', file: 'js.html'},
+            ]
+        },
 
         jspm: {
             config: 'config.js',
@@ -17,6 +24,10 @@ module.exports = function(config) {
                 'src/*',
                 'dist/*',
             ]
+        },
+
+        preprocessors: {
+          'dist/*.js': ['coverage'],
         },
 
         proxies: {
