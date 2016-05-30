@@ -197,7 +197,7 @@ export class Consumer {
     /**
      * Parses JSON string to a single or list of ConsumerObject instance(s)
      * @param {String} data
-     * @returns {ConsumerObject|ConsumerObject[]}
+     * @returns {ConsumerObject|ConsumerObject[]|undefined}
      */
     parse(json) {
         if (!json) {
