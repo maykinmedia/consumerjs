@@ -1,6 +1,6 @@
 {
   "name": "consumerjs",
-  "version": "1.2.0",
+  "version": "1.3.0",
   "description": "A REST API consumer (data store) built on top of [aurelia-http-client](https://github.com/aurelia/http-client).",
   "main": "dist/consumerjs.js",
   "scripts": {
@@ -9,7 +9,8 @@
   "keywords": [
     "REST",
     "API",
-    "consumer"
+    "consumer",
+    "data store"
   ],
   "author": "Sven van de Scheur <svenvandescheur@gmail.com> (https://svenv.nl)",
   "license": "MIT",
@@ -42,6 +43,7 @@
     "jshint": "^2.9.2",
     "karma": "^0.13.22",
     "karma-chrome-launcher": "^0.2.3",
+    "karma-coverage": "^1.0.0",
     "karma-es6-shim": "^0.2.3",
     "karma-jasmine": "^0.3.8",
     "karma-jasmine-ajax": "^0.1.13",
