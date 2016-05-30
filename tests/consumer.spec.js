@@ -18,7 +18,10 @@ describe('Consumer', function() {
           .stubRequest('http://example.com/api/posts/203?api_key=ABC')
           .andReturn({ status: 200, responseText: '[{"title":"FooBar"}, {"title":"FooBaz"}]' });
         jasmine.Ajax
-          .stubRequest('http://example.com/api/posts/204?format=json&api_key=ABC')
+          .stubRequest('http://example.com/api/posts/204')
+          .andReturn({ status: 204 });
+        jasmine.Ajax
+          .stubRequest('http://example.com/api/posts/205?format=json&api_key=ABC')
           .andReturn({ status: 200, responseText: '[{"title":"FooBar"}, {"title":"FooBaz"}]' });
         jasmine.Ajax
           .stubRequest('http://example.com/api/posts/404')
@@ -207,11 +210,11 @@ describe('Consumer', function() {
             },
             consumer = new Consumer('http://example.com/api', Post, options);
 
-        consumer.get('/posts/204', { format: 'json' })
+        consumer.get('/posts/205', { format: 'json' })
             .then(() => {
                 let request = jasmine.Ajax.requests.mostRecent();
                 expect(request.method).toBe('GET');
-                expect(request.url).toBe('http://example.com/api/posts/204?format=json&api_key=ABC');
+                expect(request.url).toBe('http://example.com/api/posts/205?format=json&api_key=ABC');
                 done();
             });
     });
@@ -334,5 +337,18 @@ describe('Consumer', function() {
             expect(data[0].fruit).toBe('banana');
             done();
         });
+    });
+
+    it('should return undefined when response is empty (issue #2)', function(done) {
+        class Post extends ConsumerObject {}
+
+        let consumer = new Consumer('http://example.com/api', Post);
+        consumer.delete('/posts/204')
+            .then(data => {
+                let request = jasmine.Ajax.requests.mostRecent();
+                expect(request.method).toBe('DELETE');
+                expect(data).toBeUndefined();
+                done();
+            });
     });
 });

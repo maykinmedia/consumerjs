@@ -200,6 +200,10 @@ export class Consumer {
      * @returns {ConsumerObject|ConsumerObject[]}
      */
     parse(json) {
+        if (!json) {
+            return;
+        }
+
         let object = JSON.parse(json);
 
         if (Array.isArray(object)) {
