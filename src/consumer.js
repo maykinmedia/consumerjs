@@ -10,12 +10,7 @@ import URI from "uri";
  */
 export class Consumer {
     /**
-     * Constructor
-     * Sets this.endpoint to endpoint
-     * Sets this.objectClass to objectClass
-     * Sets this.client to new configured HttpClient
-     * Assigns options to this
-     * Initializes Aurelia browser abstraction
+     * Configures Consumer instance
      * @param {String} endpoint Base endpoint for this API
      * @param {ConsumerObject} objectClass Class to cast results to
      * @param {Object} [options] Additional configuration
