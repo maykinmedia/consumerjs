@@ -351,4 +351,19 @@ describe('Consumer', function() {
                 done();
             });
     });
+
+    it('should be able to cancel requests', function(done) {
+        class Post extends ConsumerObject {}
+
+        let consumer = new Consumer('http://example.com/api', Post),
+            promise = consumer.get('/posts/200');
+
+        promise.abort();
+
+        promise
+            .catch(response => {
+                expect(response.responseType).toBe('abort');
+                done();
+            });
+    });
 });
