@@ -356,21 +356,22 @@ describe('Consumer', function() {
         class Post extends ConsumerObject {}
 
         let consumer = new Consumer('http://example.com/api', Post),
-            promise = {};
+            promise1 = {},
+            promise2 = {};
 
         // Abort
-        promise = consumer.get('/posts/200');
-        promise.abort();
-        promise
+        promise1 = consumer.get('/posts/200');
+        promise1.abort();
+        promise1
             .catch(response => {
                 expect(response.responseType).toBe('abort');
                 done();
             });
 
         // Cancel
-        promise = consumer.get('/posts/200');
-        promise.cancel();
-        promise
+        promise2 = consumer.get('/posts/200');
+        promise2.cancel();
+        promise2
             .catch(response => {
                 expect(response.responseType).toBe('abort');
                 done();
