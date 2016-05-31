@@ -1,6 +1,6 @@
 {
   "name": "consumerjs",
-  "version": "1.4.0",
+  "version": "1.5.0",
   "description": "A REST API consumer (data store) built on top of [aurelia-http-client](https://github.com/aurelia/http-client).",
   "main": "dist/consumerjs.js",
   "scripts": {
@@ -20,8 +20,8 @@
     },
     "dependencies": {
       "aurelia-cookie": "npm:aurelia-cookie@^1.0.4",
-      "aurelia/http-client": "github:aurelia/http-client@^0.13.0",
-      "aurelia/pal-browser": "github:aurelia/pal-browser@^0.3.0",
+      "aurelia/http-client": "github:aurelia/http-client@1.0.0-beta.1.2.2",
+      "aurelia/pal-browser": "github:aurelia/pal-browser@1.0.0-beta.2.0.1",
       "uri": "github:medialize/URI.js@^1.18.0"
     },
     "devDependencies": {

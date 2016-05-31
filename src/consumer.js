@@ -95,6 +95,9 @@ export class Consumer {
      * @returns {Promise}
      */
     request(method, path, data) {
+        let clientPromise,
+            consumerPromise;
+
         // Set base url
         this.client.configure(x => {
             x.withBaseUrl(this.endpoint);
@@ -117,10 +120,15 @@ export class Consumer {
         // Serialize data
         data = this.serialize(data);
 
-        // Return promise
-        return this.client[method](uri.toString(), data)
-            .then(this.requestSuccess.bind(this))
-            .catch(this.requestFailed.bind(this));
+        // Return cancellable promise
+        clientPromise = this.client[method](uri.toString(), data);
+        consumerPromise = clientPromise
+                .then(this.requestSuccess.bind(this))
+                .catch(this.requestFailed.bind(this));
+
+        consumerPromise.abort = clientPromise.abort;
+        consumerPromise.cancel = clientPromise.cancel;
+        return consumerPromise;
     }
 
     /**
