@@ -127,6 +127,7 @@ export class Consumer {
                 .catch(this.requestFailed.bind(this));
 
         consumerPromise.abort = clientPromise.abort;
+        consumerPromise.cancel = clientPromise.cancel;
         return consumerPromise;
     }
 

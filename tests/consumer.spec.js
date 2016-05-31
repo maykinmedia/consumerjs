@@ -352,14 +352,24 @@ describe('Consumer', function() {
             });
     });
 
-    it('should be able to cancel requests', function(done) {
+    it('should be able to abort or cancel requests (issue #3)', function(done) {
         class Post extends ConsumerObject {}
 
         let consumer = new Consumer('http://example.com/api', Post),
-            promise = consumer.get('/posts/200');
+            promise = {};
 
+        // Abort
+        promise = consumer.get('/posts/200');
         promise.abort();
+        promise
+            .catch(response => {
+                expect(response.responseType).toBe('abort');
+                done();
+            });
 
+        // Cancel
+        promise = consumer.get('/posts/200');
+        promise.cancel();
         promise
             .catch(response => {
                 expect(response.responseType).toBe('abort');
