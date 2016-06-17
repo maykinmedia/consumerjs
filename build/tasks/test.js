@@ -1,11 +1,23 @@
 var gulp = require('gulp');
-var Server = require('karma').Server,Server = require('karma').Server;
+var Server = require('karma').Server;
 
-var paths = require('../paths');
 
-gulp.task('test', ['lint', 'build'], function (done) {
-  new Server({
-    configFile: __dirname + '/../../karma.conf.js',
-    singleRun: true,
-  }, done).start();
+/**
+ * Run test once and exit
+ */
+gulp.task('test', function (done) {
+    new Server({
+        configFile: __dirname + '/../../karma.conf.js',
+        singleRun: true
+    }, done).start();
+});
+
+
+/**
+ * Watch for file changes and re-run tests on each change
+ */
+gulp.task('tdd', function (done) {
+    new Server({
+        configFile: __dirname + '/../../karma.conf.js',
+    }, done).start();
 });

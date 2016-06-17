@@ -1,8 +1,11 @@
 var gulp = require('gulp');
 var jshint = require('gulp-jshint');
-
 var paths = require('../paths');
 
+
+/**
+ * Lint source and tests
+ */
 gulp.task('lint', function() {
   return gulp.src([paths.source, paths.tests])
     .pipe(jshint())

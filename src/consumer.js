@@ -1,14 +1,14 @@
 import { Cookie } from 'aurelia-cookie';
-import { HttpClient } from 'aurelia/http-client';
-import { initialize } from 'aurelia/pal-browser';
-import URI from "uri";
+import { HttpClient } from 'aurelia-http-client';
+import { initialize } from 'aurelia-pal-browser';
+import URI from 'urijs';
 
 
 /**
  * Instantiate to request API endpoints
  * @class
  */
-export class Consumer {
+class Consumer {
     /**
      * Configures Consumer instance
      * @param {String} endpoint Base endpoint for this API
@@ -259,3 +259,8 @@ export class Consumer {
         return Promise.reject(data);
     }
 }
+
+
+// Export
+export { Consumer };
+export default Consumer;
