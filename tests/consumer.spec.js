@@ -1,4 +1,5 @@
-import { Consumer, ConsumerObject } from '/dist/consumerjs';
+import { Consumer } from 'consumer';
+import { ConsumerObject } from 'consumer-object';
 
 
 describe('Consumer', function() {
@@ -26,7 +27,6 @@ describe('Consumer', function() {
         jasmine.Ajax
           .stubRequest('http://example.com/api/posts/404')
           .andReturn({ status: 404 });
-
     });
 
     afterEach(function() {

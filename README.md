@@ -6,23 +6,87 @@ ConsumerJS is build to provide a better developer experience while object-orient
 
 ## Installation
 
-1. Install and configure [jspm](http://jspm.io): `npm install -g jspm` and `jspm init`
-2. Install ConsumerJS `jspm install consumerjs=github:maykinmedia/consumerjs@^1.5.0`
+`npm install maykinmedia/consumerjs`
 
 ## Usage
 
-Simple example (es6):
+This example shows how to use ConsumerJS. All requests return promises for Post instances.
+
 ```javascript
-import { Consumer, ConsumerObject } from 'consumerjs';
+import Consumer, { ConsumerObject } from 'consumerjs';
 
-class Post extends ConsumerObject {}
-let consumer = new Consumer('http://jsonplaceholder.typicode.com', Post)
 
-consumer.get('/posts/1').then(data => {
-    console.log('Got new Post object', data)
-}).catch(error => {
-    console.warn('Failed to fetch data:', error);
-});
+/**
+ * Represents a retrieved post
+ * @class
+ */
+class Post extends ConsumerObject {
+    /**
+     * Sets last modified date for post
+     * @param {Number|String} The id of the post
+     * @param {String} date
+     * @returns {Promise}
+     */
+    setLastModified(date) {
+        return this.__consumer__.setLastModified(this.id, date);
+    }
+}
+
+
+/**
+ * Handles post related communication with API
+ * Casts results to Post instances
+ * @class
+ */
+export class PostConsumer extends Consumer {
+    /**
+     * Configures this consumer
+     */
+    constructor() {
+        super();
+        this.endpoint = '/api/v1/posts';
+        this.objectClass = Post;
+    }
+
+    /**
+     * Create new empty post
+     * @param {Number} categoryId
+     * @param {Number} card
+     * @param {String} channel
+     * @returns {Promise}
+     */
+    create(categoryId) {
+        return this.post('/', { category: categoryId });
+    }
+
+    /**
+     * Fetches post
+     * @param {Number|String} postId
+     * @returns {Promise}
+     */
+    fetch(postId) {
+        return this.get(`/${postId}/`);
+    }
+
+    /**
+     * Fetches all posts for a category
+     * @param {Number|String} postId
+     * @returns {Promise}
+     */
+    getAllForCategory(categoryId) {
+        return this.get(`/`, { category: categoryId });
+    }
+
+    /**
+     * Sets last modified date for post
+     * @param {Number|String} The id of the post
+     * @param {String} date
+     * @returns {Promise}
+     */
+    setLastModified(postId, date) {
+        return this.patch(`/${postId}/`, { last_modified: date });
+    }
+}
 ```
 
 ## Contributing
