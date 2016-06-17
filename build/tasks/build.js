@@ -4,6 +4,7 @@ var babel = require('gulp-babel');
 var concat = require('gulp-concat');
 var paths = require('../paths');
 
+
 var jsName = (paths.packageName + '.js').toLowerCase();
 
 gulp.task('build', ['clean'], function () {
