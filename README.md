@@ -6,8 +6,7 @@ ConsumerJS is build to provide a better developer experience while object-orient
 
 ## Installation
 
-1. Install and configure [jspm](http://jspm.io): `npm install -g jspm` and `jspm init`
-2. Install ConsumerJS `jspm install consumerjs=github:maykinmedia/consumerjs@^1.5.0`
+`npm install maykinmedia/consumerjs`
 
 ## Usage
 
