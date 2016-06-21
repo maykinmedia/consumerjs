@@ -1,6 +1,6 @@
 {
   "name": "consumerjs",
-  "version": "1.6.0",
+  "version": "1.6.1",
   "description": "A REST API consumer (data store) built on top of [aurelia-http-client](https://github.com/aurelia/http-client).",
   "main": "dist/consumerjs.js",
   "scripts": {
