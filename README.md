@@ -2,15 +2,37 @@
 
 A REST API consumer (data store) built on top of [aurelia-http-client](https://github.com/aurelia/http-client) with built-in (Django) csrf support.
 
-ConsumerJS is build to provide a better developer experience while object-orientated programming with remote objects. ConsumerJS fetches data and casts these to named objects so they can have properties and methods.
-
 ## Installation
 
-`npm install maykinmedia/consumerjs`
+`npm install consumerjs`
 
 ## Usage
 
-This example shows how to use ConsumerJS. All requests return promises for Post instances.
+*This library can be used in the browser only.*
+
+ConsumerJS is built to provide a better developer experience while object-orientated programming with remote objects. Typical ussage would be writing a consumer module (of file) that has at least 2 classes:
+
+- "Consumer object", a class for the type of object to fetch (e.g. Post).
+- "Consumer", consumer to fetch and push the object - (e.g. PostConsumer).
+
+**Consumer object**
+
+- Is the result of a resolved promise, gets passed to the promise's then() method.
+- If the API returns an array (list), an array of object classes is returned.
+- If the API returns a single object (scalar), a single object is returned.
+- The consumer object class can have methods.
+- The consumer object class keeps a reference to it's consumer using the "__consumer__" key, this allows methods to talk back to the API.
+
+**consumer**
+
+- Acts a data store fore fetching remote data.
+- Can be used to convert human readable method into DELETE, GET, PATCH POST and PUT posts.
+- All requests return promises.
+- Successfull API requests return promises for either an array (list) or a single object (scalar).
+- Failed API requests cause the promise to reject.
+- Objects are cast to instances of a configurable consumer object class referenced by the consumers "objectClass" key.
+
+This example shows an consumer object (Post) and it's consumer (PostConsumer):
 
 ```javascript
 import Consumer, { ConsumerObject } from 'consumerjs';
