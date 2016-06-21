@@ -26,7 +26,7 @@ ConsumerJS is built to provide a better developer experience while object-orient
 **consumer**
 
 - Acts a data store fore fetching remote data.
-- Can be used to convert human readable method into DELETE, GET, PATCH POST and PUT posts.
+- Can be used to convert human readable methods into DELETE, GET, PATCH POST and PUT requests.
 - All requests return promises.
 - Successfull API requests return promises for either an array (list) or a single object (scalar).
 - Failed API requests cause the promise to reject.
