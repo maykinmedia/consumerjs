@@ -28,6 +28,9 @@ describe('Consumer', function() {
           .stubRequest('http://example.com/api/posts/206')
           .andReturn({ status: 200, responseText: '[{"path":{"to":{"data":{"title":"FooBar"}}}}]' });
         jasmine.Ajax
+          .stubRequest('http://example.com/api/posts/207')
+          .andReturn({ status: 200, responseText: '[{"data":{"title":"FooBar"}}]' });
+        jasmine.Ajax
           .stubRequest('http://example.com/api/posts/404')
           .andReturn({ status: 404 });
     });
@@ -425,7 +428,15 @@ describe('Consumer', function() {
         consumer.get('/posts/206')
             .then(data => {
                 expect(data[0].title).toEqual('FooBar');
-                done();
+
+                consumer.parserDataPath = 'data';
+
+                consumer.get('/posts/207')
+                    .then(() => {
+                        let request = jasmine.Ajax.requests.mostRecent();
+                        expect(data[0].title).toEqual('FooBar');
+                        done();
+                    });
             });
     });
 });
