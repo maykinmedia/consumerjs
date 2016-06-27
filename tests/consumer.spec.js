@@ -20,10 +20,13 @@ describe('Consumer', function() {
           .andReturn({ status: 200, responseText: '[{"title":"FooBar"}, {"title":"FooBaz"}]' });
         jasmine.Ajax
           .stubRequest('http://example.com/api/posts/204')
-          .andReturn({ status: 204 });
+          .andReturn({ status: 200 });
         jasmine.Ajax
           .stubRequest('http://example.com/api/posts/205?format=json&api_key=ABC')
           .andReturn({ status: 200, responseText: '[{"title":"FooBar"}, {"title":"FooBaz"}]' });
+        jasmine.Ajax
+          .stubRequest('http://example.com/api/posts/206')
+          .andReturn({ status: 200, responseText: '[{"path":{"to":{"data":{"title":"FooBar"}}}}]' });
         jasmine.Ajax
           .stubRequest('http://example.com/api/posts/404')
           .andReturn({ status: 404 });
@@ -404,5 +407,25 @@ describe('Consumer', function() {
                         done();
                     });
         });
+    });
+
+    it('should be able to set a custom path to data (issue #11)', function(done) {
+        class Post extends ConsumerObject {}
+        class PostConsumer extends Consumer {
+            constructor() {
+                super();
+                this.endpoint = 'http://example.com/api';
+                this.objectClass = Post;
+                this.parserDataPath = 'path.to.data';
+            }
+        }
+
+        let consumer = new PostConsumer();
+
+        consumer.get('/posts/206')
+            .then(data => {
+                expect(data[0].title).toEqual('FooBar');
+                done();
+            });
     });
 });

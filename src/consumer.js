@@ -40,6 +40,9 @@ class Consumer {
         /** The class to casts objects to */
         this.objectClass = objectClass;
 
+        /** An optional dot separated path to the received objectClass' data */
+        this.parserDataPath = '';
+
         /** Keys on this.objectClass that should not be passed to the API */
         this.unserializableFields = ['__consumer__'];
 
@@ -267,6 +270,14 @@ class Consumer {
      * @returns {ConsumerObject}
      */
     parseEntity(object) {
+        if (this.parserDataPath.length) {
+            let parts = this.parserDataPath.split('.');
+
+            parts.map(part => {
+                object = object[part];
+            });
+        }
+
         return new this.objectClass(object, this);
     }
 
