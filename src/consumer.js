@@ -233,6 +233,14 @@ class Consumer {
 
         let object = JSON.parse(json);
 
+        if (this.parserDataPath.length) {
+            let parts = this.parserDataPath.split('.');
+
+            parts.map(part => {
+                object = object[part];
+            });
+        }
+
         if (Array.isArray(object)) {
             return this.parseList(object);
         }
@@ -270,14 +278,6 @@ class Consumer {
      * @returns {ConsumerObject}
      */
     parseEntity(object) {
-        if (this.parserDataPath.length) {
-            let parts = this.parserDataPath.split('.');
-
-            parts.map(part => {
-                object = object[part];
-            });
-        }
-
         return new this.objectClass(object, this);
     }
 
