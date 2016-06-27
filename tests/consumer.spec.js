@@ -377,4 +377,32 @@ describe('Consumer', function() {
                 done();
             });
     });
+
+    it('should be able to set the content type (issue #10)', function(done) {
+        class Post extends ConsumerObject {}
+        class PostConsumer extends Consumer {
+            constructor() {
+                super();
+                this.endpoint = 'http://example.com/api';
+                this.objectClass = Post;
+            }
+        }
+
+        let consumer = new PostConsumer();
+
+        consumer.get('/posts/200')
+            .then(() => {
+                let request = jasmine.Ajax.requests.mostRecent();
+                expect(request.requestHeaders['Content-Type']).toBe('application/json');
+
+                consumer.contentType = 'application/vnd.api+json';
+
+                consumer.get('/posts/200')
+                    .then(() => {
+                        let request = jasmine.Ajax.requests.mostRecent();
+                        expect(request.requestHeaders['Content-Type']).toBe('application/vnd.api+json');
+                        done();
+                    });
+        });
+    });
 });

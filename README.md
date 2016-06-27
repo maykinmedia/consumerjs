@@ -21,9 +21,9 @@ ConsumerJS is built to provide a better developer experience while object-orient
 - If the API returns an array (list), an array of object classes is returned.
 - If the API returns a single object (scalar), a single object is returned.
 - The consumer object class can have methods.
-- The consumer object class keeps a reference to it's consumer using the "__consumer__" key, this allows methods to talk back to the API.
+- The consumer object class keeps a reference to it's consumer using the "\__consumer__" key, this allows methods to talk back to the API.
 
-**consumer**
+**Consumer**
 
 - Acts a data store fore fetching remote data.
 - Can be used to convert human readable methods into DELETE, GET, PATCH POST and PUT requests.
