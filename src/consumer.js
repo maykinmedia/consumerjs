@@ -19,6 +19,9 @@ class Consumer {
         /** The Aurelia HttpClient instance to work with */
         this.client = new HttpClient();
 
+        /** The value of the Content-Type header */
+        this.contentType = 'application/json';
+
         /** The name for the CSRF cookie */
         this.csrfCookie = 'csrftoken';
 
@@ -117,6 +120,9 @@ class Consumer {
         this.client.configure(x => {
             x.withBaseUrl(this.endpoint);
         });
+
+        // Set content type
+        this.addHeader('Content-Type', this.contentType);
 
         // Set csrf token if needed
         if (!this.isSafeMethod(method) && this.csrfCookie && this.csrfHeader) {
