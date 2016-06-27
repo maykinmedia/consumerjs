@@ -16,13 +16,28 @@ class Consumer {
      * @param {Object} [options] Additional configuration
      */
     constructor(endpoint, objectClass, options=null) {
+        /** The Aurelia HttpClient instance to work with */
         this.client = new HttpClient();
+
+        /** The name for the CSRF cookie */
         this.csrfCookie = 'csrftoken';
+
+        /** The name for the CSRF header */
         this.csrfHeader = 'X-CSRFToken';
+
+        /** An optional object holding key value pairs of additional headers */
         this.defaultHeaders = {};
+
+        /** An optional object holding key value pairs of additional query parameters */
         this.defaultParameters = {};
+
+        /** The base API endpoint prefixed for all requests */
         this.endpoint = endpoint;
+
+        /** The class to casts objects to */
         this.objectClass = objectClass;
+
+        /** Keys on this.objectClass that should not be passed to the API */
         this.unserializableFields = ['__consumer__'];
 
         if (options) {
