@@ -49,8 +49,9 @@
   },
   "dependencies": {
     "aurelia-cookie": "1.0.5",
-    "aurelia-http-client": "^1.0.0-beta.2.0.1",
-    "aurelia-pal-browser": "^1.0.0-beta.3.0.1",
+    "aurelia-http-client": "1.0.0-rc.1.0.0",
+    "aurelia-pal": "1.0.0-rc.1.0.0",
+    "aurelia-pal-browser": "1.0.0-rc.1.0.0",
     "urijs": "^1.18.1"
   },
   "repository": {
