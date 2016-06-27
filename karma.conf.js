@@ -52,6 +52,6 @@ module.exports = function(config) {
 
         reporters: ['spec', 'coverage'],
 
-        browsers: ['Chrome'],
+        browsers: ['Chrome', 'Firefox'],
     })
 }
