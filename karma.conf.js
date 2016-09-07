@@ -20,11 +20,11 @@ module.exports = function(config) {
         ],
 
         files: [
-            'tests/*.spec.js',
+            'test/*.spec.js',
         ],
 
         preprocessors: {
-            'tests/*.spec.js': [
+            'test/*.spec.js': [
                 'webpack'
             ],
         },
