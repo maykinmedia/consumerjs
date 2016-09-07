@@ -195,19 +195,35 @@ class Consumer {
 
     /**
      * Serializes data
+     * Returns data if data is not an object
      * Excludes fields marked in this.unserializableFields
-     * @param {ConsumerObject|Object} data
-     * @returns {Object}
+     * @param {ConsumerObject|*} data
+     * @returns {*}
      */
     serialize(data) {
+        // Returns data if data is not an object
+        if (!this.isObject(data)) {
+            return data;
+        }
+
         let object = {};
 
+        // Excludes fields marked in this.unserializableFields
         for (let key of Object.keys(data)) {
             if (!this.unserializableFields.includes(key)) {
                 object[key] = data[key];
             }
         }
         return object;
+    }
+
+    /**
+     * Returns whether object is an object
+     * @param {*} object
+     * @returns {Boolean}
+     */
+    isObject(object) {
+        return Object.prototype.toString.call(object) === '[object Object]';
     }
 
     /**
