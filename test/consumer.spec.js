@@ -438,4 +438,12 @@ describe('Consumer', function() {
                     });
             });
     });
+
+    it('should be able to serialize an array (issue #15)', function() {
+        let consumer = new Consumer,
+            serializedObject = {};
+
+        serializedObject = consumer.serialize(['foo', 'bar']);
+        expect(serializedObject).toEqual(['foo', 'bar']);
+    });
 });
