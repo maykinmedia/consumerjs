@@ -65,7 +65,7 @@ describe('Consumer', function() {
         }
 
         let consumer = new PostConsumer();
-        expect(consumer.constructor.name).toBe('PostConsumer');
+        expect(consumer.constructor.name).toContain('Consumer');
         expect(consumer.endpoint).toBe('http://example.com/api');
         expect(consumer.objectClass.name).toBe('Post');
 
