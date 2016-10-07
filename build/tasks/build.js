@@ -1,17 +1,13 @@
 var gulp = require('gulp');
-var sourcemaps = require('gulp-sourcemaps');
-var babel = require('gulp-babel');
-var concat = require('gulp-concat');
+var webpack = require('webpack-stream');
 var paths = require('../paths');
+var webpackConfig = require('../../webpack.config.js');
 
 
 var jsName = (paths.packageName + '.js').toLowerCase();
 
 gulp.task('build', ['clean'], function () {
-  return gulp.src(paths.source)
-    .pipe(sourcemaps.init())
-    .pipe(babel())
-    .pipe(concat(jsName))
-    .pipe(sourcemaps.write('.'))
-    .pipe(gulp.dest(paths.output));
+    return gulp.src('')
+        .pipe(webpack(webpackConfig))
+        .pipe(gulp.dest(webpackConfig.output.path));
 });

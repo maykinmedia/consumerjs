@@ -1,5 +1,8 @@
 module.exports = {
-    entry: './dist/consumerjs.js',
+    entry: [
+        './src/consumer',
+        './src/consumer-object',
+    ],
 
     output: {
         filename: 'consumerjs.js',
@@ -22,6 +25,7 @@ module.exports = {
 
     resolve: {
         root: [
+            __dirname + '/dist/',
             __dirname + '/src/',
         ]
     }

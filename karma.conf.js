@@ -20,6 +20,7 @@ module.exports = function(config) {
         ],
 
         files: [
+            'node_modules/babel-polyfill/dist/polyfill.min.js',
             'test/*.spec.js',
         ],
 
