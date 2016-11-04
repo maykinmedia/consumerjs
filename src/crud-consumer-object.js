@@ -7,7 +7,7 @@ import { AbstractConsumerObject } from 'abstract-consumer-object';
  * Should be extended to provide methods for objects
  * @abstract
  */
-export class RestConsumerObject extends AbstractConsumerObject {
+export class CrudConsumerObject extends AbstractConsumerObject {
     update(changedFields) {
         return super.patch('', changedFields);
     }

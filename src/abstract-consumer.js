@@ -12,7 +12,7 @@ class AbstractConsumer {
     /**
      * Configures Consumer instance
      * @param {String} endpoint Base endpoint for this API
-     * @param {ConsumerObject} objectClass Class to cast results to
+     * @param {AbstractConsumerObject} objectClass Class to cast results to
      * @param {Object} [options] Additional configuration
      */
     constructor(endpoint, objectClass, options=null) {
@@ -71,7 +71,7 @@ class AbstractConsumer {
      * @returns {Promise}
      */
     get(path = '', query = {}) {
-        let uri = URI.build({'path': path, 'query': URI.buildQuery(query)});
+        let uri = URI.build({'path': path + '', 'query': URI.buildQuery(query)});
         return this.request('get', uri, {});
     }
 
@@ -197,7 +197,7 @@ class AbstractConsumer {
      * Serializes data
      * Returns data if data is not an object
      * Excludes fields marked in this.unserializableFields
-     * @param {ConsumerObject|*} data
+     * @param {AbstractConsumerObject|*} data
      * @returns {*}
      */
     serialize(data) {
@@ -230,7 +230,7 @@ class AbstractConsumer {
      * Callback for request
      * Gets called if request resolve successfully
      * @param {HttpResponseMessage} data
-     * @returns {ConsumerObject|ConsumerObject[]}
+     * @returns {AbstractConsumerObject|AbstractConsumerObject[]}
      */
     requestSuccess(data) {
         let result = this.parse(data.response);
@@ -238,9 +238,9 @@ class AbstractConsumer {
     }
 
     /**
-     * Parses JSON string to a single or list of ConsumerObject instance(s)
+     * Parses JSON string to a single or list of AbstractConsumerObject instance(s)
      * @param {String} data
-     * @returns {ConsumerObject|ConsumerObject[]|undefined}
+     * @returns {AbstractConsumerObject|AbstractConsumerObject[]|undefined}
      */
     parse(json) {
         if (!json) {
@@ -264,10 +264,10 @@ class AbstractConsumer {
     }
 
     /**
-     * Parses anonymous objects to a list of ConsumerObjects
+     * Parses anonymous objects to a list of AbstractConsumerObjects
      * Gets called when result JSON.parse is an array
      * @param {Object[]} array
-     * @returns {ConsumerObject[]}
+     * @returns {AbstractConsumerObject[]}
      */
     parseList(array) {
         let list = [];
@@ -279,19 +279,19 @@ class AbstractConsumer {
     }
 
     /**
-     * Parses anonymous object to a single ConsumerObject
+     * Parses anonymous object to a single AbstractConsumerObject
      * Gets called when result JSON.parse is not an array
      * @param {Object} object
-     * @returns {ConsumerObject}
+     * @returns {AbstractConsumerObject}
      */
     parseScalar(object) {
         return this.parseEntity(object);
     }
 
     /**
-     * Parses anonymous object to a single ConsumerObject
+     * Parses anonymous object to a single AbstractConsumerObject
      * @param {Object} object
-     * @returns {ConsumerObject}
+     * @returns {AbstractConsumerObject}
      */
     parseEntity(object) {
         return new this.objectClass(object, this);
