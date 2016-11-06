@@ -1,5 +1,6 @@
 import { AbstractConsumer } from 'abstract-consumer';
 
+
 /**
  * Extend, instantiate and configure to request API endpoints
  * Contains various methods for common CRUD tasks
@@ -17,14 +18,25 @@ class CrudConsumer extends AbstractConsumer {
 
         /** The class to casts objects to */
         this.objectClass = objectClass;
+
+        // Add __initial_state__ to unserializableFields
+        this.unserializableFields.push('__initial_state__')
     }
 
-    // TODO
+    /**
+     * Creates an object by performing a POST request
+     * @param {Object} object Object to create
+     * @returns {Promise}
+     */
     create(object) {
         return super.post('', object);
     }
 
-    // TODO
+    /**
+     * Retrieves an object by performing a GET request
+     * @param {Number|String} id
+     * @returns {Promise}
+     */
     read(id) {
         return super.get(id);
     }

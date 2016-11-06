@@ -446,4 +446,64 @@ describe('Consumer', function() {
         serializedObject = consumer.serialize(['foo', 'bar']);
         expect(serializedObject).toEqual(['foo', 'bar']);
     });
+
+    it('should add a slash at the end of the endpoint if required', function(done) {
+        class Post extends ConsumerObject {}
+        class PostConsumer extends Consumer {
+            constructor() {
+                super();
+                this.endpoint = 'http://example.com/api/posts';
+                this.objectClass = Post;
+            }
+        }
+
+        let consumer = new PostConsumer();
+
+        consumer.get(200)
+            .then(() => {
+                let request = jasmine.Ajax.requests.mostRecent();
+                expect(request.url).toBe('http://example.com/api/posts/200');
+                done()
+            });
+    });
+
+    it('should not add a slash at the end of the endpoint if not required', function(done) {
+        class Post extends ConsumerObject {}
+        class PostConsumer extends Consumer {
+            constructor() {
+                super();
+                this.endpoint = 'http://example.com/api/posts/';
+                this.objectClass = Post;
+            }
+        }
+
+        let consumer = new PostConsumer();
+
+        consumer.get(200)
+            .then(() => {
+                let request = jasmine.Ajax.requests.mostRecent();
+                expect(request.url).toBe('http://example.com/api/posts/200');
+                done()
+            });
+    });
+
+    it('should remove double slashes if required', function(done) {
+        class Post extends ConsumerObject {}
+        class PostConsumer extends Consumer {
+            constructor() {
+                super();
+                this.endpoint = 'http://example.com/api/posts/';
+                this.objectClass = Post;
+            }
+        }
+
+        let consumer = new PostConsumer();
+
+        consumer.get('/200')
+            .then(() => {
+                let request = jasmine.Ajax.requests.mostRecent();
+                expect(request.url).toBe('http://example.com/api/posts/200');
+                done()
+            });
+    });
 });
