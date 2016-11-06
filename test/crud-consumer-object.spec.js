@@ -86,4 +86,15 @@ describe('CrudConsumerObject', function() {
                 done();
             });
     });
+
+    it('should throw an exception if it cannot determine the path', function() {
+        class Post extends CrudConsumerObject {}
+        class PostConsumer extends CrudConsumer {}
+
+        let post = new Post({ foo: 'foo', bar: 'bar', baz: 'baz' }, new PostConsumer('http://example.com/api/posts'));
+
+        expect(function() { post.update() }).toThrow(new Error('Can\'t determine path, please set pk or id or define getPath()'));
+        expect(function() { post.save() }).toThrow(new Error('Can\'t determine path, please set pk or id or define getPath()'));
+        expect(function() { post.delete() }).toThrow(new Error('Can\'t determine path, please set pk or id or define getPath()'));
+    });
 });

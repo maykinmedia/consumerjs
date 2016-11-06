@@ -30,8 +30,9 @@ export class CrudConsumerObject extends AbstractConsumerObject {
             newState = this,
             changedState = this.getChangedFields();
 
+
         if (!path) {
-            throw `Can\'t determine path, please set pk or id or define getPath()`;
+            throw new Error('Can\'t determine path, please set pk or id or define getPath()');
         }
 
         // If no fields have changed, request is omitted and a resolving Promise is returned
@@ -58,7 +59,7 @@ export class CrudConsumerObject extends AbstractConsumerObject {
             newState = this;
 
         if (!path) {
-            throw `Can\'t determine path, please set pk or id or define getPath()`;
+            throw new Error('Can\'t determine path, please set pk or id or define getPath()');
         }
 
         // Sends all fields as data
@@ -77,7 +78,7 @@ export class CrudConsumerObject extends AbstractConsumerObject {
         let path = this.getPath();
 
         if (!path) {
-            throw `Can\'t determine path, please set pk or id or define getPath()`;
+            throw new Error('Can\'t determine path, please set pk or id or define getPath()');
         }
 
         return this.__consumer__.delete(path);
@@ -90,7 +91,12 @@ export class CrudConsumerObject extends AbstractConsumerObject {
      * @returns {String|false}
      */
     getPath() {
-        return this.getPK() + '' || false;
+        let pk =  this.getPK();
+
+        if (pk) {
+            return pk + '';
+        }
+        return false;
     }
 
     /**
