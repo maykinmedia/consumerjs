@@ -1,8 +1,14 @@
+var webpack = require('webpack');
+var nodeExternals = require('webpack-node-externals');
+var CommonsChunkPlugin = require("webpack/lib/optimize/CommonsChunkPlugin");
+
+
 module.exports = {
-    entry: './dist/consumerjs.js',
+    entry: './src/main.js',
 
     output: {
         filename: 'consumerjs.js',
+        libraryTarget: 'umd',
         path: __dirname + '/dist/',
         publicPath: '/static/'
     },
@@ -20,9 +26,16 @@ module.exports = {
         ]
     },
 
+    plugins: [
+        new webpack.optimize.UglifyJsPlugin()
+    ],
+
     resolve: {
         root: [
             __dirname + '/src/',
         ]
-    }
+    },
+
+    target: 'node',
+    externals: [nodeExternals()]
 };

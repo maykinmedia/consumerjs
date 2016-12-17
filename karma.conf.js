@@ -1,4 +1,5 @@
-var webpackConfig = require('./webpack.config.js');
+var clone= require('clone');
+var webpackConfig = clone(require('./webpack.config.js'));
 
 
 // Add istanbul-instrumenter to webpack configuration
@@ -9,6 +10,10 @@ webpackConfig.module.loaders.push(
         loader: 'babel-istanbul-loader'
     }
 );
+
+webpackConfig.output.filename += '.test';
+webpackConfig.plugins = [];
+webpackConfig.externals = [];
 
 
 // The main configuration
