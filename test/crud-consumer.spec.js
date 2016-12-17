@@ -1,5 +1,4 @@
-import { CrudConsumer } from 'crud-consumer';
-import { CrudConsumerObject } from 'crud-consumer-object';
+import { CrudConsumer } from '../src/crud-consumer';
 
 
 describe('CrudConsumer', function() {
@@ -11,7 +10,7 @@ describe('CrudConsumer', function() {
           .andReturn({ status: 201 });
         jasmine.Ajax
           .stubRequest('http://example.com/api/posts/1')
-          .andReturn({ status: 200 });;
+          .andReturn({ status: 200 });
     });
 
     afterEach(function() {
@@ -19,7 +18,6 @@ describe('CrudConsumer', function() {
     });
 
     it('should support create', function(done) {
-        class Post extends CrudConsumerObject {}
         class PostConsumer extends CrudConsumer {}
 
         let consumer = new PostConsumer();
@@ -31,24 +29,23 @@ describe('CrudConsumer', function() {
                 expect(request.url).toBe('http://example.com/api/posts/');
                 expect(request.status).toBe(201);
 
-                done()
+                done();
             });
     });
 
     it('should support read', function(done) {
-        class Post extends CrudConsumerObject {}
         class PostConsumer extends CrudConsumer {}
 
         let consumer = new PostConsumer();
         consumer.endpoint = 'http://example.com/api/posts/';
 
         consumer.read(1)
-            .then((post) => {
+            .then(() => {
                 let request = jasmine.Ajax.requests.mostRecent();
                 expect(request.url).toBe('http://example.com/api/posts/1');
                 expect(request.status).toBe(200);
 
-                done()
+                done();
             });
     });
 });

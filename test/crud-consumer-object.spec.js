@@ -1,5 +1,5 @@
-import { CrudConsumer } from 'crud-consumer';
-import { CrudConsumerObject } from 'crud-consumer-object';
+import { CrudConsumer } from '../src/crud-consumer';
+import { CrudConsumerObject } from '../src/crud-consumer-object';
 
 
 describe('CrudConsumerObject', function() {
@@ -11,7 +11,7 @@ describe('CrudConsumerObject', function() {
           .andReturn({ status: 201 });
         jasmine.Ajax
           .stubRequest('http://example.com/api/posts/1')
-          .andReturn({ status: 200 });;
+          .andReturn({ status: 200 });
     });
 
     afterEach(function() {
@@ -43,11 +43,10 @@ describe('CrudConsumerObject', function() {
 
         let post = new Post({ id: 1, foo: 'foo', bar: 'bar', baz: 'baz' }, new PostConsumer('http://example.com/api/posts'));
 
-        spyOn(post.__consumer__, 'patch').and.callThrough()
+        spyOn(post.__consumer__, 'patch').and.callThrough();
 
         post.update()
             .then(() => {
-                let request = jasmine.Ajax.requests.mostRecent();
                 expect(post.__consumer__.patch).not.toHaveBeenCalled();
                 done();
             });
@@ -93,8 +92,8 @@ describe('CrudConsumerObject', function() {
 
         let post = new Post({ foo: 'foo', bar: 'bar', baz: 'baz' }, new PostConsumer('http://example.com/api/posts'));
 
-        expect(function() { post.update() }).toThrow(new Error('Can\'t determine path, please set pk or id or define getPath()'));
-        expect(function() { post.save() }).toThrow(new Error('Can\'t determine path, please set pk or id or define getPath()'));
-        expect(function() { post.delete() }).toThrow(new Error('Can\'t determine path, please set pk or id or define getPath()'));
+        expect(function() { post.update(); }).toThrow(new Error('Can\'t determine path, please set pk or id or define getPath()'));
+        expect(function() { post.save(); }).toThrow(new Error('Can\'t determine path, please set pk or id or define getPath()'));
+        expect(function() { post.delete(); }).toThrow(new Error('Can\'t determine path, please set pk or id or define getPath()'));
     });
 });

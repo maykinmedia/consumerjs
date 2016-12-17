@@ -1,5 +1,5 @@
-import { Consumer } from 'consumer';
-import { ConsumerObject } from 'consumer-object';
+import { Consumer } from '../src/consumer';
+import { ConsumerObject } from '../src/consumer-object';
 
 
 describe('Consumer', function() {
@@ -440,7 +440,7 @@ describe('Consumer', function() {
     });
 
     it('should be able to serialize an array (issue #15)', function() {
-        let consumer = new Consumer,
+        let consumer = new Consumer(),
             serializedObject = {};
 
         serializedObject = consumer.serialize(['foo', 'bar']);
@@ -463,7 +463,7 @@ describe('Consumer', function() {
             .then(() => {
                 let request = jasmine.Ajax.requests.mostRecent();
                 expect(request.url).toBe('http://example.com/api/posts/200');
-                done()
+                done();
             });
     });
 
@@ -483,7 +483,7 @@ describe('Consumer', function() {
             .then(() => {
                 let request = jasmine.Ajax.requests.mostRecent();
                 expect(request.url).toBe('http://example.com/api/posts/200');
-                done()
+                done();
             });
     });
 
@@ -503,7 +503,7 @@ describe('Consumer', function() {
             .then(() => {
                 let request = jasmine.Ajax.requests.mostRecent();
                 expect(request.url).toBe('http://example.com/api/posts/200');
-                done()
+                done();
             });
     });
 });
