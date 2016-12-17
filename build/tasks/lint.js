@@ -4,10 +4,12 @@ var paths = require('../paths');
 
 
 /**
- * Lint source and tests
+ * Lint task
+ * Run using "gulp lint"
+ * Lints javascript code
  */
 gulp.task('lint', function() {
-  return gulp.src([paths.source, paths.tests])
-    .pipe(jshint())
-    .pipe(jshint.reporter('default'))
+    return gulp.src([paths.source, paths.tests])
+        .pipe(jshint())
+        .pipe(jshint.reporter('default'))
 });
