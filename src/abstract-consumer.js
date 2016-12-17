@@ -8,7 +8,7 @@ import URI from 'urijs';
  * Abstract base class for consumers
  * @abstract
  */
-class AbstractConsumer {
+export class AbstractConsumer {
     /**
      * Configures Consumer instance
      * @param {String} endpoint Base endpoint for this API
@@ -307,8 +307,3 @@ class AbstractConsumer {
         return Promise.reject(data);
     }
 }
-
-
-// Export
-export { AbstractConsumer };
-export default AbstractConsumer;

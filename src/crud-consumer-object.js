@@ -1,4 +1,4 @@
-import { AbstractConsumerObject } from 'abstract-consumer-object';
+import { AbstractConsumerObject } from './abstract-consumer-object';
 
 
 /**
@@ -117,7 +117,7 @@ export class CrudConsumerObject extends AbstractConsumerObject {
      * @returns {Object}
      */
     getChangedFields() {
-        let result = {}
+        let result = {};
         for (let [key, value] of Object.entries(this)) {
             // Property names in this.__consumer__.unserializableFields are ignored
             if (this.__consumer__.unserializableFields.indexOf(key) > -1) {

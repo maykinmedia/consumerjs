@@ -1,4 +1,4 @@
-import { AbstractConsumerObject } from 'abstract-consumer-object';
+import { AbstractConsumerObject } from './abstract-consumer-object';
 
 
 /**

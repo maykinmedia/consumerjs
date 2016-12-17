@@ -1,4 +1,4 @@
-import { AbstractConsumer } from 'abstract-consumer';
+import { AbstractConsumer } from './abstract-consumer';
 
 
 /**
@@ -6,7 +6,7 @@ import { AbstractConsumer } from 'abstract-consumer';
  * Contains various methods for common CRUD tasks
  * @abstract
  */
-class CrudConsumer extends AbstractConsumer {
+export class CrudConsumer extends AbstractConsumer {
     /**
      * Configures CrudConsumer instance
      * @param {String} endpoint Base endpoint for this API
@@ -20,7 +20,7 @@ class CrudConsumer extends AbstractConsumer {
         this.objectClass = objectClass;
 
         // Add __initial_state__ to unserializableFields
-        this.unserializableFields.push('__initial_state__')
+        this.unserializableFields.push('__initial_state__');
     }
 
     /**
@@ -41,8 +41,3 @@ class CrudConsumer extends AbstractConsumer {
         return super.get(id);
     }
 }
-
-
-// Export
-export { CrudConsumer };
-export default CrudConsumer;
