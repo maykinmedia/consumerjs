@@ -8,22 +8,22 @@ import Consumer, {
 
 describe('Module', function() {
     it('should export Consumer as default', function() {
-        expect(Consumer.name).toBe('Consumer')
+        expect(Consumer.name).toBe('Consumer');
     });
 
     it('should export Consumer', function() {
-        expect(Consumer2.name).toBe('Consumer')
+        expect(Consumer2.name).toBe('Consumer');
     });
 
     it('should export ConsumerObject', function() {
-        expect(ConsumerObject.name).toBe('ConsumerObject')
+        expect(ConsumerObject.name).toBe('ConsumerObject');
     });
 
     it('should export CrudConsumer', function() {
-        expect(CrudConsumer.name).toBe('CrudConsumer')
+        expect(CrudConsumer.name).toBe('CrudConsumer');
     });
 
     it('should export CrudConsumerObject', function() {
-        expect(CrudConsumerObject.name).toBe('CrudConsumerObject')
+        expect(CrudConsumerObject.name).toBe('CrudConsumerObject');
     });
 });
