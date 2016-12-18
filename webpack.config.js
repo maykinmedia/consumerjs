@@ -1,10 +1,11 @@
 var webpack = require('webpack');
 var nodeExternals = require('webpack-node-externals');
-var CommonsChunkPlugin = require("webpack/lib/optimize/CommonsChunkPlugin");
 
 
 module.exports = {
-    entry: './src/main.js',
+    entry: './src/index.js',
+    externals: [nodeExternals()],
+    target: 'node',
 
     output: {
         filename: 'consumerjs.js',
@@ -19,23 +20,11 @@ module.exports = {
                 test: /.js?$/,
                 loader: 'babel-loader',
                 exclude: /node_modules/,
-                presets: [
-                    'es2015',
-                ]
             }
         ]
     },
 
     plugins: [
         new webpack.optimize.UglifyJsPlugin()
-    ],
-
-    resolve: {
-        root: [
-            __dirname + '/src/',
-        ]
-    },
-
-    target: 'node',
-    externals: [nodeExternals()]
+    ]
 };
