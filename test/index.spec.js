@@ -6,7 +6,7 @@ import Consumer, {
 } from '../src/index';
 
 
-fdescribe('Module', function() {
+describe('Module', function() {
     it('should export Consumer as default', function() {
         expect(Consumer.name).toBe('Consumer')
     });
