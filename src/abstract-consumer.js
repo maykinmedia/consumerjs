@@ -210,7 +210,7 @@ export class AbstractConsumer {
 
         // Excludes fields marked in this.unserializableFields
         for (let key of Object.keys(data)) {
-            if (!this.unserializableFields.includes(key)) {
+            if (!this.unserializableFields.indexOf(key) > -1) {
                 object[key] = data[key];
             }
         }
