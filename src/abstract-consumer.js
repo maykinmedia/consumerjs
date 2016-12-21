@@ -161,7 +161,7 @@ export class AbstractConsumer {
      */
     isSafeMethod(method) {
         let saveMethods = ['GET', 'HEAD', 'OPTIONS', 'TRACE'];
-        return saveMethods.includes(method.toUpperCase());
+        return saveMethods.indexOf(method.toUpperCase()) > -1;
     }
 
     /**
