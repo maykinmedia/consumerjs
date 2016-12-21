@@ -1,6 +1,7 @@
 {
    "comments":false,
    "compact":true,
+   "plugins": ["transform-runtime"],
    "presets":[
       "es2015"
    ]
