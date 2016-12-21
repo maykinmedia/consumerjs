@@ -21,7 +21,8 @@ module.exports = function(config) {
     config.set({
         frameworks: [
             'jasmine-ajax',
-            'jasmine'
+            'jasmine',
+            'es6-shim'
         ],
 
         files: [
