@@ -22,16 +22,21 @@ describe('CrudConsumerObject', function() {
         class Post extends CrudConsumerObject {}
         class PostConsumer extends CrudConsumer {}
 
-        let post = new Post({ id: 1, foo: 'foo', bar: 'bar', baz: 'baz' }, new PostConsumer('http://example.com/api/posts'));
-        post.foo = 'bar';
+        let post = new Post({ id: 1, foo: 'bar', bar: { foo: 'bar', bar: 'baz' }, baz: ['foo', 'bar'] }, new PostConsumer('http://example.com/api/posts'));
+        post.foo = 'baz';
+        post.bar.foo = 'baz';
+        post.baz = ['foo', 'baz'];
+        expect(post.getChangedFields()).toEqual({ foo: 'baz', bar: { foo: 'baz' }, baz: ['foo', 'baz']});
 
         post.update()
             .then(() => {
                 let request = jasmine.Ajax.requests.mostRecent();
                 expect(request.method).toBe('PATCH');
-                expect(request.params).toBe('{"foo":"bar"}');
+                expect(request.params).toBe('{"foo":"baz","bar":{"foo":"baz"},"baz":["foo","baz"]}');
                 expect(request.url).toBe('http://example.com/api/posts/1');
-                expect(post.__initial_state__.foo).toBe('bar');
+                expect(post.__initial_state__.foo).toBe('baz');
+                expect(post.__initial_state__.bar).toEqual({ foo: 'baz', bar: 'baz' });
+                expect(post.__initial_state__.baz).toEqual(['foo', 'baz']);
                 expect(post.getChangedFields()).toEqual({});
                 done();
             });

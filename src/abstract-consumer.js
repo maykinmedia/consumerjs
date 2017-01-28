@@ -3,6 +3,8 @@ import { HttpClient } from 'aurelia-http-client';
 import { initialize } from 'aurelia-pal-browser';
 import URI from 'urijs';
 
+import { isObject } from './utils';
+
 
 /**
  * Abstract base class for consumers
@@ -202,7 +204,7 @@ export class AbstractConsumer {
      */
     serialize(data) {
         // Returns data if data is not an object
-        if (!this.isObject(data)) {
+        if (!isObject(data)) {
             return data;
         }
 
@@ -215,15 +217,6 @@ export class AbstractConsumer {
             }
         }
         return object;
-    }
-
-    /**
-     * Returns whether object is an object
-     * @param {*} object
-     * @returns {Boolean}
-     */
-    isObject(object) {
-        return Object.prototype.toString.call(object) === '[object Object]';
     }
 
     /**

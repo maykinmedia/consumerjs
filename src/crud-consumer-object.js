@@ -1,4 +1,5 @@
 import { AbstractConsumerObject } from './abstract-consumer-object';
+import { diff } from './utils';
 
 
 /**
@@ -15,7 +16,7 @@ export class CrudConsumerObject extends AbstractConsumerObject {
      */
     constructor(data, consumer) {
         super(data, consumer);
-        this.__initial_state__ = data;
+        this.__initial_state__ = JSON.parse(JSON.stringify(data));  // Create a rough clone
     }
 
     /**
@@ -117,18 +118,16 @@ export class CrudConsumerObject extends AbstractConsumerObject {
      * @returns {Object}
      */
     getChangedFields() {
-        let result = {};
+        let data = {};
         for (let [key, value] of Object.entries(this)) {
             // Property names in this.__consumer__.unserializableFields are ignored
             if (this.__consumer__.unserializableFields.indexOf(key) > -1) {
                 continue;
             }
 
-            // Properties are compared against this.__initial_state__
-            if (value !== this.__initial_state__[key]) {
-                result[key] = value;
-            }
+            data[key] = value;
         }
-        return result;
+
+        return diff(this.__initial_state__, data);
     }
 }
