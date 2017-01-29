@@ -9,8 +9,9 @@
  * @param  {Object} objNew
  * @returns {Object}
  */
-export function diff(objOld, objNew) {
-    let result = {}
+export function diff(objOld, objNew) {  // jshint maxdepth:3
+    let result = {};
+
     for (let key of Object.keys(objNew)) {
         let valueOld = (objOld) ? objOld[key] : null,
             valueNew = objNew[key];
@@ -52,8 +53,7 @@ export function diff(objOld, objNew) {
     }
 
     for (let key of Object.keys(objOld)) {
-        let valueOld = objOld[key],
-            valueNew = objNew[key];
+        let valueNew = objNew[key];
 
         if (!valueNew) {
             result[key] = null;
