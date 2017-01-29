@@ -89,7 +89,7 @@ export class CrudConsumerObject extends AbstractConsumerObject {
      * Returns the path for this object
      * Path is assumed to be the primary key
      * If no key is found, false is returned
-     * @returns {String|false}
+     * @returns {string|false}
      */
     getPath() {
         let pk =  this.getPK();

@@ -1,5 +1,5 @@
 /**
- * Creates a new object describing the changed field in objNew.
+ * Returns a new object describing the changed field in objNew.
  * Each field is compared against objOld:
  * - Only changed fields are included.
  * - Arrays are considered as a single entity (if one items differs, the entire array is considered changed).
@@ -90,7 +90,7 @@ export function excludeUnserializableFields(object, unserializableFields=object.
 /**
  * Returns whether object is an object
  * @param {*} object
- * @returns {Boolean}
+ * @returns {boolean}
  */
 export function isObject(object) {
     return Object.prototype.toString.call(object) === '[object Object]';

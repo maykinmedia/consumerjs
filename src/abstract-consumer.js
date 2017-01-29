@@ -13,7 +13,7 @@ import { excludeUnserializableFields, isObject } from './utils';
 export class AbstractConsumer {
     /**
      * Configures Consumer instance
-     * @param {String} endpoint Base endpoint for this API
+     * @param {string} endpoint Base endpoint for this API
      * @param {AbstractConsumerObject} objectClass Class to cast results to
      * @param {Object} [options] Additional configuration
      */
@@ -57,7 +57,7 @@ export class AbstractConsumer {
 
     /**
      * Performs a DELETE request
-     * @param {String} path Path on the endpoint
+     * @param {string} path Path on the endpoint
      * @param {Object} query Query parameters
      * @returns {Promise}
      */
@@ -68,7 +68,7 @@ export class AbstractConsumer {
 
     /**
      * Performs a GET request
-     * @param {String} path Path on the endpoint
+     * @param {string} path Path on the endpoint
      * @param {Object} query Query parameters
      * @returns {Promise}
      */
@@ -79,7 +79,7 @@ export class AbstractConsumer {
 
     /**
      * Performs a PATCH request
-     * @param {String} path Path on the endpoint
+     * @param {string} path Path on the endpoint
      * @param {Object} data Data payload
      * @returns {Promise}
      */
@@ -90,7 +90,7 @@ export class AbstractConsumer {
 
     /**
      * Performs a POST request
-     * @param {String} path Path on the endpoint
+     * @param {string} path Path on the endpoint
      * @param {Object} data Data payload
      * @returns {Promise}
      */
@@ -101,7 +101,7 @@ export class AbstractConsumer {
 
     /**
      * Performs a PUT request
-     * @param {String} path Path on the endpoint
+     * @param {string} path Path on the endpoint
      * @param {Object} data Data payload
      * @returns {Promise}
      */
@@ -112,8 +112,8 @@ export class AbstractConsumer {
 
     /**
      * Performs a request
-     * @param {String} method The method to use
-     * @param {String} path Path on the endpoint
+     * @param {string} method The method to use
+     * @param {string} path Path on the endpoint
      * @param {Object} data Data payload
      * @returns {Promise}
      */
@@ -159,7 +159,7 @@ export class AbstractConsumer {
 
     /**
      * Returns whether the request is safe (should not mutate any data)
-     * @returns {Boolean}
+     * @returns {boolean}
      */
     isSafeMethod(method) {
         let saveMethods = ['GET', 'HEAD', 'OPTIONS', 'TRACE'];
@@ -177,8 +177,8 @@ export class AbstractConsumer {
 
     /**
      * Wrapper for Cookie.get
-     * @param {String} name
-     * @returns {String}
+     * @param {string} name
+     * @returns {string}
      */
     getCookie(name) {
         return Cookie.get(name);
@@ -186,8 +186,8 @@ export class AbstractConsumer {
 
     /**
      * Adds a header to all future request
-     * @param {String} name
-     * @param {String} value
+     * @param {string} name
+     * @param {string} value
      */
     addHeader(name, value) {
         this.client.configure(x => {
@@ -207,7 +207,7 @@ export class AbstractConsumer {
         if (!isObject(data)) {
             return data;
         }
-        
+
         // Excludes fields marked in this.unserializableFields
         return excludeUnserializableFields(data, this.unserializableFields);
     }
@@ -225,7 +225,7 @@ export class AbstractConsumer {
 
     /**
      * Parses JSON string to a single or list of AbstractConsumerObject instance(s)
-     * @param {String} data
+     * @param {string} data
      * @returns {AbstractConsumerObject|AbstractConsumerObject[]|undefined}
      */
     parse(json) {

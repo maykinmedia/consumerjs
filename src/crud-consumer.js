@@ -9,7 +9,7 @@ import { AbstractConsumer } from './abstract-consumer';
 export class CrudConsumer extends AbstractConsumer {
     /**
      * Configures CrudConsumer instance
-     * @param {String} endpoint Base endpoint for this API
+     * @param {string} endpoint Base endpoint for this API
      * @param {ConsumerObject} objectClass Class to cast results to
      * @param {Object} [options] Additional configuration
      */
@@ -34,7 +34,7 @@ export class CrudConsumer extends AbstractConsumer {
 
     /**
      * Retrieves an object by performing a GET request
-     * @param {Number|String} id
+     * @param {number|string} id
      * @returns {Promise}
      */
     read(id) {
