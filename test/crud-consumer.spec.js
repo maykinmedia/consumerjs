@@ -17,6 +17,11 @@ describe('CrudConsumer', function() {
         jasmine.Ajax.uninstall();
     });
 
+    it('should set objectClass to CrudConsumerObject by default', () => {
+        let consumer = new CrudConsumer();
+        expect(consumer.objectClass.name).toBe('CrudConsumerObject');
+    });
+
     it('should support create', function(done) {
         class PostConsumer extends CrudConsumer {}
 

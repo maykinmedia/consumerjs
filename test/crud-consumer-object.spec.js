@@ -18,7 +18,7 @@ describe('CrudConsumerObject', function() {
         jasmine.Ajax.uninstall();
     });
 
-    fit('should support a partial update using update', function(done) {
+    it('should support a partial update using update', function(done) {
         class Post extends CrudConsumerObject {}
         class PostConsumer extends CrudConsumer {}
 

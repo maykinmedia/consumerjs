@@ -1,4 +1,5 @@
 import { AbstractConsumer } from './abstract-consumer';
+import { CrudConsumerObject } from './crud-consumer-object';
 
 
 /**
@@ -10,14 +11,11 @@ export class CrudConsumer extends AbstractConsumer {
     /**
      * Configures CrudConsumer instance
      * @param {string} endpoint Base endpoint for this API
-     * @param {ConsumerObject} objectClass Class to cast results to
+     * @param {CrudConsumerObject} [objectClass=CrudConsumerObject] Class to cast results to
      * @param {Object} [options] Additional configuration
      */
-    constructor(endpoint, objectClass, options=null) {
+    constructor(endpoint, objectClass=CrudConsumerObject, options=null) {
         super(endpoint, objectClass, options);
-
-        /** The class to casts objects to */
-        this.objectClass = objectClass;
 
         // Add __initial_state__ to unserializableFields
         this.unserializableFields.push('__initial_state__');

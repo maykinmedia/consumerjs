@@ -55,9 +55,6 @@ export function diff(objOld, objNew) {
         let valueOld = objOld[key],
             valueNew = objNew[key];
 
-        console.log('DIFF', valueOld, valueNew)
-
-
         if (!valueNew) {
             result[key] = null;
         }
