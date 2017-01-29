@@ -50,6 +50,39 @@ export function diff(objOld, objNew) {
             result[key] = valueNew;
         }
     }
+
+    for (let key of Object.keys(objOld)) {
+        let valueOld = objOld[key],
+            valueNew = objNew[key];
+
+        console.log('DIFF', valueOld, valueNew)
+
+
+        if (!valueNew) {
+            result[key] = null;
+        }
+    }
+
+    return result;
+}
+
+
+/**
+ * Returns object without keysl listed in object.unserializableFields
+ * @param {Object} object
+ * @param {string[]} [unserializableFields=object.__consumer__.unserializableFields]
+ * @returns {Object}
+ */
+export function excludeUnserializableFields(object, unserializableFields=object.__consumer__.unserializableFields) {
+    let result = {};
+
+    for (let [key, value] of Object.entries(object)) {
+        if (unserializableFields.indexOf(key) > -1) {
+            continue;
+        }
+
+        result[key] = value;
+    }
     return result;
 }
 

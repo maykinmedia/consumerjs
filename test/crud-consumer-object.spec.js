@@ -18,25 +18,31 @@ describe('CrudConsumerObject', function() {
         jasmine.Ajax.uninstall();
     });
 
-    it('should support a partial update using update', function(done) {
+    fit('should support a partial update using update', function(done) {
         class Post extends CrudConsumerObject {}
         class PostConsumer extends CrudConsumer {}
 
-        let post = new Post({ id: 1, foo: 'bar', bar: { foo: 'bar', bar: 'baz' }, baz: ['foo', 'bar'] }, new PostConsumer('http://example.com/api/posts'));
+        let post = new Post({ id: 1, foo: 'bar', bar: { foo: 'bar', bar: 'baz' }, baz: ['foo', 'bar'], fooBar: 'foobar', fooBaz: { foo: 'foo', bar: 'bar' } }, new PostConsumer('http://example.com/api/posts'));
+
         post.foo = 'baz';
         post.bar.foo = 'baz';
         post.baz = ['foo', 'baz'];
-        expect(post.getChangedFields()).toEqual({ foo: 'baz', bar: { foo: 'baz' }, baz: ['foo', 'baz']});
+        delete post.fooBar;
+        delete post.fooBaz.bar;
+
+        expect(post.getChangedFields()).toEqual({ foo: 'baz', bar: { foo: 'baz' }, baz: [ 'foo', 'baz' ], fooBaz: { bar: null }, fooBar: null });
 
         post.update()
             .then(() => {
                 let request = jasmine.Ajax.requests.mostRecent();
                 expect(request.method).toBe('PATCH');
-                expect(request.params).toBe('{"foo":"baz","bar":{"foo":"baz"},"baz":["foo","baz"]}');
+                expect(request.params).toBe('{"foo":"baz","bar":{"foo":"baz"},"baz":["foo","baz"],"fooBaz":{"bar":null},"fooBar":null}');
                 expect(request.url).toBe('http://example.com/api/posts/1');
                 expect(post.__initial_state__.foo).toBe('baz');
                 expect(post.__initial_state__.bar).toEqual({ foo: 'baz', bar: 'baz' });
                 expect(post.__initial_state__.baz).toEqual(['foo', 'baz']);
+                expect(post.__initial_state__.fooBar).toBeUndefined();
+                expect(post.__initial_state__.fooBaz.bar).toBeUndefined();
                 expect(post.getChangedFields()).toEqual({});
                 done();
             });

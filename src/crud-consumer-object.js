@@ -1,5 +1,5 @@
 import { AbstractConsumerObject } from './abstract-consumer-object';
-import { diff } from './utils';
+import { diff, excludeUnserializableFields } from './utils';
 
 
 /**
@@ -28,7 +28,7 @@ export class CrudConsumerObject extends AbstractConsumerObject {
      */
     update() {
         let path = this.getPath(),
-            newState = this,
+            newState = excludeUnserializableFields(this),
             changedState = this.getChangedFields();
 
 
@@ -57,7 +57,7 @@ export class CrudConsumerObject extends AbstractConsumerObject {
      */
     save() {
         let path = this.getPath(),
-            newState = this;
+            newState = excludeUnserializableFields(this);
 
         if (!path) {
             throw new Error('Can\'t determine path, please set pk or id or define getPath()');
@@ -128,6 +128,6 @@ export class CrudConsumerObject extends AbstractConsumerObject {
             data[key] = value;
         }
 
-        return diff(this.__initial_state__, data);
+        return diff(this.__initial_state__, excludeUnserializableFields(this));
     }
 }

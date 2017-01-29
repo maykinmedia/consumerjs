@@ -3,7 +3,7 @@ import { HttpClient } from 'aurelia-http-client';
 import { initialize } from 'aurelia-pal-browser';
 import URI from 'urijs';
 
-import { isObject } from './utils';
+import { excludeUnserializableFields, isObject } from './utils';
 
 
 /**
@@ -207,16 +207,9 @@ export class AbstractConsumer {
         if (!isObject(data)) {
             return data;
         }
-
-        let object = {};
-
+        
         // Excludes fields marked in this.unserializableFields
-        for (let key of Object.keys(data)) {
-            if (this.unserializableFields.indexOf(key) === -1) {
-                object[key] = data[key];
-            }
-        }
-        return object;
+        return excludeUnserializableFields(data, this.unserializableFields);
     }
 
     /**
