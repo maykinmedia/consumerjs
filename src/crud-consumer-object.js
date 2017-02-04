@@ -46,6 +46,7 @@ export class CrudConsumerObject extends AbstractConsumerObject {
             .then(() => {
                 // After the requests resolves the initial state is updated (to allow future change detections)
                 this.__initial_state__= newState;
+                return Promise.resolve(this);
             });
     }
 
@@ -68,6 +69,7 @@ export class CrudConsumerObject extends AbstractConsumerObject {
             .then(() => {
                 // After the requests resolves the initial state is updated (to allow future change detections)
                 this.__initial_state__= newState;
+                return Promise.resolve(this);
             });
     }
 
