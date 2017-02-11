@@ -18,7 +18,7 @@ Contains various methods for common CRUD tasks
 Should be extended to provide methods for objects
 
 **Kind**: global abstract class  
-**See**: [abstract-consumer-object.js](abstract-consumer-object.js) for inherited API  
+**See**: [abstract-consumer-object.js.md](abstract-consumer-object.js.md) for inherited API  
 
 * *[CrudConsumerObject](#CrudConsumerObject)*
     * *[new CrudConsumerObject(data, consumer)](#new_CrudConsumerObject_new)*

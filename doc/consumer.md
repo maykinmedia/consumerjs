@@ -4,4 +4,4 @@
 Extend, instantiate and configure to request API endpoints
 
 **Kind**: global abstract class  
-**See**: [abstract-consumer.js](abstract-consumer.js) for inherited API  
+**See**: [abstract-consumer.js.md](abstract-consumer.js.md) for inherited API  
