@@ -1,6 +1,6 @@
 # ConsumerJS
 
-ConsumerJS is a [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) client/object mapper that aims to make using RESTful JSON API's simple and [DRY](https://en.wikipedia.org/wiki/Don%27t_repeat_yourself). It converts JSON responses to object allowing [CRUD] operations on remote resources. ConsumerJS automatically adds a [CSRF](https://en.wikipedia.org/wiki/Cross-site_request_forgery) header (if the CSRF cookie is present).
+ConsumerJS is a [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) client/object mapper that aims to make using RESTful JSON API's simple and [DRY](https://en.wikipedia.org/wiki/Don%27t_repeat_yourself). It converts JSON responses to objects allowing [CRUD] operations on remote resources. ConsumerJS automatically adds a [CSRF](https://en.wikipedia.org/wiki/Cross-site_request_forgery) header (if the CSRF cookie is present).
 
 ## Install
 
@@ -85,7 +85,7 @@ ConsumerJS defines a few built-in classes, all of those should be extended by a 
 
 "Consumers" are classes that define how to perform operations on the remote API. It converts the results to a "Consumer object" which contains a statefull representation of the API result.
 
-*Consumers should be extended, configured and optionally methods can obe overwritten to change default behaviour. Configuration should be done in de constructor method:**
+*Consumers should be extended, configured and optionally methods can be overwritten to change default behaviour. Configuration should be done in de constructor method:**
 
 
 ```js
@@ -109,8 +109,8 @@ constructor(endpoint='http://example.com/api/v1/posts/', objectClass=Post, optio
 
 "Consumer objects" are classes that define how to perform object specific operations on the remote API.
 
-*Consumer objects should be extended, configured and optionally methods can obe overwritten to change default behaviour.
-*A reference to the consumer is kept using the __consumer__ property, (custom) methods can use this to communicate with the API.
+*Consumer objects should be extended, configured and optionally methods can be overwritten to change default behaviour.
+*A reference to the consumer is kept using the \__consumer\__ property, (custom) methods can use this to communicate with the API.
 
 ```js
 customMethod(data) {
