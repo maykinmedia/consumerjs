@@ -6,7 +6,7 @@ import { diff, excludeUnserializableFields } from './utils';
  * Base class for object derived from Consumer
  * Contains various methods for common CRUD tasks
  * Should be extended to provide methods for objects
- * @see {@link abstract-consumer-object.js} for inherited API
+ * @see {@link abstract-consumer-object.js.md} for inherited API
  * @abstract
  */
 export class CrudConsumerObject extends AbstractConsumerObject {
@@ -92,7 +92,7 @@ export class CrudConsumerObject extends AbstractConsumerObject {
      * Returns the path for this object
      * Path is assumed to be the primary key
      * If no key is found, false is returned
-     * @returns {string|false}
+     * @returns {(string|false)}
      */
     getPath() {
         let pk =  this.getPK();
@@ -108,7 +108,7 @@ export class CrudConsumerObject extends AbstractConsumerObject {
      * First tries this.pk, this.id otherwise
      * Result is cast to sting
      * If this.pk and this.id are both empty, an empty string is returned
-     * @returns {*|false} Value of pk/id or false
+     * @returns {(*|false)} Value of pk/id or false
      */
     getPK() {
         return (this.pk || this.id || false);

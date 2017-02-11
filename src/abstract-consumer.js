@@ -199,7 +199,7 @@ export class AbstractConsumer {
      * Serializes data
      * Returns data if data is not an object
      * Excludes fields marked in this.unserializableFields
-     * @param {AbstractConsumerObject|*} data
+     * @param {(AbstractConsumerObject|*)} data
      * @returns {*}
      */
     serialize(data) {
@@ -216,7 +216,7 @@ export class AbstractConsumer {
      * Callback for request
      * Gets called if request resolve successfully
      * @param {HttpResponseMessage} data
-     * @returns {AbstractConsumerObject|AbstractConsumerObject[]}
+     * @returns {(AbstractConsumerObject|AbstractConsumerObject[])}
      */
     requestSuccess(data) {
         let result = this.parse(data.response);
@@ -226,7 +226,7 @@ export class AbstractConsumer {
     /**
      * Parses JSON string to a single or list of AbstractConsumerObject instance(s)
      * @param {string} data
-     * @returns {AbstractConsumerObject|AbstractConsumerObject[]|undefined}
+     * @returns {(AbstractConsumerObject|AbstractConsumerObject[]|undefined)}
      */
     parse(json) {
         if (!json) {
