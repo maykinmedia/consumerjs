@@ -77,10 +77,10 @@ post.delete()  // Deletes this post using DELETE request
 
 ConsumerJS defines a few built-in classes, all of those should be extended by a custom class:
 
-- Consumer
-- CrudConsumer
-- ConsumerObject
-- CrudConsumerObject
+- [Consumer](doc/consumer.md)
+- [CrudConsumer](doc/crud-consumer.md)
+- [ConsumerObject](doc/consumer-object.md)
+- [CrudConsumerObject](doc/crud-consumer-object.md)
 
 **Consumers (Consumer, CrudConsumer):**
 
