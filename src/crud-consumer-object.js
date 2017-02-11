@@ -115,8 +115,8 @@ export class CrudConsumerObject extends AbstractConsumerObject {
 
     /**
      * Returns an object containing the changed properties of this object.
-     * Property names in this.__consumer__.unserializableFields are ignored.
-     * Properties are compared against this.__initial_state__.
+     * Property names in this.\_\_consumer\_\_.unserializableFields are ignored.
+     * Properties are compared against this.\_\_initial_state\_\_.
      * @returns {Object}
      */
     getChangedFields() {

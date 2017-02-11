@@ -46,7 +46,7 @@ Returns object without keys listed in object.unserializableFields.
 | Param | Type | Default |
 | --- | --- | --- |
 | object | <code>Object</code> |  | 
-| [unserializableFields] | <code>Array.&lt;string&gt;</code> | <code>object.__consumer__.unserializableFields</code> | 
+| [unserializableFields] | <code>Array.&lt;string&gt;</code> | <code>object.\_\_consumer\_\_.unserializableFields</code> | 
 
 <a name="isObject"></a>
 

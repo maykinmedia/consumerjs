@@ -84,8 +84,8 @@ If this.pk and this.id are both empty, false is returned.
 
 ### *crudConsumerObject.getChangedFields() ⇒ <code>Object</code>*
 Returns an object containing the changed properties of this object.
-Property names in this.__consumer__.unserializableFields are ignored.
-Properties are compared against this.__initial_state__.
+Property names in this.\_\_consumer\_\_.unserializableFields are ignored.
+Properties are compared against this.\_\_initial_state\_\_.
 
 **Kind**: instance method of <code>[CrudConsumerObject](#CrudConsumerObject)</code>  
 <a name="CrudConsumerObject"></a>
@@ -157,7 +157,7 @@ If this.pk and this.id are both empty, false is returned.
 
 ### *crudConsumerObject.getChangedFields() ⇒ <code>Object</code>*
 Returns an object containing the changed properties of this object.
-Property names in this.__consumer__.unserializableFields are ignored.
-Properties are compared against this.__initial_state__.
+Property names in this.\_\_consumer\_\_.unserializableFields are ignored.
+Properties are compared against this.\_\_initial_state\_\_.
 
 **Kind**: instance method of <code>[CrudConsumerObject](#CrudConsumerObject)</code>  
