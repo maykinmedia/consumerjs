@@ -16,7 +16,7 @@ Extend, instantiate and configure to request API endpoints
 Contains various methods for common CRUD tasks
 
 **Kind**: global abstract class  
-**See**: [abstract-consumer.js.md](abstract-consumer.js.md) for inherited API  
+**See**: [abstract-consumer.md](abstract-consumer.md) for inherited API  
 
 * *[CrudConsumer](#CrudConsumer)*
     * *[new CrudConsumer(endpoint, [objectClass], [options])](#new_CrudConsumer_new)*

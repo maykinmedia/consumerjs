@@ -6,7 +6,7 @@ import { diff, excludeUnserializableFields } from './utils';
  * Base class for object derived from Consumer
  * Contains various methods for common CRUD tasks
  * Should be extended to provide methods for objects
- * @see {@link abstract-consumer-object.js.md} for inherited API
+ * @see {@link abstract-consumer-object.md} for inherited API
  * @abstract
  */
 export class CrudConsumerObject extends AbstractConsumerObject {
