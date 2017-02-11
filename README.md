@@ -80,18 +80,8 @@ ConsumerJS defines a few built-in classes, all of those should be extended by a 
 
 "Consumers" are classes that define how to perform operations on the remote API. It converts the results to a "Consumer object" which contains a statefull representation of the API result.
 
-*Consumers should be extendend, configured and optinally methods can obe overwritten to change default behaviour.*
+*Consumers should be extended, configured and optionally methods can obe overwritten to change default behaviour. Configuration should be done in de constructor method:**
 
-- Consumer: Simple "bare" consumer intended for use with custom methods.
-- CrudConsumer: "Consumer with base methods for common CRUD operations.
-    - `create([object])`, creates objecs.
-    - `read([id])`, fetches all objects or a single object by id.
-
-**Consumer objects (ConsumerObject, CrudConsumerObject):**
-
-"Consumer objects" are classes that define how to perform object specific operations on the remote API.
-
-*Consumer objects should be extendend, configured and optinally methods can obe overwritten to change default behaviour. Configuration should be done in de constructor method:*
 
 ```js
 /**
@@ -102,6 +92,24 @@ ConsumerJS defines a few built-in classes, all of those should be extended by a 
  */
 constructor(endpoint='http://example.com/api/v1/posts/', objectClass=Post, options=null) {
     super(endpoint, objectClass);
+}
+```
+
+- Consumer: Simple "bare" consumer intended for use with custom methods.
+- CrudConsumer: "Consumer with base methods for common CRUD operations.
+    - `create([object])`, creates objecs.
+    - `read([id])`, fetches all objects or a single object by id.
+
+**Consumer objects (ConsumerObject, CrudConsumerObject):**
+
+"Consumer objects" are classes that define how to perform object specific operations on the remote API.
+
+*Consumer objects should be extended, configured and optionally methods can obe overwritten to change default behaviour.
+*A reference to the consumer is kept using the __consumer__ property, (custom) methods can use this to communicate with the API.
+
+```js
+customMethod(data) {
+    return this.__consumer.__.post('/path/', data);  // CrudConsumerObject instances can use this.getPath() as path.
 }
 ```
 
