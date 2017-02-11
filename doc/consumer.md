@@ -1,7 +1,7 @@
 <a name="Consumer"></a>
 
 ## *Consumer*
-Extend, instantiate and configure to request API endpoints
+Extend, instantiate and configure to request API endpoints.
 
 **Kind**: global abstract class  
-**See**: [abstract-consumer.md](abstract-consumer.md) for inherited API  
+**See**: [abstract-consumer.md](abstract-consumer.md) for inherited API.  

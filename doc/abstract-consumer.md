@@ -2,7 +2,7 @@
 
 <dl>
 <dt><a href="#AbstractConsumer">AbstractConsumer</a></dt>
-<dd><p>Abstract base class for all consumers</p>
+<dd><p>Abstract base class for all consumers.</p>
 </dd>
 <dt><a href="#AbstractConsumer">AbstractConsumer</a></dt>
 <dd></dd>
@@ -11,7 +11,7 @@
 <a name="AbstractConsumer"></a>
 
 ## *AbstractConsumer*
-Abstract base class for all consumers
+Abstract base class for all consumers.
 
 **Kind**: global abstract class  
 
@@ -48,164 +48,164 @@ Abstract base class for all consumers
 <a name="new_AbstractConsumer_new"></a>
 
 ### *new AbstractConsumer(endpoint, objectClass, [options])*
-Configures Consumer instance
+Configures Consumer instance.
 
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
-| endpoint | <code>string</code> |  | Base endpoint for this API |
-| objectClass | <code>AbstractConsumerObject</code> |  | Class to cast results to |
-| [options] | <code>Object</code> | <code></code> | Additional configuration |
+| endpoint | <code>string</code> |  | Base endpoint for this API. |
+| objectClass | <code>AbstractConsumerObject</code> |  | Class to cast results to. |
+| [options] | <code>Object</code> | <code></code> | Additional configuration. |
 
 <a name="AbstractConsumer+client"></a>
 
 ### *abstractConsumer.client*
-The Aurelia HttpClient instance to work with
+The Aurelia HttpClient instance to work with.
 
 **Kind**: instance property of <code>[AbstractConsumer](#AbstractConsumer)</code>  
 <a name="AbstractConsumer+contentType"></a>
 
 ### *abstractConsumer.contentType*
-The value of the Content-Type header
+The value of the Content-Type header.
 
 **Kind**: instance property of <code>[AbstractConsumer](#AbstractConsumer)</code>  
 <a name="AbstractConsumer+csrfCookie"></a>
 
 ### *abstractConsumer.csrfCookie*
-The name for the CSRF cookie
+The name for the CSRF cookie.
 
 **Kind**: instance property of <code>[AbstractConsumer](#AbstractConsumer)</code>  
 <a name="AbstractConsumer+csrfHeader"></a>
 
 ### *abstractConsumer.csrfHeader*
-The name for the CSRF header
+The name for the CSRF header.
 
 **Kind**: instance property of <code>[AbstractConsumer](#AbstractConsumer)</code>  
 <a name="AbstractConsumer+defaultHeaders"></a>
 
 ### *abstractConsumer.defaultHeaders*
-An optional object holding key value pairs of additional headers
+An optional object holding key value pairs of additional headers.
 
 **Kind**: instance property of <code>[AbstractConsumer](#AbstractConsumer)</code>  
 <a name="AbstractConsumer+defaultParameters"></a>
 
 ### *abstractConsumer.defaultParameters*
-An optional object holding key value pairs of additional query parameters
+An optional object holding key value pairs of additional query parameters.
 
 **Kind**: instance property of <code>[AbstractConsumer](#AbstractConsumer)</code>  
 <a name="AbstractConsumer+endpoint"></a>
 
 ### *abstractConsumer.endpoint*
-The base API endpoint prefixed for all requests
+The base API endpoint prefixed for all requests.
 
 **Kind**: instance property of <code>[AbstractConsumer](#AbstractConsumer)</code>  
 <a name="AbstractConsumer+objectClass"></a>
 
 ### *abstractConsumer.objectClass*
-The class to casts objects to
+The class to casts objects to.
 
 **Kind**: instance property of <code>[AbstractConsumer](#AbstractConsumer)</code>  
 <a name="AbstractConsumer+parserDataPath"></a>
 
 ### *abstractConsumer.parserDataPath*
-An optional dot separated path to the received objectClass' data
+An optional dot separated path to the received objectClass' data.
 
 **Kind**: instance property of <code>[AbstractConsumer](#AbstractConsumer)</code>  
 <a name="AbstractConsumer+unserializableFields"></a>
 
 ### *abstractConsumer.unserializableFields*
-Keys on this.objectClass that should not be passed to the API
+Keys on this.objectClass that should not be passed to the API.
 
 **Kind**: instance property of <code>[AbstractConsumer](#AbstractConsumer)</code>  
 <a name="AbstractConsumer+delete"></a>
 
 ### *abstractConsumer.delete(path, query) ⇒ <code>Promise</code>*
-Performs a DELETE request
+Performs a DELETE request.
 
 **Kind**: instance method of <code>[AbstractConsumer](#AbstractConsumer)</code>  
 
 | Param | Type | Description |
 | --- | --- | --- |
-| path | <code>string</code> | Path on the endpoint |
-| query | <code>Object</code> | Query parameters |
+| path | <code>string</code> | Path on the endpoint. |
+| query | <code>Object</code> | Query parameters. |
 
 <a name="AbstractConsumer+get"></a>
 
 ### *abstractConsumer.get(path, query) ⇒ <code>Promise</code>*
-Performs a GET request
+Performs a GET request.
 
 **Kind**: instance method of <code>[AbstractConsumer](#AbstractConsumer)</code>  
 
 | Param | Type | Description |
 | --- | --- | --- |
-| path | <code>string</code> | Path on the endpoint |
-| query | <code>Object</code> | Query parameters |
+| path | <code>string</code> | Path on the endpoint. |
+| query | <code>Object</code> | Query parameters. |
 
 <a name="AbstractConsumer+patch"></a>
 
 ### *abstractConsumer.patch(path, data) ⇒ <code>Promise</code>*
-Performs a PATCH request
+Performs a PATCH request.
 
 **Kind**: instance method of <code>[AbstractConsumer](#AbstractConsumer)</code>  
 
 | Param | Type | Description |
 | --- | --- | --- |
-| path | <code>string</code> | Path on the endpoint |
-| data | <code>Object</code> | Data payload |
+| path | <code>string</code> | Path on the endpoint. |
+| data | <code>Object</code> | Data payload. |
 
 <a name="AbstractConsumer+post"></a>
 
 ### *abstractConsumer.post(path, data) ⇒ <code>Promise</code>*
-Performs a POST request
+Performs a POST request.
 
 **Kind**: instance method of <code>[AbstractConsumer](#AbstractConsumer)</code>  
 
 | Param | Type | Description |
 | --- | --- | --- |
-| path | <code>string</code> | Path on the endpoint |
-| data | <code>Object</code> | Data payload |
+| path | <code>string</code> | Path on the endpoint. |
+| data | <code>Object</code> | Data payload. |
 
 <a name="AbstractConsumer+put"></a>
 
 ### *abstractConsumer.put(path, data) ⇒ <code>Promise</code>*
-Performs a PUT request
+Performs a PUT request.
 
 **Kind**: instance method of <code>[AbstractConsumer](#AbstractConsumer)</code>  
 
 | Param | Type | Description |
 | --- | --- | --- |
-| path | <code>string</code> | Path on the endpoint |
-| data | <code>Object</code> | Data payload |
+| path | <code>string</code> | Path on the endpoint. |
+| data | <code>Object</code> | Data payload. |
 
 <a name="AbstractConsumer+request"></a>
 
 ### *abstractConsumer.request(method, path, data) ⇒ <code>Promise</code>*
-Performs a request
+Performs a request.
 
 **Kind**: instance method of <code>[AbstractConsumer](#AbstractConsumer)</code>  
 
 | Param | Type | Description |
 | --- | --- | --- |
-| method | <code>string</code> | The method to use |
-| path | <code>string</code> | Path on the endpoint |
-| data | <code>Object</code> | Data payload |
+| method | <code>string</code> | The method to use. |
+| path | <code>string</code> | Path on the endpoint. |
+| data | <code>Object</code> | Data payload. |
 
 <a name="AbstractConsumer+isSafeMethod"></a>
 
 ### *abstractConsumer.isSafeMethod() ⇒ <code>boolean</code>*
-Returns whether the request is safe (should not mutate any data)
+Returns whether the request is safe (should not mutate any data).
 
 **Kind**: instance method of <code>[AbstractConsumer](#AbstractConsumer)</code>  
 <a name="AbstractConsumer+addCsrfToken"></a>
 
 ### *abstractConsumer.addCsrfToken()*
-Looks for cookie this.csrfCookie and passes it's value to this.csrfHeader
+Looks for cookie this.csrfCookie and passes it's value to this.csrfHeader.
 
 **Kind**: instance method of <code>[AbstractConsumer](#AbstractConsumer)</code>  
 <a name="AbstractConsumer+getCookie"></a>
 
 ### *abstractConsumer.getCookie(name) ⇒ <code>string</code>*
-Wrapper for Cookie.get
+Wrapper for Cookie.get.
 
 **Kind**: instance method of <code>[AbstractConsumer](#AbstractConsumer)</code>  
 
@@ -216,7 +216,7 @@ Wrapper for Cookie.get
 <a name="AbstractConsumer+addHeader"></a>
 
 ### *abstractConsumer.addHeader(name, value)*
-Adds a header to all future request
+Adds a header to all future request.
 
 **Kind**: instance method of <code>[AbstractConsumer](#AbstractConsumer)</code>  
 
@@ -228,9 +228,9 @@ Adds a header to all future request
 <a name="AbstractConsumer+serialize"></a>
 
 ### *abstractConsumer.serialize(data) ⇒ <code>\*</code>*
-Serializes data
-Returns data if data is not an object
-Excludes fields marked in this.unserializableFields
+Serializes data.
+Returns data if data is not an object.
+Excludes fields marked in this.unserializableFields.
 
 **Kind**: instance method of <code>[AbstractConsumer](#AbstractConsumer)</code>  
 
@@ -241,8 +241,8 @@ Excludes fields marked in this.unserializableFields
 <a name="AbstractConsumer+requestSuccess"></a>
 
 ### *abstractConsumer.requestSuccess(data) ⇒ <code>AbstractConsumerObject</code> &#124; <code>Array.&lt;AbstractConsumerObject&gt;</code>*
-Callback for request
-Gets called if request resolve successfully
+Callback for request.
+Gets called if request resolve successfully.
 
 **Kind**: instance method of <code>[AbstractConsumer](#AbstractConsumer)</code>  
 
@@ -253,7 +253,7 @@ Gets called if request resolve successfully
 <a name="AbstractConsumer+parse"></a>
 
 ### *abstractConsumer.parse(data) ⇒ <code>AbstractConsumerObject</code> &#124; <code>Array.&lt;AbstractConsumerObject&gt;</code> &#124; <code>undefined</code>*
-Parses JSON string to a single or list of AbstractConsumerObject instance(s)
+Parses JSON string to a single or list of AbstractConsumerObject instance(s).
 
 **Kind**: instance method of <code>[AbstractConsumer](#AbstractConsumer)</code>  
 
@@ -264,8 +264,8 @@ Parses JSON string to a single or list of AbstractConsumerObject instance(s)
 <a name="AbstractConsumer+parseList"></a>
 
 ### *abstractConsumer.parseList(array) ⇒ <code>Array.&lt;AbstractConsumerObject&gt;</code>*
-Parses anonymous objects to a list of AbstractConsumerObjects
-Gets called when result JSON.parse is an array
+Parses anonymous objects to a list of AbstractConsumerObjects.
+Gets called when result JSON.parse is an array.
 
 **Kind**: instance method of <code>[AbstractConsumer](#AbstractConsumer)</code>  
 
@@ -276,8 +276,8 @@ Gets called when result JSON.parse is an array
 <a name="AbstractConsumer+parseScalar"></a>
 
 ### *abstractConsumer.parseScalar(object) ⇒ <code>AbstractConsumerObject</code>*
-Parses anonymous object to a single AbstractConsumerObject
-Gets called when result JSON.parse is not an array
+Parses anonymous object to a single AbstractConsumerObject.
+Gets called when result JSON.parse is not an array.
 
 **Kind**: instance method of <code>[AbstractConsumer](#AbstractConsumer)</code>  
 
@@ -288,7 +288,7 @@ Gets called when result JSON.parse is not an array
 <a name="AbstractConsumer+parseEntity"></a>
 
 ### *abstractConsumer.parseEntity(object) ⇒ <code>AbstractConsumerObject</code>*
-Parses anonymous object to a single AbstractConsumerObject
+Parses anonymous object to a single AbstractConsumerObject.
 
 **Kind**: instance method of <code>[AbstractConsumer](#AbstractConsumer)</code>  
 
@@ -299,8 +299,8 @@ Parses anonymous object to a single AbstractConsumerObject
 <a name="AbstractConsumer+requestFailed"></a>
 
 ### *abstractConsumer.requestFailed(data) ⇒ <code>HttpResponseMessage</code>*
-Callback for request
-Gets called if request doesnt resolve successfully
+Callback for request.
+Gets called if request doesnt resolve successfully.
 
 **Kind**: instance method of <code>[AbstractConsumer](#AbstractConsumer)</code>  
 **Returns**: <code>HttpResponseMessage</code> - data  
@@ -347,164 +347,164 @@ Gets called if request doesnt resolve successfully
 <a name="new_AbstractConsumer_new"></a>
 
 ### *new AbstractConsumer(endpoint, objectClass, [options])*
-Configures Consumer instance
+Configures Consumer instance.
 
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
-| endpoint | <code>string</code> |  | Base endpoint for this API |
-| objectClass | <code>AbstractConsumerObject</code> |  | Class to cast results to |
-| [options] | <code>Object</code> | <code></code> | Additional configuration |
+| endpoint | <code>string</code> |  | Base endpoint for this API. |
+| objectClass | <code>AbstractConsumerObject</code> |  | Class to cast results to. |
+| [options] | <code>Object</code> | <code></code> | Additional configuration. |
 
 <a name="AbstractConsumer+client"></a>
 
 ### *abstractConsumer.client*
-The Aurelia HttpClient instance to work with
+The Aurelia HttpClient instance to work with.
 
 **Kind**: instance property of <code>[AbstractConsumer](#AbstractConsumer)</code>  
 <a name="AbstractConsumer+contentType"></a>
 
 ### *abstractConsumer.contentType*
-The value of the Content-Type header
+The value of the Content-Type header.
 
 **Kind**: instance property of <code>[AbstractConsumer](#AbstractConsumer)</code>  
 <a name="AbstractConsumer+csrfCookie"></a>
 
 ### *abstractConsumer.csrfCookie*
-The name for the CSRF cookie
+The name for the CSRF cookie.
 
 **Kind**: instance property of <code>[AbstractConsumer](#AbstractConsumer)</code>  
 <a name="AbstractConsumer+csrfHeader"></a>
 
 ### *abstractConsumer.csrfHeader*
-The name for the CSRF header
+The name for the CSRF header.
 
 **Kind**: instance property of <code>[AbstractConsumer](#AbstractConsumer)</code>  
 <a name="AbstractConsumer+defaultHeaders"></a>
 
 ### *abstractConsumer.defaultHeaders*
-An optional object holding key value pairs of additional headers
+An optional object holding key value pairs of additional headers.
 
 **Kind**: instance property of <code>[AbstractConsumer](#AbstractConsumer)</code>  
 <a name="AbstractConsumer+defaultParameters"></a>
 
 ### *abstractConsumer.defaultParameters*
-An optional object holding key value pairs of additional query parameters
+An optional object holding key value pairs of additional query parameters.
 
 **Kind**: instance property of <code>[AbstractConsumer](#AbstractConsumer)</code>  
 <a name="AbstractConsumer+endpoint"></a>
 
 ### *abstractConsumer.endpoint*
-The base API endpoint prefixed for all requests
+The base API endpoint prefixed for all requests.
 
 **Kind**: instance property of <code>[AbstractConsumer](#AbstractConsumer)</code>  
 <a name="AbstractConsumer+objectClass"></a>
 
 ### *abstractConsumer.objectClass*
-The class to casts objects to
+The class to casts objects to.
 
 **Kind**: instance property of <code>[AbstractConsumer](#AbstractConsumer)</code>  
 <a name="AbstractConsumer+parserDataPath"></a>
 
 ### *abstractConsumer.parserDataPath*
-An optional dot separated path to the received objectClass' data
+An optional dot separated path to the received objectClass' data.
 
 **Kind**: instance property of <code>[AbstractConsumer](#AbstractConsumer)</code>  
 <a name="AbstractConsumer+unserializableFields"></a>
 
 ### *abstractConsumer.unserializableFields*
-Keys on this.objectClass that should not be passed to the API
+Keys on this.objectClass that should not be passed to the API.
 
 **Kind**: instance property of <code>[AbstractConsumer](#AbstractConsumer)</code>  
 <a name="AbstractConsumer+delete"></a>
 
 ### *abstractConsumer.delete(path, query) ⇒ <code>Promise</code>*
-Performs a DELETE request
+Performs a DELETE request.
 
 **Kind**: instance method of <code>[AbstractConsumer](#AbstractConsumer)</code>  
 
 | Param | Type | Description |
 | --- | --- | --- |
-| path | <code>string</code> | Path on the endpoint |
-| query | <code>Object</code> | Query parameters |
+| path | <code>string</code> | Path on the endpoint. |
+| query | <code>Object</code> | Query parameters. |
 
 <a name="AbstractConsumer+get"></a>
 
 ### *abstractConsumer.get(path, query) ⇒ <code>Promise</code>*
-Performs a GET request
+Performs a GET request.
 
 **Kind**: instance method of <code>[AbstractConsumer](#AbstractConsumer)</code>  
 
 | Param | Type | Description |
 | --- | --- | --- |
-| path | <code>string</code> | Path on the endpoint |
-| query | <code>Object</code> | Query parameters |
+| path | <code>string</code> | Path on the endpoint. |
+| query | <code>Object</code> | Query parameters. |
 
 <a name="AbstractConsumer+patch"></a>
 
 ### *abstractConsumer.patch(path, data) ⇒ <code>Promise</code>*
-Performs a PATCH request
+Performs a PATCH request.
 
 **Kind**: instance method of <code>[AbstractConsumer](#AbstractConsumer)</code>  
 
 | Param | Type | Description |
 | --- | --- | --- |
-| path | <code>string</code> | Path on the endpoint |
-| data | <code>Object</code> | Data payload |
+| path | <code>string</code> | Path on the endpoint. |
+| data | <code>Object</code> | Data payload. |
 
 <a name="AbstractConsumer+post"></a>
 
 ### *abstractConsumer.post(path, data) ⇒ <code>Promise</code>*
-Performs a POST request
+Performs a POST request.
 
 **Kind**: instance method of <code>[AbstractConsumer](#AbstractConsumer)</code>  
 
 | Param | Type | Description |
 | --- | --- | --- |
-| path | <code>string</code> | Path on the endpoint |
-| data | <code>Object</code> | Data payload |
+| path | <code>string</code> | Path on the endpoint. |
+| data | <code>Object</code> | Data payload. |
 
 <a name="AbstractConsumer+put"></a>
 
 ### *abstractConsumer.put(path, data) ⇒ <code>Promise</code>*
-Performs a PUT request
+Performs a PUT request.
 
 **Kind**: instance method of <code>[AbstractConsumer](#AbstractConsumer)</code>  
 
 | Param | Type | Description |
 | --- | --- | --- |
-| path | <code>string</code> | Path on the endpoint |
-| data | <code>Object</code> | Data payload |
+| path | <code>string</code> | Path on the endpoint. |
+| data | <code>Object</code> | Data payload. |
 
 <a name="AbstractConsumer+request"></a>
 
 ### *abstractConsumer.request(method, path, data) ⇒ <code>Promise</code>*
-Performs a request
+Performs a request.
 
 **Kind**: instance method of <code>[AbstractConsumer](#AbstractConsumer)</code>  
 
 | Param | Type | Description |
 | --- | --- | --- |
-| method | <code>string</code> | The method to use |
-| path | <code>string</code> | Path on the endpoint |
-| data | <code>Object</code> | Data payload |
+| method | <code>string</code> | The method to use. |
+| path | <code>string</code> | Path on the endpoint. |
+| data | <code>Object</code> | Data payload. |
 
 <a name="AbstractConsumer+isSafeMethod"></a>
 
 ### *abstractConsumer.isSafeMethod() ⇒ <code>boolean</code>*
-Returns whether the request is safe (should not mutate any data)
+Returns whether the request is safe (should not mutate any data).
 
 **Kind**: instance method of <code>[AbstractConsumer](#AbstractConsumer)</code>  
 <a name="AbstractConsumer+addCsrfToken"></a>
 
 ### *abstractConsumer.addCsrfToken()*
-Looks for cookie this.csrfCookie and passes it's value to this.csrfHeader
+Looks for cookie this.csrfCookie and passes it's value to this.csrfHeader.
 
 **Kind**: instance method of <code>[AbstractConsumer](#AbstractConsumer)</code>  
 <a name="AbstractConsumer+getCookie"></a>
 
 ### *abstractConsumer.getCookie(name) ⇒ <code>string</code>*
-Wrapper for Cookie.get
+Wrapper for Cookie.get.
 
 **Kind**: instance method of <code>[AbstractConsumer](#AbstractConsumer)</code>  
 
@@ -515,7 +515,7 @@ Wrapper for Cookie.get
 <a name="AbstractConsumer+addHeader"></a>
 
 ### *abstractConsumer.addHeader(name, value)*
-Adds a header to all future request
+Adds a header to all future request.
 
 **Kind**: instance method of <code>[AbstractConsumer](#AbstractConsumer)</code>  
 
@@ -527,9 +527,9 @@ Adds a header to all future request
 <a name="AbstractConsumer+serialize"></a>
 
 ### *abstractConsumer.serialize(data) ⇒ <code>\*</code>*
-Serializes data
-Returns data if data is not an object
-Excludes fields marked in this.unserializableFields
+Serializes data.
+Returns data if data is not an object.
+Excludes fields marked in this.unserializableFields.
 
 **Kind**: instance method of <code>[AbstractConsumer](#AbstractConsumer)</code>  
 
@@ -540,8 +540,8 @@ Excludes fields marked in this.unserializableFields
 <a name="AbstractConsumer+requestSuccess"></a>
 
 ### *abstractConsumer.requestSuccess(data) ⇒ <code>AbstractConsumerObject</code> &#124; <code>Array.&lt;AbstractConsumerObject&gt;</code>*
-Callback for request
-Gets called if request resolve successfully
+Callback for request.
+Gets called if request resolve successfully.
 
 **Kind**: instance method of <code>[AbstractConsumer](#AbstractConsumer)</code>  
 
@@ -552,7 +552,7 @@ Gets called if request resolve successfully
 <a name="AbstractConsumer+parse"></a>
 
 ### *abstractConsumer.parse(data) ⇒ <code>AbstractConsumerObject</code> &#124; <code>Array.&lt;AbstractConsumerObject&gt;</code> &#124; <code>undefined</code>*
-Parses JSON string to a single or list of AbstractConsumerObject instance(s)
+Parses JSON string to a single or list of AbstractConsumerObject instance(s).
 
 **Kind**: instance method of <code>[AbstractConsumer](#AbstractConsumer)</code>  
 
@@ -563,8 +563,8 @@ Parses JSON string to a single or list of AbstractConsumerObject instance(s)
 <a name="AbstractConsumer+parseList"></a>
 
 ### *abstractConsumer.parseList(array) ⇒ <code>Array.&lt;AbstractConsumerObject&gt;</code>*
-Parses anonymous objects to a list of AbstractConsumerObjects
-Gets called when result JSON.parse is an array
+Parses anonymous objects to a list of AbstractConsumerObjects.
+Gets called when result JSON.parse is an array.
 
 **Kind**: instance method of <code>[AbstractConsumer](#AbstractConsumer)</code>  
 
@@ -575,8 +575,8 @@ Gets called when result JSON.parse is an array
 <a name="AbstractConsumer+parseScalar"></a>
 
 ### *abstractConsumer.parseScalar(object) ⇒ <code>AbstractConsumerObject</code>*
-Parses anonymous object to a single AbstractConsumerObject
-Gets called when result JSON.parse is not an array
+Parses anonymous object to a single AbstractConsumerObject.
+Gets called when result JSON.parse is not an array.
 
 **Kind**: instance method of <code>[AbstractConsumer](#AbstractConsumer)</code>  
 
@@ -587,7 +587,7 @@ Gets called when result JSON.parse is not an array
 <a name="AbstractConsumer+parseEntity"></a>
 
 ### *abstractConsumer.parseEntity(object) ⇒ <code>AbstractConsumerObject</code>*
-Parses anonymous object to a single AbstractConsumerObject
+Parses anonymous object to a single AbstractConsumerObject.
 
 **Kind**: instance method of <code>[AbstractConsumer](#AbstractConsumer)</code>  
 
@@ -598,8 +598,8 @@ Parses anonymous object to a single AbstractConsumerObject
 <a name="AbstractConsumer+requestFailed"></a>
 
 ### *abstractConsumer.requestFailed(data) ⇒ <code>HttpResponseMessage</code>*
-Callback for request
-Gets called if request doesnt resolve successfully
+Callback for request.
+Gets called if request doesnt resolve successfully.
 
 **Kind**: instance method of <code>[AbstractConsumer](#AbstractConsumer)</code>  
 **Returns**: <code>HttpResponseMessage</code> - data  

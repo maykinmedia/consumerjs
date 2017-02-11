@@ -3,17 +3,17 @@ import { diff, excludeUnserializableFields } from './utils';
 
 
 /**
- * Base class for object derived from Consumer
- * Contains various methods for common CRUD tasks
- * Should be extended to provide methods for objects
- * @see {@link abstract-consumer-object.md} for inherited API
+ * Base class for object derived from Consumer.
+ * Contains various methods for common CRUD tasks.
+ * Should be extended to provide methods for objects.
+ * @see {@link abstract-consumer-object.md} for inherited API.
  * @abstract
  */
 export class CrudConsumerObject extends AbstractConsumerObject {
     /**
-     * Creates a new object
-     * @param {Object} data Data to parse
-     * @param {CrudConsumer} consumer Consumer instance for this object
+     * Creates a new object.
+     * @param {Object} data Data to parse.
+     * @param {CrudConsumer} consumer Consumer instance for this object.
      */
     constructor(data, consumer) {
         super(data, consumer);
@@ -21,10 +21,10 @@ export class CrudConsumerObject extends AbstractConsumerObject {
     }
 
     /**
-     * Partially Updates the object by performing a PATCH request
-     * Only sends the changed fields as data
-     * If no fields have changed, request is omitted and a resolving Promise is returned
-     * After the requests resolves the initial state is updated (to allow future change detections)
+     * Partially Updates the object by performing a PATCH request.
+     * Only sends the changed fields as data.
+     * If no fields have changed, request is omitted and a resolving Promise is returned.
+     * After the requests resolves the initial state is updated (to allow future change detections).
      * @returns {Promise}
      */
     update() {
@@ -52,9 +52,9 @@ export class CrudConsumerObject extends AbstractConsumerObject {
     }
 
     /**
-     * Fully Updates the object by performing a PUT request
-     * Sends all fields as data
-     * After the requests resolves the initial state is updated (to allow future change detections)
+     * Fully Updates the object by performing a PUT request.
+     * Sends all fields as data.
+     * After the requests resolves the initial state is updated (to allow future change detections).
      * @returns {Promise}
      */
     save() {
@@ -75,7 +75,7 @@ export class CrudConsumerObject extends AbstractConsumerObject {
     }
 
     /**
-     * Removes this object
+     * Removes this object.
      * @returns {Promise}
      */
     delete() {
@@ -89,9 +89,9 @@ export class CrudConsumerObject extends AbstractConsumerObject {
     }
 
     /**
-     * Returns the path for this object
-     * Path is assumed to be the primary key
-     * If no key is found, false is returned
+     * Returns the path for this object.
+     * Path is assumed to be the primary key.
+     * If no key is found, false is returned.
      * @returns {(string|false)}
      */
     getPath() {
@@ -104,20 +104,20 @@ export class CrudConsumerObject extends AbstractConsumerObject {
     }
 
     /**
-     * Tries to return the primary key of this object
-     * First tries this.pk, this.id otherwise
-     * Result is cast to sting
-     * If this.pk and this.id are both empty, an empty string is returned
-     * @returns {(*|false)} Value of pk/id or false
+     * Tries to return the primary key of this object.
+     * First tries this.pk, this.id otherwise.
+     * Result is cast to sting.
+     * If this.pk and this.id are both empty, an empty string is returned.
+     * @returns {(*|false)} Value of pk/id or false.
      */
     getPK() {
         return (this.pk || this.id || false);
     }
 
     /**
-     * Returns an object containing the changed properties of this object
-     * Property names in this.__consumer__.unserializableFields are ignored
-     * Properties are compared against this.__initial_state__
+     * Returns an object containing the changed properties of this object.
+     * Property names in this.__consumer__.unserializableFields are ignored.
+     * Properties are compared against this.__initial_state__.
      * @returns {Object}
      */
     getChangedFields() {

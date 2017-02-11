@@ -4,9 +4,9 @@
  */
 export class AbstractConsumerObject {
     /**
-     * Creates a new object
-     * @param {Object} data Data to parse
-     * @param {Consumer} consumer Consumer instance for this object
+     * Creates a new object.
+     * @param {Object} data Data to parse.
+     * @param {Consumer} consumer Consumer instance for this object.
      */
     constructor(data, consumer) {
         this.createFromObject(data);
@@ -14,8 +14,8 @@ export class AbstractConsumerObject {
     }
 
     /**
-     * Populates object with data consumed in data
-     * @param {Object} data Data to parse
+     * Populates object with data consumed in data.
+     * @param {Object} data Data to parse.
      */
     createFromObject(data) {
         let keys = Object.keys(data);

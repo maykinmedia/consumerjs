@@ -65,7 +65,7 @@ export function diff(objOld, objNew) {  // jshint maxdepth:3
 
 
 /**
- * Returns object without keys listed in object.unserializableFields
+ * Returns object without keys listed in object.unserializableFields.
  * @param {Object} object
  * @param {string[]} [unserializableFields=object.__consumer__.unserializableFields]
  * @returns {Object}
@@ -85,7 +85,7 @@ export function excludeUnserializableFields(object, unserializableFields=object.
 
 
 /**
- * Returns whether object is an object
+ * Returns whether object is an object.
  * @param {*} object
  * @returns {boolean}
  */

@@ -22,24 +22,24 @@ Abstract base class for object derived from Consumer
 <a name="new_AbstractConsumerObject_new"></a>
 
 ### *new AbstractConsumerObject(data, consumer)*
-Creates a new object
+Creates a new object.
 
 
 | Param | Type | Description |
 | --- | --- | --- |
-| data | <code>Object</code> | Data to parse |
-| consumer | <code>Consumer</code> | Consumer instance for this object |
+| data | <code>Object</code> | Data to parse. |
+| consumer | <code>Consumer</code> | Consumer instance for this object. |
 
 <a name="AbstractConsumerObject+createFromObject"></a>
 
 ### *abstractConsumerObject.createFromObject(data)*
-Populates object with data consumed in data
+Populates object with data consumed in data.
 
 **Kind**: instance method of <code>[AbstractConsumerObject](#AbstractConsumerObject)</code>  
 
 | Param | Type | Description |
 | --- | --- | --- |
-| data | <code>Object</code> | Data to parse |
+| data | <code>Object</code> | Data to parse. |
 
 <a name="AbstractConsumerObject"></a>
 
@@ -53,22 +53,22 @@ Populates object with data consumed in data
 <a name="new_AbstractConsumerObject_new"></a>
 
 ### *new AbstractConsumerObject(data, consumer)*
-Creates a new object
+Creates a new object.
 
 
 | Param | Type | Description |
 | --- | --- | --- |
-| data | <code>Object</code> | Data to parse |
-| consumer | <code>Consumer</code> | Consumer instance for this object |
+| data | <code>Object</code> | Data to parse. |
+| consumer | <code>Consumer</code> | Consumer instance for this object. |
 
 <a name="AbstractConsumerObject+createFromObject"></a>
 
 ### *abstractConsumerObject.createFromObject(data)*
-Populates object with data consumed in data
+Populates object with data consumed in data.
 
 **Kind**: instance method of <code>[AbstractConsumerObject](#AbstractConsumerObject)</code>  
 
 | Param | Type | Description |
 | --- | --- | --- |
-| data | <code>Object</code> | Data to parse |
+| data | <code>Object</code> | Data to parse. |
 

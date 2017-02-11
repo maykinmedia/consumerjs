@@ -7,45 +7,45 @@ import { excludeUnserializableFields, isObject } from './utils';
 
 
 /**
- * Abstract base class for all consumers
+ * Abstract base class for all consumers.
  * @abstract
  */
 export class AbstractConsumer {
     /**
-     * Configures Consumer instance
-     * @param {string} endpoint Base endpoint for this API
-     * @param {AbstractConsumerObject} objectClass Class to cast results to
-     * @param {Object} [options] Additional configuration
+     * Configures Consumer instance.
+     * @param {string} endpoint Base endpoint for this API.
+     * @param {AbstractConsumerObject} objectClass Class to cast results to.
+     * @param {Object} [options] Additional configuration.
      */
     constructor(endpoint, objectClass, options=null) {
-        /** The Aurelia HttpClient instance to work with */
+        /** The Aurelia HttpClient instance to work with. */
         this.client = new HttpClient();
 
-        /** The value of the Content-Type header */
+        /** The value of the Content-Type header. */
         this.contentType = 'application/json';
 
-        /** The name for the CSRF cookie */
+        /** The name for the CSRF cookie. */
         this.csrfCookie = 'csrftoken';
 
-        /** The name for the CSRF header */
+        /** The name for the CSRF header. */
         this.csrfHeader = 'X-CSRFToken';
 
-        /** An optional object holding key value pairs of additional headers */
+        /** An optional object holding key value pairs of additional headers. */
         this.defaultHeaders = {};
 
-        /** An optional object holding key value pairs of additional query parameters */
+        /** An optional object holding key value pairs of additional query parameters.*/
         this.defaultParameters = {};
 
-        /** The base API endpoint prefixed for all requests */
+        /** The base API endpoint prefixed for all requests. */
         this.endpoint = endpoint;
 
-        /** The class to casts objects to */
+        /** The class to casts objects to. */
         this.objectClass = objectClass;
 
-        /** An optional dot separated path to the received objectClass' data */
+        /** An optional dot separated path to the received objectClass' data. */
         this.parserDataPath = '';
 
-        /** Keys on this.objectClass that should not be passed to the API */
+        /** Keys on this.objectClass that should not be passed to the API. */
         this.unserializableFields = ['__consumer__'];
 
         if (options) {
@@ -56,9 +56,9 @@ export class AbstractConsumer {
     }
 
     /**
-     * Performs a DELETE request
-     * @param {string} path Path on the endpoint
-     * @param {Object} query Query parameters
+     * Performs a DELETE request.
+     * @param {string} path Path on the endpoint.
+     * @param {Object} query Query parameters.
      * @returns {Promise}
      */
     delete(path = '', query = {}) {
@@ -67,9 +67,9 @@ export class AbstractConsumer {
     }
 
     /**
-     * Performs a GET request
-     * @param {string} path Path on the endpoint
-     * @param {Object} query Query parameters
+     * Performs a GET request.
+     * @param {string} path Path on the endpoint.
+     * @param {Object} query Query parameters.
      * @returns {Promise}
      */
     get(path = '', query = {}) {
@@ -78,9 +78,9 @@ export class AbstractConsumer {
     }
 
     /**
-     * Performs a PATCH request
-     * @param {string} path Path on the endpoint
-     * @param {Object} data Data payload
+     * Performs a PATCH request.
+     * @param {string} path Path on the endpoint.
+     * @param {Object} data Data payload.
      * @returns {Promise}
      */
     patch(path = '', data = {}, query = {}) {
@@ -89,9 +89,9 @@ export class AbstractConsumer {
     }
 
     /**
-     * Performs a POST request
-     * @param {string} path Path on the endpoint
-     * @param {Object} data Data payload
+     * Performs a POST request.
+     * @param {string} path Path on the endpoint.
+     * @param {Object} data Data payload.
      * @returns {Promise}
      */
     post(path = '', data = {}, query = {}) {
@@ -100,9 +100,9 @@ export class AbstractConsumer {
     }
 
     /**
-     * Performs a PUT request
-     * @param {string} path Path on the endpoint
-     * @param {Object} data Data payload
+     * Performs a PUT request.
+     * @param {string} path Path on the endpoint.
+     * @param {Object} data Data payload.
      * @returns {Promise}
      */
     put(path = '', data = {}, query = {}) {
@@ -111,10 +111,10 @@ export class AbstractConsumer {
     }
 
     /**
-     * Performs a request
-     * @param {string} method The method to use
-     * @param {string} path Path on the endpoint
-     * @param {Object} data Data payload
+     * Performs a request.
+     * @param {string} method The method to use.
+     * @param {string} path Path on the endpoint.
+     * @param {Object} data Data payload.
      * @returns {Promise}
      */
     request(method, path, data) {
@@ -158,7 +158,7 @@ export class AbstractConsumer {
     }
 
     /**
-     * Returns whether the request is safe (should not mutate any data)
+     * Returns whether the request is safe (should not mutate any data).
      * @returns {boolean}
      */
     isSafeMethod(method) {
@@ -167,7 +167,7 @@ export class AbstractConsumer {
     }
 
     /**
-     * Looks for cookie this.csrfCookie and passes it's value to this.csrfHeader
+     * Looks for cookie this.csrfCookie and passes it's value to this.csrfHeader.
      */
     addCsrfToken() {
         let csrfToken = this.getCookie(this.csrfCookie);
@@ -176,7 +176,7 @@ export class AbstractConsumer {
     }
 
     /**
-     * Wrapper for Cookie.get
+     * Wrapper for Cookie.get.
      * @param {string} name
      * @returns {string}
      */
@@ -185,7 +185,7 @@ export class AbstractConsumer {
     }
 
     /**
-     * Adds a header to all future request
+     * Adds a header to all future request.
      * @param {string} name
      * @param {string} value
      */
@@ -196,9 +196,9 @@ export class AbstractConsumer {
     }
 
     /**
-     * Serializes data
-     * Returns data if data is not an object
-     * Excludes fields marked in this.unserializableFields
+     * Serializes data.
+     * Returns data if data is not an object.
+     * Excludes fields marked in this.unserializableFields.
      * @param {(AbstractConsumerObject|*)} data
      * @returns {*}
      */
@@ -213,8 +213,8 @@ export class AbstractConsumer {
     }
 
     /**
-     * Callback for request
-     * Gets called if request resolve successfully
+     * Callback for request.
+     * Gets called if request resolve successfully.
      * @param {HttpResponseMessage} data
      * @returns {(AbstractConsumerObject|AbstractConsumerObject[])}
      */
@@ -224,7 +224,7 @@ export class AbstractConsumer {
     }
 
     /**
-     * Parses JSON string to a single or list of AbstractConsumerObject instance(s)
+     * Parses JSON string to a single or list of AbstractConsumerObject instance(s).
      * @param {string} data
      * @returns {(AbstractConsumerObject|AbstractConsumerObject[]|undefined)}
      */
@@ -250,8 +250,8 @@ export class AbstractConsumer {
     }
 
     /**
-     * Parses anonymous objects to a list of AbstractConsumerObjects
-     * Gets called when result JSON.parse is an array
+     * Parses anonymous objects to a list of AbstractConsumerObjects.
+     * Gets called when result JSON.parse is an array.
      * @param {Object[]} array
      * @returns {AbstractConsumerObject[]}
      */
@@ -265,8 +265,8 @@ export class AbstractConsumer {
     }
 
     /**
-     * Parses anonymous object to a single AbstractConsumerObject
-     * Gets called when result JSON.parse is not an array
+     * Parses anonymous object to a single AbstractConsumerObject.
+     * Gets called when result JSON.parse is not an array.
      * @param {Object} object
      * @returns {AbstractConsumerObject}
      */
@@ -275,7 +275,7 @@ export class AbstractConsumer {
     }
 
     /**
-     * Parses anonymous object to a single AbstractConsumerObject
+     * Parses anonymous object to a single AbstractConsumerObject.
      * @param {Object} object
      * @returns {AbstractConsumerObject}
      */
@@ -284,8 +284,8 @@ export class AbstractConsumer {
     }
 
     /**
-     * Callback for request
-     * Gets called if request doesnt resolve successfully
+     * Callback for request.
+     * Gets called if request doesnt resolve successfully.
      * @param {HttpResponseMessage} data
      * @returns {HttpResponseMessage} data
      */

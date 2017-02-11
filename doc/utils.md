@@ -12,10 +12,10 @@ Each field is compared against objOld:</p>
 </ul>
 </dd>
 <dt><a href="#excludeUnserializableFields">excludeUnserializableFields(object, [unserializableFields])</a> ⇒ <code>Object</code></dt>
-<dd><p>Returns object without keys listed in object.unserializableFields</p>
+<dd><p>Returns object without keys listed in object.unserializableFields.</p>
 </dd>
 <dt><a href="#isObject">isObject(object)</a> ⇒ <code>boolean</code></dt>
-<dd><p>Returns whether object is an object</p>
+<dd><p>Returns whether object is an object.</p>
 </dd>
 </dl>
 
@@ -39,7 +39,7 @@ Each field is compared against objOld:
 <a name="excludeUnserializableFields"></a>
 
 ## excludeUnserializableFields(object, [unserializableFields]) ⇒ <code>Object</code>
-Returns object without keys listed in object.unserializableFields
+Returns object without keys listed in object.unserializableFields.
 
 **Kind**: global function  
 
@@ -51,7 +51,7 @@ Returns object without keys listed in object.unserializableFields
 <a name="isObject"></a>
 
 ## isObject(object) ⇒ <code>boolean</code>
-Returns whether object is an object
+Returns whether object is an object.
 
 **Kind**: global function  
 
