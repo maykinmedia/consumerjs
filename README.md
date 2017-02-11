@@ -13,7 +13,7 @@ $ npm i consumerjs --save
 ## Usage
 
 *This library can be used in the browser only.*
-*See [documentation](doc/) for full API.*
+*See [doc](doc/) for full API documentation.*
 
 **Example:**
 
