@@ -33,7 +33,7 @@ Abstract base class for all consumers.
     * *[.post(path, data)](#AbstractConsumer+post) ⇒ <code>Promise</code>*
     * *[.put(path, data)](#AbstractConsumer+put) ⇒ <code>Promise</code>*
     * *[.request(method, path, data)](#AbstractConsumer+request) ⇒ <code>Promise</code>*
-    * *[.isSafeMethod()](#AbstractConsumer+isSafeMethod) ⇒ <code>boolean</code>*
+    * *[.isSafeMethod(method)](#AbstractConsumer+isSafeMethod) ⇒ <code>boolean</code>*
     * *[.addCsrfToken()](#AbstractConsumer+addCsrfToken)*
     * *[.getCookie(name)](#AbstractConsumer+getCookie) ⇒ <code>string</code>*
     * *[.addHeader(name, value)](#AbstractConsumer+addHeader)*
@@ -192,10 +192,15 @@ Performs a request.
 
 <a name="AbstractConsumer+isSafeMethod"></a>
 
-### *abstractConsumer.isSafeMethod() ⇒ <code>boolean</code>*
+### *abstractConsumer.isSafeMethod(method) ⇒ <code>boolean</code>*
 Returns whether the request is safe (should not mutate any data).
 
 **Kind**: instance method of <code>[AbstractConsumer](#AbstractConsumer)</code>  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| method | <code>string</code> | The method type (GET, POST etc.). |
+
 <a name="AbstractConsumer+addCsrfToken"></a>
 
 ### *abstractConsumer.addCsrfToken()*
@@ -332,7 +337,7 @@ Gets called if request doesnt resolve successfully.
     * *[.post(path, data)](#AbstractConsumer+post) ⇒ <code>Promise</code>*
     * *[.put(path, data)](#AbstractConsumer+put) ⇒ <code>Promise</code>*
     * *[.request(method, path, data)](#AbstractConsumer+request) ⇒ <code>Promise</code>*
-    * *[.isSafeMethod()](#AbstractConsumer+isSafeMethod) ⇒ <code>boolean</code>*
+    * *[.isSafeMethod(method)](#AbstractConsumer+isSafeMethod) ⇒ <code>boolean</code>*
     * *[.addCsrfToken()](#AbstractConsumer+addCsrfToken)*
     * *[.getCookie(name)](#AbstractConsumer+getCookie) ⇒ <code>string</code>*
     * *[.addHeader(name, value)](#AbstractConsumer+addHeader)*
@@ -491,10 +496,15 @@ Performs a request.
 
 <a name="AbstractConsumer+isSafeMethod"></a>
 
-### *abstractConsumer.isSafeMethod() ⇒ <code>boolean</code>*
+### *abstractConsumer.isSafeMethod(method) ⇒ <code>boolean</code>*
 Returns whether the request is safe (should not mutate any data).
 
 **Kind**: instance method of <code>[AbstractConsumer](#AbstractConsumer)</code>  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| method | <code>string</code> | The method type (GET, POST etc.). |
+
 <a name="AbstractConsumer+addCsrfToken"></a>
 
 ### *abstractConsumer.addCsrfToken()*

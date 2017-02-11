@@ -159,6 +159,7 @@ export class AbstractConsumer {
 
     /**
      * Returns whether the request is safe (should not mutate any data).
+     * @param {string} method The method type (GET, POST etc.).
      * @returns {boolean}
      */
     isSafeMethod(method) {
