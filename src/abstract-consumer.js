@@ -7,7 +7,7 @@ import { excludeUnserializableFields, isObject } from './utils';
 
 
 /**
- * Abstract base class for consumers
+ * Abstract base class for all consumers
  * @abstract
  */
 export class AbstractConsumer {

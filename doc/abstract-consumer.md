@@ -2,7 +2,7 @@
 
 <dl>
 <dt><a href="#AbstractConsumer">AbstractConsumer</a></dt>
-<dd><p>Abstract base class for consumers</p>
+<dd><p>Abstract base class for all consumers</p>
 </dd>
 <dt><a href="#AbstractConsumer">AbstractConsumer</a></dt>
 <dd></dd>
@@ -11,7 +11,7 @@
 <a name="AbstractConsumer"></a>
 
 ## *AbstractConsumer*
-Abstract base class for consumers
+Abstract base class for all consumers
 
 **Kind**: global abstract class  
 
