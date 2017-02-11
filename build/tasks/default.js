@@ -8,4 +8,4 @@ var paths = require('../paths');
  * Run using "gulp"
  * Runs all tasks
  */
-gulp.task('default', ['clean', 'build', 'lint', 'test']);
+gulp.task('default', ['clean', 'build', 'lint', 'test', 'jsdoc']);

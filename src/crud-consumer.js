@@ -5,6 +5,7 @@ import { CrudConsumerObject } from './crud-consumer-object';
 /**
  * Extend, instantiate and configure to request API endpoints
  * Contains various methods for common CRUD tasks
+ * @see {@link abstract-consumer.js} for inherited API
  * @abstract
  */
 export class CrudConsumer extends AbstractConsumer {

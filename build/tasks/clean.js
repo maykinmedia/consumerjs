@@ -10,6 +10,6 @@ var vinylPaths = require('vinyl-paths');
  * Cleans output directory
  */
 gulp.task('clean', function() {
-    gulp.src([paths.output])
+    gulp.src([paths.doc, paths.output])
         .pipe(vinylPaths(del));
 });
