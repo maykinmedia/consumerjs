@@ -76,8 +76,7 @@ If no key is found, false is returned.
 ### *crudConsumerObject.getPK() ⇒ <code>\*</code> &#124; <code>false</code>*
 Tries to return the primary key of this object.
 First tries this.pk, this.id otherwise.
-Result is cast to sting.
-If this.pk and this.id are both empty, an empty string is returned.
+If this.pk and this.id are both empty, false is returned.
 
 **Kind**: instance method of <code>[CrudConsumerObject](#CrudConsumerObject)</code>  
 **Returns**: <code>\*</code> &#124; <code>false</code> - Value of pk/id or false.  
@@ -150,8 +149,7 @@ If no key is found, false is returned.
 ### *crudConsumerObject.getPK() ⇒ <code>\*</code> &#124; <code>false</code>*
 Tries to return the primary key of this object.
 First tries this.pk, this.id otherwise.
-Result is cast to sting.
-If this.pk and this.id are both empty, an empty string is returned.
+If this.pk and this.id are both empty, false is returned.
 
 **Kind**: instance method of <code>[CrudConsumerObject](#CrudConsumerObject)</code>  
 **Returns**: <code>\*</code> &#124; <code>false</code> - Value of pk/id or false.  

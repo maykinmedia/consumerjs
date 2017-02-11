@@ -106,8 +106,7 @@ export class CrudConsumerObject extends AbstractConsumerObject {
     /**
      * Tries to return the primary key of this object.
      * First tries this.pk, this.id otherwise.
-     * Result is cast to sting.
-     * If this.pk and this.id are both empty, an empty string is returned.
+     * If this.pk and this.id are both empty, false is returned.
      * @returns {(*|false)} Value of pk/id or false.
      */
     getPK() {
