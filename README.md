@@ -83,9 +83,17 @@ ConsumerJS defines a few built-in classes, all of those should be extended by a 
 
 **Consumers (Consumer, CrudConsumer):**
 
-"Consumers" are classes that define how to perform operations on the remote API. It converts the results to a "Consumer object" which contains a statefull representation of the API result.
+*"Consumers" are classes that define how to perform operations on the remote API. It converts the results to* *"Consumer object" which contains a statefull representation of the API result.*
 
-*Consumers should be extended, configured and optionally methods can be overwritten to change default behaviour. Configuration should be done in de constructor method:**
+A consumer:
+- Acts a data store fore fetching remote data.
+- Can be used to convert human readable methods into DELETE, GET, PATCH POST and PUT requests.
+- All requests return promises.
+- Successfull API requests return promises for either an array (list) or a single consumer object (scalar).
+- Failed API requests cause the promise to reject.
+- Objects are cast to instances of a configurable consumer object class referenced by the consumers "objectClass" key.
+
+*Consumers should be extended, configured and optionally methods can be overwritten to change default behaviour. Configuration should be done in de constructor method:*
 
 
 ```js
@@ -107,10 +115,18 @@ constructor(endpoint='http://example.com/api/v1/posts/', objectClass=Post, optio
 
 **Consumer objects (ConsumerObject, CrudConsumerObject):**
 
-"Consumer objects" are classes that define how to perform object specific operations on the remote API.
+*"Consumer objects" are classes that define how to perform object specific operations on the remote API.*
+*Consumer objects should be extended, configured and optionally methods can be overwritten to change default behaviour.*
 
-*Consumer objects should be extended, configured and optionally methods can be overwritten to change default behaviour.
-*A reference to the consumer is kept using the \_\_consumer\_\_ property, (custom) methods can use this to communicate with the API.
+A consumer object:
+- Is the result of a resolved promise, gets passed to the promise's then() method.
+- If the API returns an array (list), an array of object classes is returned.
+- If the API returns a single object (scalar), a single object is returned.
+- The consumer object class can have methods.
+- The consumer object class keeps a reference to it's consumer using the "\__consumer__" key, this allows methods to talk back to the API.
+
+
+*A reference to the consumer is kept using the \_\_consumer\_\_ property, (custom) methods can use this to communicate with the API.*
 
 ```js
 customMethod(data) {
