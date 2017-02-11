@@ -37,7 +37,7 @@ export default PostConsumer;
 
 **examples/crud-consumer.js**
 ```js
-import '../data/post.js';
+import PostConsumer from '../data/post.js';
 
 
 let postConsumer = new PostConsumer();
