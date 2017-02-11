@@ -110,7 +110,7 @@ constructor(endpoint='http://example.com/api/v1/posts/', objectClass=Post, optio
 "Consumer objects" are classes that define how to perform object specific operations on the remote API.
 
 *Consumer objects should be extended, configured and optionally methods can be overwritten to change default behaviour.
-*A reference to the consumer is kept using the \__consumer\__ property, (custom) methods can use this to communicate with the API.
+*A reference to the consumer is kept using the \_\_consumer\_\_ property, (custom) methods can use this to communicate with the API.
 
 ```js
 customMethod(data) {
