@@ -1,6 +1,7 @@
 # ConsumerJS
 
-ConsumerJS is a [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) client/object mapper that aims to make using RESTful JSON API's simple and [DRY](https://en.wikipedia.org/wiki/Don%27t_repeat_yourself). It converts JSON responses to objects allowing [CRUD] operations on remote resources. ConsumerJS automatically adds a [CSRF](https://en.wikipedia.org/wiki/Cross-site_request_forgery) header (if the CSRF cookie is present).
+ConsumerJS is a [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) client/object mapper that aims to make using RESTful JSON API's simple and [DRY](https://en.wikipedia.org/wiki/Don%27t_repeat_yourself).
+It converts JSON responses to objects allowing [CRUD](https://en.wikipedia.org/wiki/Create,_read,_update_and_delete) operations on remote resources. ConsumerJS automatically adds a [CSRF](https://en.wikipedia.org/wiki/Cross-site_request_forgery) header (if the CSRF cookie is present).
 
 ## Install
 
