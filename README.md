@@ -45,7 +45,12 @@ let postConsumer = new PostConsumer();
 postConsumer.create()
     .then(someFunction)  // When promise resolves, call someFunction with new Post object
     .catch(errorFunction);  // When promise rejects, call errorFunction
+
     
+//
+// When a consumer receives a JSON array as result, an array of consumer objects is returned.
+//
+
     
 postConsumer.read()
     .then(someFunction)  // When promise resolves, call someFunction with all resolved Post objects
