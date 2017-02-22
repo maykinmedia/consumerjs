@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/maykinmedia/consumerjs.svg?branch=master)](https://travis-ci.org/maykinmedia/consumerjs)
+
 # ConsumerJS
 
 ConsumerJS is a [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) client/object mapper that aims to make using RESTful JSON API's simple and [DRY](https://en.wikipedia.org/wiki/Don%27t_repeat_yourself).
