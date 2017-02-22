@@ -1,8 +1,8 @@
 {
   "name": "consumerjs",
   "version": "1.7.4",
-  "description": "A REST API consumer (data store) built on top of [aurelia-http-client](https://github.com/aurelia/http-client).",
-  "main": "dist/consumerjs.js",
+  "description": "ConsumerJS is a REST client/object mapper that aims to make using RESTful JSON API's simple and DRY.",
+  "main": "src/index.js",
   "scripts": {
     "test": "gulp lint && gulp test"
   },
