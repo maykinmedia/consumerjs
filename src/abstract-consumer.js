@@ -1,4 +1,4 @@
-import { Cookie } from 'aurelia-cookie';
+import { AureliaCookie } from 'aurelia-cookie';
 import { HttpClient } from 'aurelia-http-client';
 import { initialize } from 'aurelia-pal-browser';
 import URI from 'urijs';
@@ -182,7 +182,7 @@ export class AbstractConsumer {
      * @returns {string}
      */
     getCookie(name) {
-        return Cookie.get(name);
+        return AureliaCookie.get(name);
     }
 
     /**
