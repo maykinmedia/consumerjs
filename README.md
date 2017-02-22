@@ -37,7 +37,7 @@ export default PostConsumer;
 ```
 
 
-**examples/crud-consumer.js**
+**examples/my-app.js**
 ```js
 import PostConsumer from '../data/post.js';
 
@@ -65,7 +65,7 @@ postConsumer.read(id)
 ```
 
 
-**examples/crud-consumer-object.js**
+**examples/my-app2.js**
 ```js
 // Internally, id is resolved using either "pk" or "id" field
 
