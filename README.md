@@ -1,144 +1,142 @@
 # ConsumerJS
 
-A REST API consumer (data store) built on top of [aurelia-http-client](https://github.com/aurelia/http-client) with built-in (Django) csrf support.
+ConsumerJS is a [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) client/object mapper that aims to make using RESTful JSON API's simple and [DRY](https://en.wikipedia.org/wiki/Don%27t_repeat_yourself).
+It converts JSON responses to objects allowing [CRUD](https://en.wikipedia.org/wiki/Create,_read,_update_and_delete) operations on remote resources. ConsumerJS automatically adds a [CSRF](https://en.wikipedia.org/wiki/Cross-site_request_forgery) header (if the CSRF cookie is present).
 
-## Installation
+## Install
 
-`npm install consumerjs`
+Install with [npm](https://www.npmjs.com/).
+
+```sh
+$ npm i consumerjs --save
+```
 
 ## Usage
 
 *This library can be used in the browser only.*
+*See [doc](doc/) for full API documentation.*
 
-ConsumerJS is built to provide a better developer experience while object-orientated programming with remote objects. Typical ussage would be writing a consumer module (of file) that has at least 2 classes:
+**Example:**
 
-- "Consumer object", a class for the type of object to fetch (e.g. Post).
-- "Consumer", consumer to fetch and push the object - (e.g. PostConsumer).
+*data/post.js*
+```js
+import { CrudConsumer, CrudConsumerObject } from 'consumerjs';
 
-**Consumer object**
 
+class Post extends CrudConsumerObject {}
+
+
+class PostConsumer extends CrudConsumer {
+    constructor(endpoint='http://example.com/api/v1/posts/', objectClass=Post) {
+        super(endpoint, objectClass);
+    }
+;}
+
+
+export default PostConsumer;
+```
+
+
+**examples/my-app.js**
+```js
+import PostConsumer from '../data/post.js';
+
+
+let postConsumer = new PostConsumer();
+postConsumer.create()
+    .then(someFunction)  // When promise resolves, call someFunction with new Post object
+    .catch(errorFunction);  // When promise rejects, call errorFunction
+
+    
+//
+// When a consumer receives a JSON array as result, an array of consumer objects is returned.
+//
+
+    
+postConsumer.read()
+    .then(someFunction)  // When promise resolves, call someFunction with all resolved Post objects
+    .catch(errorFunction);  // When promise rejects, call errorFunction
+    
+    
+let id = 1;
+postConsumer.read(id)
+    .then(someFunction)  // When promise resolves, call someFunction with resolved Post (with id 1)
+    .catch(errorFunction);  // When promise rejects, call errorFunction
+```
+
+
+**examples/my-app2.js**
+```js
+// Internally, id is resolved using either "pk" or "id" field
+
+post.title = 'some new title';
+post.update()  // Saves changed fields to API using partial PATCH request
+post.save()  // Save all fields to API using full PUT request
+post.delete()  // Deletes this post using DELETE request
+```
+
+ConsumerJS defines a few built-in classes, all of those should be extended by a custom class:
+
+- [Consumer](doc/consumer.md)
+- [CrudConsumer](doc/crud-consumer.md)
+- [ConsumerObject](doc/consumer-object.md)
+- [CrudConsumerObject](doc/crud-consumer-object.md)
+
+**Consumers (Consumer, CrudConsumer):**
+
+*"Consumers" are classes that define how to perform operations on the remote API. It converts the results to* *"Consumer object" which contains a statefull representation of the API result.*
+
+A consumer:
+- Acts a data store fore fetching remote data.
+- Can be used to convert human readable methods into DELETE, GET, PATCH POST and PUT requests.
+- All requests return promises.
+- Successfull API requests return promises for either an array (list) or a single consumer object (scalar).
+- Failed API requests cause the promise to reject.
+- Objects are cast to instances of a configurable consumer object class referenced by the consumers "objectClass" key.
+
+*Consumers should be extended, configured and optionally methods can be overwritten to change default behaviour. Configuration should be done in de constructor method:*
+
+
+```js
+/**
+ * Configures Consumer instance
+ * @param {string} endpoint Base endpoint for this API
+ * @param {AbstractConsumerObject} objectClass Class to cast results to
+ * @param {Object} [options] Additional configuration
+ */
+constructor(endpoint='http://example.com/api/v1/posts/', objectClass=Post, options=null) {
+    super(endpoint, objectClass);
+}
+```
+
+- Consumer: Simple "bare" consumer intended for use with custom methods.
+- CrudConsumer: "Consumer with base methods for common CRUD operations.
+    - `create([object])`, creates objecs.
+    - `read([id])`, fetches all objects or a single object by id.
+
+**Consumer objects (ConsumerObject, CrudConsumerObject):**
+
+*"Consumer objects" are classes that define how to perform object specific operations on the remote API.*
+*Consumer objects should be extended, configured and optionally methods can be overwritten to change default behaviour.*
+
+A consumer object:
 - Is the result of a resolved promise, gets passed to the promise's then() method.
 - If the API returns an array (list), an array of object classes is returned.
 - If the API returns a single object (scalar), a single object is returned.
 - The consumer object class can have methods.
 - The consumer object class keeps a reference to it's consumer using the "\__consumer__" key, this allows methods to talk back to the API.
 
-**Consumer**
 
-- Acts a data store fore fetching remote data.
-- Can be used to convert human readable methods into DELETE, GET, PATCH POST and PUT requests.
-- All requests return promises.
-- Successfull API requests return promises for either an array (list) or a single object (scalar).
-- Failed API requests cause the promise to reject.
-- Objects are cast to instances of a configurable consumer object class referenced by the consumers "objectClass" key.
+*A reference to the consumer is kept using the \_\_consumer\_\_ property, (custom) methods can use this to communicate with the API.*
 
-This example shows an consumer object (Post) and it's consumer (PostConsumer):
-
-```javascript
-import Consumer, { ConsumerObject } from 'consumerjs';
-
-
-/**
- * Represents a retrieved post
- * @class
- */
-class Post extends ConsumerObject {
-    /**
-     * Sets last modified date for post
-     * @param {Number|String} The id of the post
-     * @param {String} date
-     * @returns {Promise}
-     */
-    setLastModified(date) {
-        return this.__consumer__.setLastModified(this.id, date);
-    }
-}
-
-
-/**
- * Handles post related communication with API
- * Casts results to Post instances
- * @class
- */
-export class PostConsumer extends Consumer {
-    /**
-     * Configures this consumer
-     */
-    constructor() {
-        super();
-        this.endpoint = '/api/v1/posts';
-        this.objectClass = Post;
-    }
-
-    /**
-     * Create new empty post
-     * @param {Number} categoryId
-     * @param {Number} card
-     * @param {String} channel
-     * @returns {Promise}
-     */
-    create(categoryId) {
-        return this.post('/', { category: categoryId });
-    }
-
-    /**
-     * Fetches post
-     * @param {Number|String} postId
-     * @returns {Promise}
-     */
-    fetch(postId) {
-        return this.get(`/${postId}/`);
-    }
-
-    /**
-     * Fetches all posts for a category
-     * @param {Number|String} postId
-     * @returns {Promise}
-     */
-    getAllForCategory(categoryId) {
-        return this.get(`/`, { category: categoryId });
-    }
-
-    /**
-     * Sets last modified date for post
-     * @param {Number|String} The id of the post
-     * @param {String} date
-     * @returns {Promise}
-     */
-    setLastModified(postId, date) {
-        return this.patch(`/${postId}/`, { last_modified: date });
-    }
+```js
+customMethod(data) {
+    return this.__consumer.__.post('/path/', data);  // CrudConsumerObject instances can use this.getPath() as path.
 }
 ```
 
-## Contributing
-
-1. Fork it!
-2. Create your feature branch: `git checkout -b my-new-feature`
-3. Commit your changes: `git commit -am 'Add some feature'`
-4. Push to the branch: `git push origin my-new-feature`
-5. Submit a pull request :D
-
-## License
-
-The MIT License (MIT)
-
-Copyright (c) 2015 Maykin Media
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
+- ConsumerObject: Simple "bare" consumer object intended for use with custom methods.
+- CrudConsumerObject: "Consumer object with base methods for common CRUD operations.
+    - `update()`, persists changes made to object.
+    - `save()`, fully saves object.
+    - `delete()`, deletes this object.

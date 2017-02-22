@@ -1,8 +1,15 @@
+var webpack = require('webpack');
+var nodeExternals = require('webpack-node-externals');
+
+
 module.exports = {
-    entry: './dist/consumerjs.js',
+    entry: './src/index.js',
+    externals: [nodeExternals()],
+    target: 'node',
 
     output: {
         filename: 'consumerjs.js',
+        libraryTarget: 'umd',
         path: __dirname + '/dist/',
         publicPath: '/static/'
     },
@@ -13,16 +20,11 @@ module.exports = {
                 test: /.js?$/,
                 loader: 'babel-loader',
                 exclude: /node_modules/,
-                presets: [
-                    'es2015',
-                ]
             }
         ]
     },
 
-    resolve: {
-        root: [
-            __dirname + '/src/',
-        ]
-    }
+    plugins: [
+        new webpack.optimize.UglifyJsPlugin()
+    ]
 };

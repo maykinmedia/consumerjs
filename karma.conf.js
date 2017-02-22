@@ -1,4 +1,5 @@
-var webpackConfig = require('./webpack.config.js');
+var clone= require('clone');
+var webpackConfig = clone(require('./webpack.config.js'));
 
 
 // Add istanbul-instrumenter to webpack configuration
@@ -10,13 +11,18 @@ webpackConfig.module.loaders.push(
     }
 );
 
+webpackConfig.output.filename += '.test';
+webpackConfig.plugins = [];
+webpackConfig.externals = [];
+
 
 // The main configuration
 module.exports = function(config) {
     config.set({
         frameworks: [
             'jasmine-ajax',
-            'jasmine'
+            'jasmine',
+            'es6-shim'
         ],
 
         files: [
