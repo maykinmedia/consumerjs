@@ -17,6 +17,8 @@ export class CrudConsumerObject extends AbstractConsumerObject {
      */
     constructor(data, consumer) {
         super(data, consumer);
+
+        /** {Object} A clone of the initial state before any modifications were made. */
         this.__initial_state__ = JSON.parse(JSON.stringify(data));  // Create a rough clone
     }
 

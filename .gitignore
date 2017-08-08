@@ -1,4 +1,5 @@
 ### Code Coverage ###
+coverage/
 build/reports/
 
 ### Dependencies ###

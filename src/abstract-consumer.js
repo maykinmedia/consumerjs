@@ -3,6 +3,7 @@ import { HttpClient } from 'aurelia-http-client';
 import { initialize } from 'aurelia-pal-browser';
 import URI from 'urijs';
 
+import { List } from './list';
 import { excludeUnserializableFields, isObject } from './utils';
 
 
@@ -18,34 +19,37 @@ export class AbstractConsumer {
      * @param {Object} [options] Additional configuration.
      */
     constructor(endpoint, objectClass, options=null) {
-        /** The Aurelia HttpClient instance to work with. */
+        /** {HttpClient} The Aurelia HttpClient instance to work with. */
         this.client = new HttpClient();
 
-        /** The value of the Content-Type header. */
+        /** {string} The value of the Content-Type header. */
         this.contentType = 'application/json';
 
-        /** The name for the CSRF cookie. */
+        /** {string} The name for the CSRF cookie. */
         this.csrfCookie = 'csrftoken';
 
-        /** The name for the CSRF header. */
+        /** {string} The name for the CSRF header. */
         this.csrfHeader = 'X-CSRFToken';
 
-        /** An optional object holding key value pairs of additional headers. */
+        /** {Object} An optional object holding key value pairs of additional headers. */
         this.defaultHeaders = {};
 
-        /** An optional object holding key value pairs of additional query parameters.*/
+        /** {Object} An optional object holding key value pairs of additional query parameters.*/
         this.defaultParameters = {};
 
-        /** The base API endpoint prefixed for all requests. */
+        /** {string} The base API endpoint prefixed for all requests. */
         this.endpoint = endpoint;
 
-        /** The class to casts objects to. */
+        /** {Function} The class to casts objects to. */
         this.objectClass = objectClass;
 
-        /** An optional dot separated path to the received objectClass' data. */
+        /** {Function} The class to use for lists. */
+        this.listClass = List;
+
+        /** {string} An optional dot separated path to the received objectClass' data. */
         this.parserDataPath = '';
 
-        /** Keys on this.objectClass that should not be passed to the API. */
+        /** {string[]} Keys on this.objectClass that should not be passed to the API. */
         this.unserializableFields = ['__consumer__'];
 
         if (options) {
@@ -149,7 +153,7 @@ export class AbstractConsumer {
         // Return cancellable promise
         clientPromise = this.client[method](uri.toString(), data);
         consumerPromise = clientPromise
-                .then(this.requestSuccess.bind(this))
+                .then(response => this.requestSuccess(response, method, path, data))
                 .catch(this.requestFailed.bind(this));
 
         consumerPromise.abort = clientPromise.abort;
@@ -216,71 +220,86 @@ export class AbstractConsumer {
     /**
      * Callback for request.
      * Gets called if request resolve successfully.
-     * @param {HttpResponseMessage} data
-     * @returns {(AbstractConsumerObject|AbstractConsumerObject[])}
+     * @param {HttpResponseMessage} response
+     * @param {string} method The request method.
+     * @param {string} path The request path.
+     * @param {Object} data The request data payload.
+     * @returns {(AbstractConsumerObject|AbstractList)}
      */
-    requestSuccess(data) {
-        let result = this.parse(data.response);
+    requestSuccess(response, method, path, data) {
+        let result = this.parse(response.response, method, path, data);
         return Promise.resolve(result);
     }
 
     /**
      * Parses JSON string to a single or list of AbstractConsumerObject instance(s).
-     * @param {string} data
-     * @returns {(AbstractConsumerObject|AbstractConsumerObject[]|undefined)}
+     * @param {string} json The response json.
+     * @param {string} method The request method.
+     * @param {string} path The request path.
+     * @param {Object} data The request data payload.
+     * @returns {(AbstractConsumerObject|AbstractList|undefined)}
      */
-    parse(json) {
+    parse(json, method, path, data) {
         if (!json) {
             return;
         }
 
         let object = JSON.parse(json);
+        let parserObject = JSON.parse(json);
 
         if (this.parserDataPath.length) {
             let parts = this.parserDataPath.split('.');
 
             parts.map(part => {
-                object = object[part];
+                parserObject = parserObject[part];
             });
         }
 
-        if (Array.isArray(object)) {
-            return this.parseList(object);
+        if (Array.isArray(parserObject)) {
+            return this.parseList(parserObject, object, method, path, data);
         }
-        return this.parseScalar(object);
+        return this.parseScalar(parserObject, object, method, path, data);
     }
 
     /**
      * Parses anonymous objects to a list of AbstractConsumerObjects.
      * Gets called when result JSON.parse is an array.
      * @param {Object[]} array
-     * @returns {AbstractConsumerObject[]}
+     * @param {Object} responseData The response data as Object.
+     * @param {string} method The request method.
+     * @param {string} path The request path.
+     * @param {Object} data The request data payload.
+     * @returns {AbstractList}
      */
-    parseList(array) {
-        let list = [];
-
-        for (let object of array) {
-            list.push(this.parseEntity(object));
-        }
-        return list;
+    parseList(array, responseData, method, path, data) {
+        let consumerObjects = array.map(object => this.parseEntity(object, responseData, method, path, data));
+        return new this.listClass(consumerObjects, this, responseData, method, path, data);
     }
 
     /**
      * Parses anonymous object to a single AbstractConsumerObject.
      * Gets called when result JSON.parse is not an array.
      * @param {Object} object
+     * @param {Object} responseData The response data as Object.
+     * @param {string} method The request method.
+     * @param {string} path The request path.
+     * @param {Object} data The request data payload.
      * @returns {AbstractConsumerObject}
      */
-    parseScalar(object) {
-        return this.parseEntity(object);
+    parseScalar(object, responseData, method, path, data) {
+        return this.parseEntity(object, responseData, method, path, data);
     }
 
     /**
      * Parses anonymous object to a single AbstractConsumerObject.
      * @param {Object} object
+     * @param {Object} responseData The response data as Object.
+     * @param {string} method The request method.
+     * @param {string} path The request path.
+     * @param {Object} data The request data payload.
      * @returns {AbstractConsumerObject}
      */
-    parseEntity(object) {
+    parseEntity(object, responseData, method, path, data) {
         return new this.objectClass(object, this);
     }
 

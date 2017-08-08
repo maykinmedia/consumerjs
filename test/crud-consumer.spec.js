@@ -19,7 +19,7 @@ describe('CrudConsumer', function() {
 
     it('should set objectClass to CrudConsumerObject by default', () => {
         let consumer = new CrudConsumer();
-        expect(consumer.objectClass.name).toBe('CrudConsumerObject');
+        expect(consumer.objectClass.toString()).toContain('CrudConsumerObject');
     });
 
     it('should support create', function(done) {

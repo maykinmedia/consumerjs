@@ -43,13 +43,13 @@ describe('Consumer', function() {
         class Post extends ConsumerObject {}
 
         let consumer = new Consumer('http://example.com/api', Post);
-        expect(consumer.constructor.name).toBe('Consumer');
+        expect(consumer.constructor.toString()).toContain('Consumer');
         expect(consumer.endpoint).toBe('http://example.com/api');
-        expect(consumer.objectClass.name).toBe('Post');
+        expect(consumer.objectClass.toString()).toContain('Post');
 
         consumer.get('/posts/200')
             .then(data => {
-                expect(data.constructor.name).toBe('Post');
+                expect(data.constructor.toString()).toContain('Post');
                 done();
             });
     });
@@ -65,13 +65,13 @@ describe('Consumer', function() {
         }
 
         let consumer = new PostConsumer();
-        expect(consumer.constructor.name).toBe('PostConsumer');
+        expect(consumer.constructor.toString()).toContain('PostConsumer');
         expect(consumer.endpoint).toBe('http://example.com/api');
-        expect(consumer.objectClass.name).toBe('Post');
+        expect(consumer.objectClass.toString()).toContain('Post');
 
         consumer.get('/posts/200')
             .then(data => {
-                expect(data.constructor.name).toBe('Post');
+                expect(data.constructor.toString()).toContain('Post');
                 done();
             });
     });
@@ -82,27 +82,27 @@ describe('Consumer', function() {
         let consumer = new Consumer('http://example.com/api', Post);
         consumer.get('/posts/200')
             .then(data => {
-                expect(data.constructor.name).toBe('Post');
-                expect(data.__consumer__.constructor.name).toBe('Consumer');
+                expect(data.constructor.toString()).toContain('Post');
+                expect(data.__consumer__.constructor.toString()).toContain('Consumer');
                 expect(data.title).toBe('FooBar');
                 done();
             });
     });
 
-    it('should resolve with a range of ConsumerObjects', function(done) {
+    it('should resolve with a list of ConsumerObjects', function(done) {
         class Post extends ConsumerObject {}
 
         let consumer = new Consumer('http://example.com/api', Post);
         consumer.get('/posts/201')
             .then(data => {
-                expect(Array.isArray(data)).toBeTruthy();
+                expect(data.__consumer__).toBe(consumer);
 
-                expect(data[0].constructor.name).toBe('Post');
-                expect(data[0].__consumer__.constructor.name).toBe('Consumer');
+                expect(data[0].constructor.toString()).toContain('Post');
+                expect(data[0].__consumer__.constructor.toString()).toContain('Consumer');
                 expect(data[0].title).toBe('FooBar');
 
-                expect(data[1].constructor.name).toBe('Post');
-                expect(data[1].__consumer__.constructor.name).toBe('Consumer');
+                expect(data[1].constructor.toString()).toContain('Post');
+                expect(data[1].__consumer__.constructor.toString()).toContain('Consumer');
                 expect(data[1].title).toBe('FooBaz');
                 done();
             });
@@ -114,7 +114,7 @@ describe('Consumer', function() {
         let consumer = new Consumer('http://example.com/api', Post);
         consumer.get('/posts/404')
             .catch(data => {
-                expect(data.constructor.name).toBe('HttpResponseMessage');
+                expect(data.constructor.toString()).toContain('HttpResponseMessage');
                 done();
             });
     });
@@ -304,8 +304,8 @@ describe('Consumer', function() {
         let consumer = new Consumer('http://example.com/api', Post);
         consumer.get('/posts/200')
             .then(data => {
-                expect(data.constructor.name).toBe('Post');
-                expect(data.__consumer__.constructor.name).toBe('Consumer');
+                expect(data.constructor.toString()).toContain('Post');
+                expect(data.__consumer__.constructor.toString()).toContain('Consumer');
                 expect(data.title).toBe('FooBar');
 
                 consumer.post('/posts/200', data)
