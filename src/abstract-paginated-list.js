@@ -78,7 +78,7 @@ export class AbstractPaginatedList extends AbstractList {
      * Placeholder implementation for method.
      * @throws {Error}
      */
-    requestPage(page, method,data) {
+    requestPage(page, method,data) {  // jshint ignore:line
         throw new Error('List does not implement requestPage()!');
     }
 }

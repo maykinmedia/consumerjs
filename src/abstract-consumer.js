@@ -299,7 +299,7 @@ export class AbstractConsumer {
      * @param {Object} data The request data payload.
      * @returns {AbstractConsumerObject}
      */
-    parseEntity(object, responseData, method, path, data) {
+    parseEntity(object, responseData, method, path, data) {  // jshint ignore:line
         return new this.objectClass(object, this);
     }
 

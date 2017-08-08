@@ -10,7 +10,7 @@ export class AbstractList extends Array {
      * @param {Object} responseData The response data as Object.
      */
     constructor(objects, consumer, responseData) {
-        super(...objects)
+        super(...objects);
 
         /** {Object} The response data as Object. */
         this.responseData = {};

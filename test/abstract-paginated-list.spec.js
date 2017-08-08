@@ -51,8 +51,7 @@ describe('AbstractPaginatedList', function() {
                 expect(list.currentPath).toBe('posts/?page=3');
                 expect(list.currentData).toEqual({ foo: 'bar' });
                 done();
-            })
-            .catch (e => console.error(e.message, e.stack))
+            });
     });
 
     it('should throw an error indicating the lack of implementation whe calling first()', function(done) {

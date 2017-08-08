@@ -116,8 +116,7 @@ describe('PageNumberList', function() {
                 expect(list.pageCount).toBe(5);
                 expect(list.pageSize).toBe(3);
                 done();
-            })
-            .catch (e => console.error(e.message, e.stack))
+            });
     });
 
     it('should be able to navigate to the first page', function(done) {
@@ -130,7 +129,7 @@ describe('PageNumberList', function() {
                 expect(list[1].title).toBe('Foo 2');
                 expect(list[2].title).toBe('Foo 3');
                 done();
-            })
+            });
     });
 
     it('should be able to navigate to the last page', function(done) {
@@ -143,7 +142,7 @@ describe('PageNumberList', function() {
                 expect(list[1].title).toBe('Foo 14');
                 expect(list[2].title).toBe('Foo 15');
                 done();
-            })
+            });
     });
 
     it('should be able to navigate to the next page', function(done) {
@@ -156,7 +155,7 @@ describe('PageNumberList', function() {
                 expect(list[1].title).toBe('Foo 5');
                 expect(list[2].title).toBe('Foo 6');
                 done();
-            })
+            });
     });
 
     it('should be able to navigate to the previous page', function(done) {
@@ -169,7 +168,7 @@ describe('PageNumberList', function() {
                 expect(list[1].title).toBe('Foo 2');
                 expect(list[2].title).toBe('Foo 3');
                 done();
-            })
+            });
     });
 
     it('should be able to navigate back and forth', function(done) {
@@ -189,7 +188,7 @@ describe('PageNumberList', function() {
                 expect(list[1].title).toBe('Foo 2');
                 expect(list[2].title).toBe('Foo 3');
                 done();
-            })
+            });
     });
 
 
