@@ -110,7 +110,14 @@ module.exports = function(config) {
             ]
         },
 
+        hostname: 'localhost.byte.nl',
+
         sauceLabs: {
+
+            connectOptions: {
+                noSslBumpDomains: "all"
+            },
+
             build: 'process.env.TRAVIS_BUILD_NUMBER',
             testName: 'consumerjs browser testing',
             logfile: './saucelabs.log',
