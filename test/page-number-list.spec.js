@@ -171,7 +171,7 @@ describe('PageNumberList', function() {
             });
     });
 
-    it('should be able to navigate back and forth', function(done) {
+    fit('should be able to navigate back and forth', function(done) {
         this.consumer.get('posts/', { page: 1 })
             .then(list => list.next())
             .then(list => list.next())
@@ -188,7 +188,8 @@ describe('PageNumberList', function() {
                 expect(list[1].title).toBe('Foo 2');
                 expect(list[2].title).toBe('Foo 3');
                 done();
-            });
+            })
+            .catch(e => console.log(e.message, e.stack));
     });
 
 
