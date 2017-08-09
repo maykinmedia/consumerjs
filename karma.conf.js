@@ -111,6 +111,7 @@ module.exports = function(config) {
         },
 
         sauceLabs: {
+            build: 'process.env.TRAVIS_BUILD_NUMBER',
             testName: 'consumerjs browser testing',
             logfile: './saucelabs.log',
             public: 'public',
@@ -125,8 +126,8 @@ module.exports = function(config) {
             noInfo: true
         },
 
-        browserNoActivityTimeout: 100000,
-        captureTimeout: 100000,
+        browserNoActivityTimeout: 200000,
+        captureTimeout: 200000,
         colors: true,
         concurrency: 5,
         customLaunchers: customLaunchers,
