@@ -22,6 +22,7 @@ Should be extended to provide methods for objects.
 
 * *[CrudConsumerObject](#CrudConsumerObject)*
     * *[new CrudConsumerObject(data, consumer)](#new_CrudConsumerObject_new)*
+    * *[.__initial_state__](#CrudConsumerObject+__initial_state__)*
     * *[.update()](#CrudConsumerObject+update) ⇒ <code>Promise</code>*
     * *[.save()](#CrudConsumerObject+save) ⇒ <code>Promise</code>*
     * *[.delete()](#CrudConsumerObject+delete) ⇒ <code>Promise</code>*
@@ -40,6 +41,12 @@ Creates a new object.
 | data | <code>Object</code> | Data to parse. |
 | consumer | <code>CrudConsumer</code> | Consumer instance for this object. |
 
+<a name="CrudConsumerObject+__initial_state__"></a>
+
+### *crudConsumerObject.__initial_state__*
+{Object} A clone of the initial state before any modifications were made.
+
+**Kind**: instance property of <code>[CrudConsumerObject](#CrudConsumerObject)</code>  
 <a name="CrudConsumerObject+update"></a>
 
 ### *crudConsumerObject.update() ⇒ <code>Promise</code>*
@@ -95,6 +102,7 @@ Properties are compared against this.\_\_initial_state\_\_.
 
 * [CrudConsumerObject](#CrudConsumerObject)
     * *[new CrudConsumerObject(data, consumer)](#new_CrudConsumerObject_new)*
+    * *[.__initial_state__](#CrudConsumerObject+__initial_state__)*
     * *[.update()](#CrudConsumerObject+update) ⇒ <code>Promise</code>*
     * *[.save()](#CrudConsumerObject+save) ⇒ <code>Promise</code>*
     * *[.delete()](#CrudConsumerObject+delete) ⇒ <code>Promise</code>*
@@ -113,6 +121,12 @@ Creates a new object.
 | data | <code>Object</code> | Data to parse. |
 | consumer | <code>CrudConsumer</code> | Consumer instance for this object. |
 
+<a name="CrudConsumerObject+__initial_state__"></a>
+
+### *crudConsumerObject.__initial_state__*
+{Object} A clone of the initial state before any modifications were made.
+
+**Kind**: instance property of <code>[CrudConsumerObject](#CrudConsumerObject)</code>  
 <a name="CrudConsumerObject+update"></a>
 
 ### *crudConsumerObject.update() ⇒ <code>Promise</code>*

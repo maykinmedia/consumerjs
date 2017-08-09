@@ -17,6 +17,7 @@ Abstract base class for object derived from Consumer
 
 * *[AbstractConsumerObject](#AbstractConsumerObject)*
     * *[new AbstractConsumerObject(data, consumer)](#new_AbstractConsumerObject_new)*
+    * *[.__consumer__](#AbstractConsumerObject+__consumer__)*
     * *[.createFromObject(data)](#AbstractConsumerObject+createFromObject)*
 
 <a name="new_AbstractConsumerObject_new"></a>
@@ -30,6 +31,12 @@ Creates a new object.
 | data | <code>Object</code> | Data to parse. |
 | consumer | <code>Consumer</code> | Consumer instance for this object. |
 
+<a name="AbstractConsumerObject+__consumer__"></a>
+
+### *abstractConsumerObject.__consumer__*
+{AbstractConsumer} Reference to consumer instantiating this object.
+
+**Kind**: instance property of <code>[AbstractConsumerObject](#AbstractConsumerObject)</code>  
 <a name="AbstractConsumerObject+createFromObject"></a>
 
 ### *abstractConsumerObject.createFromObject(data)*
@@ -48,6 +55,7 @@ Populates object with data consumed in data.
 
 * [AbstractConsumerObject](#AbstractConsumerObject)
     * *[new AbstractConsumerObject(data, consumer)](#new_AbstractConsumerObject_new)*
+    * *[.__consumer__](#AbstractConsumerObject+__consumer__)*
     * *[.createFromObject(data)](#AbstractConsumerObject+createFromObject)*
 
 <a name="new_AbstractConsumerObject_new"></a>
@@ -61,6 +69,12 @@ Creates a new object.
 | data | <code>Object</code> | Data to parse. |
 | consumer | <code>Consumer</code> | Consumer instance for this object. |
 
+<a name="AbstractConsumerObject+__consumer__"></a>
+
+### *abstractConsumerObject.__consumer__*
+{AbstractConsumer} Reference to consumer instantiating this object.
+
+**Kind**: instance property of <code>[AbstractConsumerObject](#AbstractConsumerObject)</code>  
 <a name="AbstractConsumerObject+createFromObject"></a>
 
 ### *abstractConsumerObject.createFromObject(data)*
