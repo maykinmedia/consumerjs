@@ -9,11 +9,11 @@ export class AbstractList extends Array {
      * @param {Consumer} consumer Consumer instance for this object.
      * @param {Object} responseData The response data as Object.
      */
-    constructor(objects, consumer, responseData) {
+    constructor(objects, consumer, responseData={}) {
         super(...objects);
 
         /** {Object} The response data as Object. */
-        this.responseData = {};
+        this.responseData = responseData;
 
         let keys = Object.keys(responseData);
 
