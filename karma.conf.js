@@ -126,8 +126,8 @@ module.exports = function(config) {
             noInfo: true
         },
 
-        browserNoActivityTimeout: 200000,
-        captureTimeout: 200000,
+        browserNoActivityTimeout: 300000,
+        captureTimeout: 300000,
         colors: true,
         concurrency: 5,
         customLaunchers: customLaunchers,
