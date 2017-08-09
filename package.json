@@ -4,7 +4,7 @@
   "description": "ConsumerJS is a REST client/object mapper that aims to make using RESTful JSON API's simple and DRY.",
   "main": "dist/consumerjs.js",
   "scripts": {
-    "test": "gulp lint && gulp test"
+    "test": "gulp test"
   },
   "keywords": [
     "REST",

@@ -3,7 +3,7 @@ import { CrudConsumerObject } from '../src/crud-consumer-object';
 import { PageNumberList } from '../src/page-number-list';
 
 
-describe('PageNumberList', function() {
+fdescribe('PageNumberList', function() {
     beforeEach(function() {
         let p1 = JSON.stringify({
             page: 1,
@@ -171,7 +171,7 @@ describe('PageNumberList', function() {
             });
     });
 
-    fit('should be able to navigate back and forth', function(done) {
+    it('should be able to navigate back and forth', function(done) {
         this.consumer.get('posts/', { page: 1 })
             .then(list => list.next())
             .then(list => list.next())
