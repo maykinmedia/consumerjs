@@ -110,11 +110,9 @@ module.exports = function(config) {
             ]
         },
 
-        sauceLabs: {
-            connectOptions: {
-                noSslBumpDomains: "all"
-            },
+        hostname: 'localtest.me',
 
+        sauceLabs: {
             build: 'process.env.TRAVIS_BUILD_NUMBER',
             testName: 'consumerjs browser testing',
             logfile: './saucelabs.log',
