@@ -110,10 +110,7 @@ module.exports = function(config) {
             ]
         },
 
-        hostname: 'localhost.byte.nl',
-
         sauceLabs: {
-
             connectOptions: {
                 noSslBumpDomains: "all"
             },
