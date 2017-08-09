@@ -3,6 +3,7 @@ import Consumer, {
     ConsumerObject,
     CrudConsumer,
     CrudConsumerObject,
+    AbstractList,
     AbstractPageNumberList,
     PageNumberList,
     utils,
@@ -28,6 +29,10 @@ describe('Module', function() {
 
     it('should export CrudConsumerObject', function() {
         expect(CrudConsumerObject.toString()).toContain('CrudConsumerObject');
+    });
+
+    it('should export AbstractList', function() {
+        expect(AbstractList.toString()).toContain('AbstractList');
     });
 
     it('should export AbstractPageNumberList', function() {
