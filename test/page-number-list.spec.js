@@ -189,7 +189,11 @@ fdescribe('PageNumberList', function() {
                 expect(list[2].title).toBe('Foo 3');
                 done();
             })
-            .catch(e => console.log(e.message, e.stack));
+            .catch(e => {
+                console.log(e.message, e.stack)
+                expect(false).toBeTruthy();
+                done();
+            });
     });
 
 
