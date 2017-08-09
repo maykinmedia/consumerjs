@@ -171,7 +171,7 @@ describe('PageNumberList', function() {
             });
     });
 
-    fit('should be able to navigate back and forth', function(done) {
+    it('should be able to navigate back and forth', function(done) {
         this.consumer.get('posts/', { page: 1 })
             .then(list => list.next())
             .then(list => list.next())
