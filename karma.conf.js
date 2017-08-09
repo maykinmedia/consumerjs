@@ -126,8 +126,8 @@ module.exports = function(config) {
             noInfo: true
         },
 
-        browserNoActivityTimeout: 300000,
-        captureTimeout: 300000,
+        browserNoActivityTimeout: 200000,
+        captureTimeout: 200000,
         colors: true,
         concurrency: 5,
         customLaunchers: customLaunchers,
@@ -135,6 +135,6 @@ module.exports = function(config) {
         singleRun: false,
 
         browsers: (process.env.TRAVIS) ? Object.keys(customLaunchers) : ['Chrome', 'Firefox'],
-        reporters: (process.env.TRAVIS) ? ['spec', 'coverage', 'saucelabs', 'coveralls'] : ['spec', 'coverage']
+        reporters: (process.env.TRAVIS) ? ['dots', 'saucelabs'] : ['spec', 'coverage']
     });
 }
