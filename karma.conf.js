@@ -31,60 +31,60 @@ module.exports = function(config) {
 
     // https://wiki.saucelabs.com/display/DOCS/Platform+Configurator#/
     var customLaunchers = {
-//        sl_chrome: {
-//            base: 'SauceLabs',
-//            browserName: 'chrome',
-//            platform: 'Windows 10',
-//            version: 'latest'
-//        },
-//        sl_chrome_2: {
-//            base: 'SauceLabs',
-//            browserName: 'chrome',
-//            platform: 'Windows 10',
-//            version: 'latest-1'
-//        },
+        sl_chrome: {
+            base: 'SauceLabs',
+            browserName: 'chrome',
+            platform: 'Windows 10',
+            version: 'latest'
+        },
+        sl_chrome_2: {
+            base: 'SauceLabs',
+            browserName: 'chrome',
+            platform: 'Windows 10',
+            version: 'latest-1'
+        },
         sl_edge: {
             base: 'SauceLabs',
             browserName: 'MicrosoftEdge',
             platform: 'Windows 10',
             version: 'latest'
         },
-//        sl_edge_2: {
-//            base: 'SauceLabs',
-//            browserName: 'MicrosoftEdge',
-//            platform: 'Windows 10',
-//            version: '14.14393'
-//        },
-//        sl_safari: {
-//            base: 'SauceLabs',
-//            browserName: 'safari',
-//            platform: 'macOS 10.12',
-//            version: 'latest'
-//        },
-//        sl_safari_2: {
-//            base: 'SauceLabs',
-//            browserName: 'safari',
-//            platform: 'OS X 10.11',
-//            version: '9.0'
-//        },
-//        sl_firefox: {
-//            base: 'SauceLabs',
-//            browserName: 'firefox',
-//            platform: 'Windows 10',
-//            version: 'latest'
-//        },
-//        sl_firefox_2: {
-//            base: 'SauceLabs',
-//            browserName: 'firefox',
-//            platform: 'Windows 10',
-//            version: 'latest-1'
-//        },
-//        sl_ie_11: {
-//            base: 'SauceLabs',
-//            browserName: 'internet explorer',
-//            platform: 'Windows 8.1',
-//            version: '11'
-//        }
+        sl_edge_2: {
+            base: 'SauceLabs',
+            browserName: 'MicrosoftEdge',
+            platform: 'Windows 10',
+            version: '14.14393'
+        },
+        sl_safari: {
+            base: 'SauceLabs',
+            browserName: 'safari',
+            platform: 'macOS 10.12',
+            version: 'latest'
+        },
+        sl_safari_2: {
+            base: 'SauceLabs',
+            browserName: 'safari',
+            platform: 'OS X 10.11',
+            version: '9.0'
+        },
+        sl_firefox: {
+            base: 'SauceLabs',
+            browserName: 'firefox',
+            platform: 'Windows 10',
+            version: 'latest'
+        },
+        sl_firefox_2: {
+            base: 'SauceLabs',
+            browserName: 'firefox',
+            platform: 'Windows 10',
+            version: 'latest-1'
+        },
+        sl_ie_11: {
+            base: 'SauceLabs',
+            browserName: 'internet explorer',
+            platform: 'Windows 8.1',
+            version: '11'
+        }
     }
 
     config.set({
