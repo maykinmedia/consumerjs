@@ -3,7 +3,7 @@ import { CrudConsumerObject } from '../src/crud-consumer-object';
 import { PageNumberList } from '../src/page-number-list';
 
 
-fdescribe('PageNumberList', function() {
+describe('PageNumberList', function() {
     beforeEach(function() {
         let p1 = JSON.stringify({
             page: 1,
@@ -171,30 +171,30 @@ fdescribe('PageNumberList', function() {
             });
     });
 
-    xit('should be able to navigate back and forth', function(done) {
-        this.consumer.get('posts/', { page: 1 })
-            .then(list => list.next())
-            .then(list => list.next())
-            .then(list => list.next())
-            .then(list => list.next())
-            .then(list => list.previous())
-            .then(list => list.previous())
-            .then(list => list.previous())
-            .then(list => list.previous())
-            .then(list => {
-                expect(list.page).toBe(1);
-                expect(list.length).toBe(3);
-                expect(list[0].title).toBe('Foo 1');
-                expect(list[1].title).toBe('Foo 2');
-                expect(list[2].title).toBe('Foo 3');
-                done();
-            })
-            .catch(e => {
-                console.log(e.message, e.stack)
-                expect(false).toBeTruthy();
-                done();
-            });
-    });
+//    xit('should be able to navigate back and forth', function(done) {
+//        this.consumer.get('posts/', { page: 1 })
+//            .then(list => list.next())
+//            .then(list => list.next())
+//            .then(list => list.next())
+//            .then(list => list.next())
+//            .then(list => list.previous())
+//            .then(list => list.previous())
+//            .then(list => list.previous())
+//            .then(list => list.previous())
+//            .then(list => {
+//                expect(list.page).toBe(1);
+//                expect(list.length).toBe(3);
+//                expect(list[0].title).toBe('Foo 1');
+//                expect(list[1].title).toBe('Foo 2');
+//                expect(list[2].title).toBe('Foo 3');
+//                done();
+//            })
+//            .catch(e => {
+//                console.log(e.message, e.stack)
+//                expect(false).toBeTruthy();
+//                done();
+//            });
+//    });
 
 
 
