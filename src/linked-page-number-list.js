@@ -18,7 +18,7 @@ export class LinkedPageNumberList extends AbstractPageNumberList {
             return Promise.resolve(this);
         }
 
-        let path = this.responseData.previous.replace(this.__consumer__.endpoint, '');
+        let path = this.responseData.previous;
         return this.__consumer__.get(path);
     }
 
@@ -31,7 +31,7 @@ export class LinkedPageNumberList extends AbstractPageNumberList {
             return Promise.resolve(this);
         }
 
-        let path = this.responseData.next.replace(this.__consumer__.endpoint, '');
+        let path = this.responseData.next;
         return this.__consumer__.get(path);
     }
 }
