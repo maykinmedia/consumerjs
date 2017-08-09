@@ -142,6 +142,6 @@ module.exports = function(config) {
         singleRun: false,
 
         browsers: (process.env.TRAVIS) ? Object.keys(customLaunchers) : ['Chrome', 'Firefox'],
-        reporters: (process.env.TRAVIS) ? ['spec', 'saucelabs', 'coveralls'] : ['spec', 'coverage']
+        reporters: (process.env.TRAVIS) ? ['spec', 'coverage', 'saucelabs', 'coveralls'] : ['spec', 'coverage']
     });
 }
