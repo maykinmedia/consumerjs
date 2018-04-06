@@ -110,7 +110,7 @@ module.exports = function(config) {
             ]
         },
 
-        hostname: 'localtest.me',
+        hostname: 'localhost',
 
         sauceLabs: {
             build: 'process.env.TRAVIS_BUILD_NUMBER',
