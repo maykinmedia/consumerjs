@@ -25,6 +25,7 @@ Abstract base class for all consumers.
     * *[.defaultParameters](#AbstractConsumer+defaultParameters)*
     * *[.endpoint](#AbstractConsumer+endpoint)*
     * *[.objectClass](#AbstractConsumer+objectClass)*
+    * *[.listClass](#AbstractConsumer+listClass)*
     * *[.parserDataPath](#AbstractConsumer+parserDataPath)*
     * *[.unserializableFields](#AbstractConsumer+unserializableFields)*
     * *[.delete(path, query)](#AbstractConsumer+delete) ⇒ <code>Promise</code>*
@@ -38,11 +39,11 @@ Abstract base class for all consumers.
     * *[.getCookie(name)](#AbstractConsumer+getCookie) ⇒ <code>string</code>*
     * *[.addHeader(name, value)](#AbstractConsumer+addHeader)*
     * *[.serialize(data)](#AbstractConsumer+serialize) ⇒ <code>\*</code>*
-    * *[.requestSuccess(data)](#AbstractConsumer+requestSuccess) ⇒ <code>AbstractConsumerObject</code> &#124; <code>Array.&lt;AbstractConsumerObject&gt;</code>*
-    * *[.parse(data)](#AbstractConsumer+parse) ⇒ <code>AbstractConsumerObject</code> &#124; <code>Array.&lt;AbstractConsumerObject&gt;</code> &#124; <code>undefined</code>*
-    * *[.parseList(array)](#AbstractConsumer+parseList) ⇒ <code>Array.&lt;AbstractConsumerObject&gt;</code>*
-    * *[.parseScalar(object)](#AbstractConsumer+parseScalar) ⇒ <code>AbstractConsumerObject</code>*
-    * *[.parseEntity(object)](#AbstractConsumer+parseEntity) ⇒ <code>AbstractConsumerObject</code>*
+    * *[.requestSuccess(response, method, path, data)](#AbstractConsumer+requestSuccess) ⇒ <code>AbstractConsumerObject</code> &#124; <code>AbstractList</code>*
+    * *[.parse(json, method, path, data)](#AbstractConsumer+parse) ⇒ <code>AbstractConsumerObject</code> &#124; <code>AbstractList</code> &#124; <code>undefined</code>*
+    * *[.parseList(array, responseData, method, path, data)](#AbstractConsumer+parseList) ⇒ <code>AbstractList</code>*
+    * *[.parseScalar(object, responseData, method, path, data)](#AbstractConsumer+parseScalar) ⇒ <code>AbstractConsumerObject</code>*
+    * *[.parseEntity(object, responseData, method, path, data)](#AbstractConsumer+parseEntity) ⇒ <code>AbstractConsumerObject</code>*
     * *[.requestFailed(data)](#AbstractConsumer+requestFailed) ⇒ <code>HttpResponseMessage</code>*
 
 <a name="new_AbstractConsumer_new"></a>
@@ -60,61 +61,67 @@ Configures Consumer instance.
 <a name="AbstractConsumer+client"></a>
 
 ### *abstractConsumer.client*
-The Aurelia HttpClient instance to work with.
+{HttpClient} The Aurelia HttpClient instance to work with.
 
 **Kind**: instance property of <code>[AbstractConsumer](#AbstractConsumer)</code>  
 <a name="AbstractConsumer+contentType"></a>
 
 ### *abstractConsumer.contentType*
-The value of the Content-Type header.
+{string} The value of the Content-Type header.
 
 **Kind**: instance property of <code>[AbstractConsumer](#AbstractConsumer)</code>  
 <a name="AbstractConsumer+csrfCookie"></a>
 
 ### *abstractConsumer.csrfCookie*
-The name for the CSRF cookie.
+{string} The name for the CSRF cookie.
 
 **Kind**: instance property of <code>[AbstractConsumer](#AbstractConsumer)</code>  
 <a name="AbstractConsumer+csrfHeader"></a>
 
 ### *abstractConsumer.csrfHeader*
-The name for the CSRF header.
+{string} The name for the CSRF header.
 
 **Kind**: instance property of <code>[AbstractConsumer](#AbstractConsumer)</code>  
 <a name="AbstractConsumer+defaultHeaders"></a>
 
 ### *abstractConsumer.defaultHeaders*
-An optional object holding key value pairs of additional headers.
+{Object} An optional object holding key value pairs of additional headers.
 
 **Kind**: instance property of <code>[AbstractConsumer](#AbstractConsumer)</code>  
 <a name="AbstractConsumer+defaultParameters"></a>
 
 ### *abstractConsumer.defaultParameters*
-An optional object holding key value pairs of additional query parameters.
+{Object} An optional object holding key value pairs of additional query parameters.
 
 **Kind**: instance property of <code>[AbstractConsumer](#AbstractConsumer)</code>  
 <a name="AbstractConsumer+endpoint"></a>
 
 ### *abstractConsumer.endpoint*
-The base API endpoint prefixed for all requests.
+{string} The base API endpoint prefixed for all requests.
 
 **Kind**: instance property of <code>[AbstractConsumer](#AbstractConsumer)</code>  
 <a name="AbstractConsumer+objectClass"></a>
 
 ### *abstractConsumer.objectClass*
-The class to casts objects to.
+{Function} The class to casts objects to.
+
+**Kind**: instance property of <code>[AbstractConsumer](#AbstractConsumer)</code>  
+<a name="AbstractConsumer+listClass"></a>
+
+### *abstractConsumer.listClass*
+{Function} The class to use for lists.
 
 **Kind**: instance property of <code>[AbstractConsumer](#AbstractConsumer)</code>  
 <a name="AbstractConsumer+parserDataPath"></a>
 
 ### *abstractConsumer.parserDataPath*
-An optional dot separated path to the received objectClass' data.
+{string} An optional dot separated path to the received objectClass' data.
 
 **Kind**: instance property of <code>[AbstractConsumer](#AbstractConsumer)</code>  
 <a name="AbstractConsumer+unserializableFields"></a>
 
 ### *abstractConsumer.unserializableFields*
-Keys on this.objectClass that should not be passed to the API.
+{string[]} Keys on this.objectClass that should not be passed to the API.
 
 **Kind**: instance property of <code>[AbstractConsumer](#AbstractConsumer)</code>  
 <a name="AbstractConsumer+delete"></a>
@@ -245,61 +252,79 @@ Excludes fields marked in this.unserializableFields.
 
 <a name="AbstractConsumer+requestSuccess"></a>
 
-### *abstractConsumer.requestSuccess(data) ⇒ <code>AbstractConsumerObject</code> &#124; <code>Array.&lt;AbstractConsumerObject&gt;</code>*
+### *abstractConsumer.requestSuccess(response, method, path, data) ⇒ <code>AbstractConsumerObject</code> &#124; <code>AbstractList</code>*
 Callback for request.
 Gets called if request resolve successfully.
 
 **Kind**: instance method of <code>[AbstractConsumer](#AbstractConsumer)</code>  
 
-| Param | Type |
-| --- | --- |
-| data | <code>HttpResponseMessage</code> | 
+| Param | Type | Description |
+| --- | --- | --- |
+| response | <code>HttpResponseMessage</code> |  |
+| method | <code>string</code> | The request method. |
+| path | <code>string</code> | The request path. |
+| data | <code>Object</code> | The request data payload. |
 
 <a name="AbstractConsumer+parse"></a>
 
-### *abstractConsumer.parse(data) ⇒ <code>AbstractConsumerObject</code> &#124; <code>Array.&lt;AbstractConsumerObject&gt;</code> &#124; <code>undefined</code>*
+### *abstractConsumer.parse(json, method, path, data) ⇒ <code>AbstractConsumerObject</code> &#124; <code>AbstractList</code> &#124; <code>undefined</code>*
 Parses JSON string to a single or list of AbstractConsumerObject instance(s).
 
 **Kind**: instance method of <code>[AbstractConsumer](#AbstractConsumer)</code>  
 
-| Param | Type |
-| --- | --- |
-| data | <code>string</code> | 
+| Param | Type | Description |
+| --- | --- | --- |
+| json | <code>string</code> | The response json. |
+| method | <code>string</code> | The request method. |
+| path | <code>string</code> | The request path. |
+| data | <code>Object</code> | The request data payload. |
 
 <a name="AbstractConsumer+parseList"></a>
 
-### *abstractConsumer.parseList(array) ⇒ <code>Array.&lt;AbstractConsumerObject&gt;</code>*
+### *abstractConsumer.parseList(array, responseData, method, path, data) ⇒ <code>AbstractList</code>*
 Parses anonymous objects to a list of AbstractConsumerObjects.
 Gets called when result JSON.parse is an array.
 
 **Kind**: instance method of <code>[AbstractConsumer](#AbstractConsumer)</code>  
 
-| Param | Type |
-| --- | --- |
-| array | <code>Array.&lt;Object&gt;</code> | 
+| Param | Type | Description |
+| --- | --- | --- |
+| array | <code>Array.&lt;Object&gt;</code> |  |
+| responseData | <code>Object</code> | The response data as Object. |
+| method | <code>string</code> | The request method. |
+| path | <code>string</code> | The request path. |
+| data | <code>Object</code> | The request data payload. |
 
 <a name="AbstractConsumer+parseScalar"></a>
 
-### *abstractConsumer.parseScalar(object) ⇒ <code>AbstractConsumerObject</code>*
+### *abstractConsumer.parseScalar(object, responseData, method, path, data) ⇒ <code>AbstractConsumerObject</code>*
 Parses anonymous object to a single AbstractConsumerObject.
 Gets called when result JSON.parse is not an array.
 
 **Kind**: instance method of <code>[AbstractConsumer](#AbstractConsumer)</code>  
 
-| Param | Type |
-| --- | --- |
-| object | <code>Object</code> | 
+| Param | Type | Description |
+| --- | --- | --- |
+| object | <code>Object</code> |  |
+| responseData | <code>Object</code> | The response data as Object. |
+| method | <code>string</code> | The request method. |
+| path | <code>string</code> | The request path. |
+| data | <code>Object</code> | The request data payload. |
 
 <a name="AbstractConsumer+parseEntity"></a>
 
-### *abstractConsumer.parseEntity(object) ⇒ <code>AbstractConsumerObject</code>*
+### *abstractConsumer.parseEntity(object, responseData, method, path, data) ⇒ <code>AbstractConsumerObject</code>*
 Parses anonymous object to a single AbstractConsumerObject.
 
 **Kind**: instance method of <code>[AbstractConsumer](#AbstractConsumer)</code>  
 
-| Param | Type |
-| --- | --- |
-| object | <code>Object</code> | 
+| Param | Type | Description |
+| --- | --- | --- |
+| object | <code>Object</code> |  |
+| responseData | <code>Object</code> | The response data as Object. |
+| method | <code>string</code> | The request method. |
+| path | <code>string</code> | The request path. |
+| data | <code>Object</code> | The request data payload. |
 
 <a name="AbstractConsumer+requestFailed"></a>
 
@@ -329,6 +354,7 @@ Gets called if request doesnt resolve successfully.
     * *[.defaultParameters](#AbstractConsumer+defaultParameters)*
     * *[.endpoint](#AbstractConsumer+endpoint)*
     * *[.objectClass](#AbstractConsumer+objectClass)*
+    * *[.listClass](#AbstractConsumer+listClass)*
     * *[.parserDataPath](#AbstractConsumer+parserDataPath)*
     * *[.unserializableFields](#AbstractConsumer+unserializableFields)*
     * *[.delete(path, query)](#AbstractConsumer+delete) ⇒ <code>Promise</code>*
@@ -342,11 +368,11 @@ Gets called if request doesnt resolve successfully.
     * *[.getCookie(name)](#AbstractConsumer+getCookie) ⇒ <code>string</code>*
     * *[.addHeader(name, value)](#AbstractConsumer+addHeader)*
     * *[.serialize(data)](#AbstractConsumer+serialize) ⇒ <code>\*</code>*
-    * *[.requestSuccess(data)](#AbstractConsumer+requestSuccess) ⇒ <code>AbstractConsumerObject</code> &#124; <code>Array.&lt;AbstractConsumerObject&gt;</code>*
-    * *[.parse(data)](#AbstractConsumer+parse) ⇒ <code>AbstractConsumerObject</code> &#124; <code>Array.&lt;AbstractConsumerObject&gt;</code> &#124; <code>undefined</code>*
-    * *[.parseList(array)](#AbstractConsumer+parseList) ⇒ <code>Array.&lt;AbstractConsumerObject&gt;</code>*
-    * *[.parseScalar(object)](#AbstractConsumer+parseScalar) ⇒ <code>AbstractConsumerObject</code>*
-    * *[.parseEntity(object)](#AbstractConsumer+parseEntity) ⇒ <code>AbstractConsumerObject</code>*
+    * *[.requestSuccess(response, method, path, data)](#AbstractConsumer+requestSuccess) ⇒ <code>AbstractConsumerObject</code> &#124; <code>AbstractList</code>*
+    * *[.parse(json, method, path, data)](#AbstractConsumer+parse) ⇒ <code>AbstractConsumerObject</code> &#124; <code>AbstractList</code> &#124; <code>undefined</code>*
+    * *[.parseList(array, responseData, method, path, data)](#AbstractConsumer+parseList) ⇒ <code>AbstractList</code>*
+    * *[.parseScalar(object, responseData, method, path, data)](#AbstractConsumer+parseScalar) ⇒ <code>AbstractConsumerObject</code>*
+    * *[.parseEntity(object, responseData, method, path, data)](#AbstractConsumer+parseEntity) ⇒ <code>AbstractConsumerObject</code>*
     * *[.requestFailed(data)](#AbstractConsumer+requestFailed) ⇒ <code>HttpResponseMessage</code>*
 
 <a name="new_AbstractConsumer_new"></a>
@@ -364,61 +390,67 @@ Configures Consumer instance.
 <a name="AbstractConsumer+client"></a>
 
 ### *abstractConsumer.client*
-The Aurelia HttpClient instance to work with.
+{HttpClient} The Aurelia HttpClient instance to work with.
 
 **Kind**: instance property of <code>[AbstractConsumer](#AbstractConsumer)</code>  
 <a name="AbstractConsumer+contentType"></a>
 
 ### *abstractConsumer.contentType*
-The value of the Content-Type header.
+{string} The value of the Content-Type header.
 
 **Kind**: instance property of <code>[AbstractConsumer](#AbstractConsumer)</code>  
 <a name="AbstractConsumer+csrfCookie"></a>
 
 ### *abstractConsumer.csrfCookie*
-The name for the CSRF cookie.
+{string} The name for the CSRF cookie.
 
 **Kind**: instance property of <code>[AbstractConsumer](#AbstractConsumer)</code>  
 <a name="AbstractConsumer+csrfHeader"></a>
 
 ### *abstractConsumer.csrfHeader*
-The name for the CSRF header.
+{string} The name for the CSRF header.
 
 **Kind**: instance property of <code>[AbstractConsumer](#AbstractConsumer)</code>  
 <a name="AbstractConsumer+defaultHeaders"></a>
 
 ### *abstractConsumer.defaultHeaders*
-An optional object holding key value pairs of additional headers.
+{Object} An optional object holding key value pairs of additional headers.
 
 **Kind**: instance property of <code>[AbstractConsumer](#AbstractConsumer)</code>  
 <a name="AbstractConsumer+defaultParameters"></a>
 
 ### *abstractConsumer.defaultParameters*
-An optional object holding key value pairs of additional query parameters.
+{Object} An optional object holding key value pairs of additional query parameters.
 
 **Kind**: instance property of <code>[AbstractConsumer](#AbstractConsumer)</code>  
 <a name="AbstractConsumer+endpoint"></a>
 
 ### *abstractConsumer.endpoint*
-The base API endpoint prefixed for all requests.
+{string} The base API endpoint prefixed for all requests.
 
 **Kind**: instance property of <code>[AbstractConsumer](#AbstractConsumer)</code>  
 <a name="AbstractConsumer+objectClass"></a>
 
 ### *abstractConsumer.objectClass*
-The class to casts objects to.
+{Function} The class to casts objects to.
+
+**Kind**: instance property of <code>[AbstractConsumer](#AbstractConsumer)</code>  
+<a name="AbstractConsumer+listClass"></a>
+
+### *abstractConsumer.listClass*
+{Function} The class to use for lists.
 
 **Kind**: instance property of <code>[AbstractConsumer](#AbstractConsumer)</code>  
 <a name="AbstractConsumer+parserDataPath"></a>
 
 ### *abstractConsumer.parserDataPath*
-An optional dot separated path to the received objectClass' data.
+{string} An optional dot separated path to the received objectClass' data.
 
 **Kind**: instance property of <code>[AbstractConsumer](#AbstractConsumer)</code>  
 <a name="AbstractConsumer+unserializableFields"></a>
 
 ### *abstractConsumer.unserializableFields*
-Keys on this.objectClass that should not be passed to the API.
+{string[]} Keys on this.objectClass that should not be passed to the API.
 
 **Kind**: instance property of <code>[AbstractConsumer](#AbstractConsumer)</code>  
 <a name="AbstractConsumer+delete"></a>
@@ -549,61 +581,79 @@ Excludes fields marked in this.unserializableFields.
 
 <a name="AbstractConsumer+requestSuccess"></a>
 
-### *abstractConsumer.requestSuccess(data) ⇒ <code>AbstractConsumerObject</code> &#124; <code>Array.&lt;AbstractConsumerObject&gt;</code>*
+### *abstractConsumer.requestSuccess(response, method, path, data) ⇒ <code>AbstractConsumerObject</code> &#124; <code>AbstractList</code>*
 Callback for request.
 Gets called if request resolve successfully.
 
 **Kind**: instance method of <code>[AbstractConsumer](#AbstractConsumer)</code>  
 
-| Param | Type |
-| --- | --- |
-| data | <code>HttpResponseMessage</code> | 
+| Param | Type | Description |
+| --- | --- | --- |
+| response | <code>HttpResponseMessage</code> |  |
+| method | <code>string</code> | The request method. |
+| path | <code>string</code> | The request path. |
+| data | <code>Object</code> | The request data payload. |
 
 <a name="AbstractConsumer+parse"></a>
 
-### *abstractConsumer.parse(data) ⇒ <code>AbstractConsumerObject</code> &#124; <code>Array.&lt;AbstractConsumerObject&gt;</code> &#124; <code>undefined</code>*
+### *abstractConsumer.parse(json, method, path, data) ⇒ <code>AbstractConsumerObject</code> &#124; <code>AbstractList</code> &#124; <code>undefined</code>*
 Parses JSON string to a single or list of AbstractConsumerObject instance(s).
 
 **Kind**: instance method of <code>[AbstractConsumer](#AbstractConsumer)</code>  
 
-| Param | Type |
-| --- | --- |
-| data | <code>string</code> | 
+| Param | Type | Description |
+| --- | --- | --- |
+| json | <code>string</code> | The response json. |
+| method | <code>string</code> | The request method. |
+| path | <code>string</code> | The request path. |
+| data | <code>Object</code> | The request data payload. |
 
 <a name="AbstractConsumer+parseList"></a>
 
-### *abstractConsumer.parseList(array) ⇒ <code>Array.&lt;AbstractConsumerObject&gt;</code>*
+### *abstractConsumer.parseList(array, responseData, method, path, data) ⇒ <code>AbstractList</code>*
 Parses anonymous objects to a list of AbstractConsumerObjects.
 Gets called when result JSON.parse is an array.
 
 **Kind**: instance method of <code>[AbstractConsumer](#AbstractConsumer)</code>  
 
-| Param | Type |
-| --- | --- |
-| array | <code>Array.&lt;Object&gt;</code> | 
+| Param | Type | Description |
+| --- | --- | --- |
+| array | <code>Array.&lt;Object&gt;</code> |  |
+| responseData | <code>Object</code> | The response data as Object. |
+| method | <code>string</code> | The request method. |
+| path | <code>string</code> | The request path. |
+| data | <code>Object</code> | The request data payload. |
 
 <a name="AbstractConsumer+parseScalar"></a>
 
-### *abstractConsumer.parseScalar(object) ⇒ <code>AbstractConsumerObject</code>*
+### *abstractConsumer.parseScalar(object, responseData, method, path, data) ⇒ <code>AbstractConsumerObject</code>*
 Parses anonymous object to a single AbstractConsumerObject.
 Gets called when result JSON.parse is not an array.
 
 **Kind**: instance method of <code>[AbstractConsumer](#AbstractConsumer)</code>  
 
-| Param | Type |
-| --- | --- |
-| object | <code>Object</code> | 
+| Param | Type | Description |
+| --- | --- | --- |
+| object | <code>Object</code> |  |
+| responseData | <code>Object</code> | The response data as Object. |
+| method | <code>string</code> | The request method. |
+| path | <code>string</code> | The request path. |
+| data | <code>Object</code> | The request data payload. |
 
 <a name="AbstractConsumer+parseEntity"></a>
 
-### *abstractConsumer.parseEntity(object) ⇒ <code>AbstractConsumerObject</code>*
+### *abstractConsumer.parseEntity(object, responseData, method, path, data) ⇒ <code>AbstractConsumerObject</code>*
 Parses anonymous object to a single AbstractConsumerObject.
 
 **Kind**: instance method of <code>[AbstractConsumer](#AbstractConsumer)</code>  
 
-| Param | Type |
-| --- | --- |
-| object | <code>Object</code> | 
+| Param | Type | Description |
+| --- | --- | --- |
+| object | <code>Object</code> |  |
+| responseData | <code>Object</code> | The response data as Object. |
+| method | <code>string</code> | The request method. |
+| path | <code>string</code> | The request path. |
+| data | <code>Object</code> | The request data payload. |
 
 <a name="AbstractConsumer+requestFailed"></a>
 

@@ -10,6 +10,8 @@ export class AbstractConsumerObject {
      */
     constructor(data, consumer) {
         this.createFromObject(data);
+
+        /** {AbstractConsumer} Reference to consumer instantiating this object. */
         this.__consumer__ = consumer;
     }
 

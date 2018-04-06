@@ -1,4 +1,10 @@
-[![Build Status](https://travis-ci.org/maykinmedia/consumerjs.svg?branch=master)](https://travis-ci.org/maykinmedia/consumerjs)
+[![Build Status](https://travis-ci.org/maykinmedia/consumerjs.svg?branch=1.0)](https://travis-ci.org/maykinmedia/consumerjs)
+[![Coverage Status](https://coveralls.io/repos/github/maykinmedia/consumerjs/badge.svg?branch=master)](https://coveralls.io/github/maykinmedia/consumerjs?branch=master)
+[![Code Climate](https://codeclimate.com/github/maykinmedia/consumerjs/badges/gpa.svg)](https://codeclimate.com/github/maykinmedia/consumerjs)
+[![Lintly](https://lintly.com/gh/maykinmedia/consumerjs/badge.svg)](https://lintly.com/gh/maykinmedia/consumerjs/)
+
+[![NPM](https://nodei.co/npm/consumerjs.png?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/consumerjs/)
+[![Sauce Test Status](https://saucelabs.com/browser-matrix/bemjs.svg)](https://saucelabs.com/u/bemjs)
 
 # ConsumerJS
 
