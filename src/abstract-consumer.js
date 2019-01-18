@@ -32,7 +32,9 @@ export class AbstractConsumer {
         this.csrfHeader = 'X-CSRFToken';
 
         /** {Object} An optional object holding key value pairs of additional headers. */
-        this.defaultHeaders = {};
+        this.defaultHeaders = {
+            'Accept': 'application/json',
+        };
 
         /** {Object} An optional object holding key value pairs of additional query parameters.*/
         this.defaultParameters = {};
