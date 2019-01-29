@@ -1,17 +1,23 @@
 [![Build Status](https://travis-ci.org/maykinmedia/consumerjs.svg?branch=1.0)](https://travis-ci.org/maykinmedia/consumerjs)
 [![Coverage Status](https://coveralls.io/repos/github/maykinmedia/consumerjs/badge.svg?branch=master)](https://coveralls.io/github/maykinmedia/consumerjs?branch=master)
 [![Code Climate](https://codeclimate.com/github/maykinmedia/consumerjs/badges/gpa.svg)](https://codeclimate.com/github/maykinmedia/consumerjs)
-[![Lintly](https://lintly.com/gh/maykinmedia/consumerjs/badge.svg)](https://lintly.com/gh/maykinmedia/consumerjs/)
 
 [![NPM](https://nodei.co/npm/consumerjs.png?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/consumerjs/)
 [![Sauce Test Status](https://saucelabs.com/browser-matrix/bemjs.svg)](https://saucelabs.com/u/bemjs)
 
 # ConsumerJS
+Consumerjs simplifies [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) with an ORM like approach.
+Built on top of Axios.
 
-ConsumerJS is a [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) client/object mapper that aims to make using RESTful JSON API's simple and [DRY](https://en.wikipedia.org/wiki/Don%27t_repeat_yourself).
-It converts JSON responses to objects allowing [CRUD](https://en.wikipedia.org/wiki/Create,_read,_update_and_delete) operations on remote resources. ConsumerJS automatically adds a [CSRF](https://en.wikipedia.org/wiki/Cross-site_request_forgery) header (if the CSRF cookie is present).
+Consumerjs is an ORM-like repository/entity mapper that aims to make using RESTful JSON API's simple and 
+[DRY](https://en.wikipedia.org/wiki/Don%27t_repeat_yourself). It supports basic
+[CRUD](https://en.wikipedia.org/wiki/Create,_read,_update_and_delete) operations on remote resources and can easiy be
+extended with custom behaviour. 
 
-## Install
+ConsumerJS out of the box supports ([Django](https://www.djangoproject.com))
+[CSRF](https://en.wikipedia.org/wiki/Cross-site_request_forgery) protection.
+
+## Installation
 
 Install with [npm](https://www.npmjs.com/).
 
@@ -19,9 +25,11 @@ Install with [npm](https://www.npmjs.com/).
 $ npm i consumerjs --save
 ```
 
+*As of 2.0.0: [@babel/polyfill](https://babeljs.io/docs/en/babel-polyfill) needs to be installed in your project  in
+order to support older browsers like Internet Explorer 11.*
+
 ## Usage
 
-*This library can be used in the browser only.*
 *See [doc](doc/) for full API documentation.*
 
 **Example:**
@@ -83,7 +91,16 @@ post.save()  // Save all fields to API using full PUT request
 post.delete()  // Deletes this post using DELETE request
 ```
 
-ConsumerJS defines a few built-in classes, all of those should be extended by a custom class:
+## Pagination
+
+ > TODO: Document the usage of various `List` types and pagination. For now please see the [tests](test/) for examples.
+
+
+## Concepts
+
+
+ConsumerJS defines a few built-in classes, all of those should preferably be extended by a custom class implementing 
+domain specific behaviour (if any):
 
 - [Consumer](doc/consumer.md)
 - [CrudConsumer](doc/crud-consumer.md)
@@ -102,7 +119,8 @@ A consumer:
 - Failed API requests cause the promise to reject.
 - Objects are cast to instances of a configurable consumer object class referenced by the consumers "objectClass" key.
 
-*Consumers should be extended, configured and optionally methods can be overwritten to change default behaviour. Configuration should be done in de constructor method:*
+*Consumers should be preferably be extended, configured and optionally, methods can be overwritten to change default
+behaviour. Configuration should preferably be done in de constructor method:*
 
 
 ```js

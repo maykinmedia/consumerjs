@@ -1,5 +1,5 @@
-import { CrudConsumer } from '../src/crud-consumer';
-import { CrudConsumerObject } from '../src/crud-consumer-object';
+import { CrudConsumer } from '../../src/crud-consumer';
+import { CrudConsumerObject } from '../../src/crud-consumer-object';
 
 
 describe('CrudConsumerObject', function() {
