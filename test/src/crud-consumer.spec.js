@@ -1,4 +1,5 @@
-import { CrudConsumer } from '../src/crud-consumer';
+import { CrudConsumer } from '../../src/crud-consumer';
+import {CrudConsumerObject} from '../../src/crud-consumer-object';
 
 
 describe('CrudConsumer', function() {
@@ -19,7 +20,7 @@ describe('CrudConsumer', function() {
 
     it('should set objectClass to CrudConsumerObject by default', () => {
         let consumer = new CrudConsumer();
-        expect(consumer.objectClass.toString()).toContain('CrudConsumerObject');
+        expect(consumer.objectClass).toBe(CrudConsumerObject);;
     });
 
     it('should support create', function(done) {

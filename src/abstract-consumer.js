@@ -1,8 +1,7 @@
 import { AureliaCookie } from 'aurelia-cookie';
-import { HttpClient } from 'aurelia-http-client';
-import { initialize } from 'aurelia-pal-browser';
 import URI from 'urijs';
 
+import { AxiosHTTPClient } from './axios-http-client';
 import { List } from './list';
 import { excludeUnserializableFields, isObject } from './utils';
 
@@ -19,9 +18,6 @@ export class AbstractConsumer {
      * @param {Object} [options] Additional configuration.
      */
     constructor(endpoint, objectClass, options=null) {
-        /** {HttpClient} The Aurelia HttpClient instance to work with. */
-        this.client = new HttpClient();
-
         /** {string} The value of the Content-Type header. */
         this.contentType = 'application/json';
 
@@ -54,11 +50,12 @@ export class AbstractConsumer {
         /** {string[]} Keys on this.objectClass that should not be passed to the API. */
         this.unserializableFields = ['__consumer__'];
 
+        /** {AbstractHTTPClient} The HttpClient instance to work with. */
+        this.client = new AxiosHTTPClient({baseURL: endpoint, headers: this.defaultHeaders});
+
         if (options) {
             Object.assign(this, options);
         }
-
-        initialize();
     }
 
     /**
@@ -119,18 +116,16 @@ export class AbstractConsumer {
     /**
      * Performs a request.
      * @param {string} method The method to use.
-     * @param {string} path Path on the endpoint.
-     * @param {Object} data Data payload.
+     * @param {string} [path] Path on the endpoint, may contain query parameters for backwards compatibility.
+     * @param {Object} [data] Data payload.
      * @returns {Promise}
      */
-    request(method, path, data) {
-        let clientPromise,
-            consumerPromise;
+    request(method, path='', data={}) {
+        let clientPromise;
+        let consumerPromise;
 
         // Set base url
-        this.client.configure(x => {
-            x.withBaseUrl(this.endpoint);
-        });
+        this.client.setBaseURL(this.endpoint);
 
         // Set content type
         this.addHeader('Content-Type', this.contentType);
@@ -155,7 +150,7 @@ export class AbstractConsumer {
         // Return cancellable promise
         clientPromise = this.client[method](uri.toString(), data);
         consumerPromise = clientPromise
-                .then(response => this.requestSuccess(response, method, path, data))
+                .then(response => this.requestSuccess(response, method, uri.toString(), data))
                 .catch(this.requestFailed.bind(this));
 
         consumerPromise.abort = clientPromise.abort;
@@ -197,9 +192,7 @@ export class AbstractConsumer {
      * @param {string} value
      */
     addHeader(name, value) {
-        this.client.configure(x => {
-            x.withHeader(name, value);
-        });
+        this.client.addHeader(name, value);
     }
 
     /**
@@ -246,8 +239,13 @@ export class AbstractConsumer {
             return;
         }
 
-        let object = JSON.parse(json);
-        let parserObject = JSON.parse(json);
+        let object = json;
+        let parserObject = json;
+
+        if (!Array.isArray(json) && !isObject(json)) {
+            object = JSON.parse(json);
+            parserObject = JSON.parse(json);
+        }
 
         if (this.parserDataPath.length) {
             let parts = this.parserDataPath.split('.');

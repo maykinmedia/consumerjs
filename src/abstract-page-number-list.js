@@ -100,9 +100,8 @@ export class AbstractPageNumberList extends AbstractList {
      */
     requestPage(page, method, data) {
         let uri = URI(this.currentPath)
-            .removeSearch(this.pageQueryParam)
-            .addSearch(this.pageQueryParam, page);
+            .setSearch(this.pageQueryParam, page);
 
-        return this.__consumer__.request(method, uri, data);
+        return this.__consumer__.request(method, uri.toString(), data);
     }
 }

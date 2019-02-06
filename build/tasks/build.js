@@ -9,8 +9,14 @@ var webpackConfig = require('../../webpack.config.js');
  * Run using "gulp build"
  * Runs webpack to compile javascript
  */
-gulp.task('build', function() {
-    gulp.src('')
+function build() {
+    return gulp.src(paths.jsEntry)
         .pipe(webpack(webpackConfig))
+            .on('error', function () {
+              this.emit('end');
+            })
         .pipe(gulp.dest(webpackConfig.output.path));
-});
+}
+
+gulp.task('build', build);
+exports.build = build;

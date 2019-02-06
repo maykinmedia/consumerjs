@@ -9,7 +9,7 @@ var paths = require('../paths');
  * Run using "gulp jsdoc"
  * Generates documentation files
  */
-gulp.task('jsdoc', function() {
+function jsdoc() {
     return gulp.src([paths.source])
         .pipe(gulpJsdoc2md())
 
@@ -19,4 +19,7 @@ gulp.task('jsdoc', function() {
         }))
 
         .pipe(gulp.dest(paths.doc))
-});
+}
+
+gulp.task('jsdoc', jsdoc);
+exports.jsdoc = jsdoc;

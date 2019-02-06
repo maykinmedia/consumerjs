@@ -1,5 +1,3 @@
-import URI from 'urijs';
-
 import { AbstractPageNumberList } from './abstract-page-number-list';
 
 

@@ -1,12 +1,13 @@
-import { CrudConsumer } from '../src/crud-consumer';
-import { CrudConsumerObject } from '../src/crud-consumer-object';
-import { PageNumberList } from '../src/page-number-list';
+import { CrudConsumer } from '../../src/crud-consumer';
+import { CrudConsumerObject } from '../../src/crud-consumer-object';
+import { LinkedPageNumberList } from '../../src/linked-page-number-list';
 
 
-describe('PageNumberList', function() {
+describe('LinkedPageNumberList', function() {
     beforeEach(function() {
         let p1 = JSON.stringify({
-            page: 1,
+            previous: null,
+            next: 'http://example.com/api/posts/?page=2',
             count: 5,
 
             results: [
@@ -18,7 +19,8 @@ describe('PageNumberList', function() {
         });
 
         let p2 = JSON.stringify({
-            page: 2,
+            previous: 'http://example.com/api/posts/?page=1',
+            next: 'http://example.com/api/posts/?page=3',
             count: 5,
 
             results: [
@@ -30,7 +32,8 @@ describe('PageNumberList', function() {
         });
 
         let p3 = JSON.stringify({
-            page: 3,
+            previous: 'http://example.com/api/posts/?page=2',
+            next: 'http://example.com/api/posts/?page=4',
             count: 5,
 
             results: [
@@ -42,7 +45,8 @@ describe('PageNumberList', function() {
         });
 
         let p4 = JSON.stringify({
-            page: 4,
+            previous: 'http://example.com/api/posts/?page=3',
+            next: 'http://example.com/api/posts/?page=5',
             count: 5,
 
             results: [
@@ -54,7 +58,8 @@ describe('PageNumberList', function() {
         });
 
         let p5 = JSON.stringify({
-            page: 5,
+            previous: 'http://example.com/api/posts/?page=4',
+            next: null,
             count: 5,
 
             results: [
@@ -90,7 +95,7 @@ describe('PageNumberList', function() {
       
         this.consumer = new CrudConsumer('http://example.com/api/', CrudConsumerObject, {
             parserDataPath: 'results',
-            listClass: PageNumberList
+            listClass: LinkedPageNumberList
         });
     });
 
@@ -101,7 +106,7 @@ describe('PageNumberList', function() {
     it('should behave like an Array like object', function(done) {
         this.consumer.get('posts/', { page: 1 })
             .then(list => {
-                expect(list.length).toBe(3);
+                expect(list.pageSize).toBe(3);
                 expect(list[0].title).toBe('Foo 1');
                 expect(list[1].title).toBe('Foo 2');
                 expect(list[2].title).toBe('Foo 3');
@@ -110,9 +115,10 @@ describe('PageNumberList', function() {
     });
 
     it('should be able to get the pagination statistics', function(done) {
-        this.consumer.get('posts/', { page: 1 })
+        this.consumer.get('posts/', { page: 2 })
             .then(list => {
-                expect(list.page).toBe(1);
+                expect(list.responseData.previous).toBe('http://example.com/api/posts/?page=1');
+                expect(list.responseData.next).toBe('http://example.com/api/posts/?page=3');
                 expect(list.pageCount).toBe(5);
                 expect(list.pageSize).toBe(3);
                 done();
@@ -120,11 +126,12 @@ describe('PageNumberList', function() {
     });
 
     it('should be able to navigate to the first page', function(done) {
-        this.consumer.get('posts/', { page: 3 })
+        this.consumer.get('posts/', { page: 1 })
             .then(list => list.first())
             .then(list => {
-                expect(list.page).toBe(1);
-                expect(list.length).toBe(3);
+                expect(list.responseData.previous).toBe(null);
+                expect(list.responseData.next).toBe('http://example.com/api/posts/?page=2');
+                expect(list.pageSize).toBe(3);
                 expect(list[0].title).toBe('Foo 1');
                 expect(list[1].title).toBe('Foo 2');
                 expect(list[2].title).toBe('Foo 3');
@@ -133,11 +140,12 @@ describe('PageNumberList', function() {
     });
 
     it('should be able to navigate to the last page', function(done) {
-        this.consumer.get('posts/', { page: 3 })
+        this.consumer.get('posts/', { page: 1 })
             .then(list => list.last())
             .then(list => {
-                expect(list.page).toBe(5);
-                expect(list.length).toBe(3);
+                expect(list.responseData.previous).toBe('http://example.com/api/posts/?page=4');
+                expect(list.responseData.next).toBe(null);
+                expect(list.pageSize).toBe(3);
                 expect(list[0].title).toBe('Foo 13');
                 expect(list[1].title).toBe('Foo 14');
                 expect(list[2].title).toBe('Foo 15');
@@ -149,8 +157,9 @@ describe('PageNumberList', function() {
         this.consumer.get('posts/', { page: 1 })
             .then(list => list.next())
             .then(list => {
-                expect(list.page).toBe(2);
-                expect(list.length).toBe(3);
+                expect(list.responseData.previous).toBe('http://example.com/api/posts/?page=1');
+                expect(list.responseData.next).toBe('http://example.com/api/posts/?page=3');
+                expect(list.pageSize).toBe(3);
                 expect(list[0].title).toBe('Foo 4');
                 expect(list[1].title).toBe('Foo 5');
                 expect(list[2].title).toBe('Foo 6');
@@ -162,8 +171,9 @@ describe('PageNumberList', function() {
         this.consumer.get('posts/', { page: 2 })
             .then(list => list.previous())
             .then(list => {
-                expect(list.page).toBe(1);
-                expect(list.length).toBe(3);
+                expect(list.responseData.previous).toBe(null);
+                expect(list.responseData.next).toBe('http://example.com/api/posts/?page=2');
+                expect(list.pageSize).toBe(3);
                 expect(list[0].title).toBe('Foo 1');
                 expect(list[1].title).toBe('Foo 2');
                 expect(list[2].title).toBe('Foo 3');
@@ -182,11 +192,46 @@ describe('PageNumberList', function() {
             .then(list => list.previous())
             .then(list => list.previous())
             .then(list => {
-                expect(list.page).toBe(1);
-                expect(list.length).toBe(3);
+                expect(list.responseData.previous).toBe(null);
+                expect(list.responseData.next).toBe('http://example.com/api/posts/?page=2');
+                expect(list.pageSize).toBe(3);
                 expect(list[0].title).toBe('Foo 1');
                 expect(list[1].title).toBe('Foo 2');
                 expect(list[2].title).toBe('Foo 3');
+                done();
+            });
+    });
+
+    it('should resolve Promise with current instance if no previous link is available', function(done) {
+        this.consumer.get('posts/', { page: 1 })
+            .then(list => {
+                expect(list.responseData.previous).toBe(null);
+                return list.previous();
+            })
+            .then(list => {
+                expect(list.responseData.previous).toBe(null);
+                expect(list.responseData.next).toBe('http://example.com/api/posts/?page=2');
+                expect(list.pageSize).toBe(3);
+                expect(list[0].title).toBe('Foo 1');
+                expect(list[1].title).toBe('Foo 2');
+                expect(list[2].title).toBe('Foo 3');
+                done();
+            });
+    });
+
+    it('should resolve Promise with current instance if no next link is available', function(done) {
+        this.consumer.get('posts/', { page: 5 })
+            .then(list => {
+                expect(list.responseData.next).toBe(null);
+                return list.next();
+            })
+            .then(list => {
+                expect(list.responseData.previous).toBe('http://example.com/api/posts/?page=4');
+                expect(list.responseData.next).toBe(null);
+                expect(list.pageSize).toBe(3);
+                expect(list[0].title).toBe('Foo 13');
+                expect(list[1].title).toBe('Foo 14');
+                expect(list[2].title).toBe('Foo 15');
                 done();
             });
     });

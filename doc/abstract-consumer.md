@@ -17,7 +17,6 @@ Abstract base class for all consumers.
 
 * *[AbstractConsumer](#AbstractConsumer)*
     * *[new AbstractConsumer(endpoint, objectClass, [options])](#new_AbstractConsumer_new)*
-    * *[.client](#AbstractConsumer+client)*
     * *[.contentType](#AbstractConsumer+contentType)*
     * *[.csrfCookie](#AbstractConsumer+csrfCookie)*
     * *[.csrfHeader](#AbstractConsumer+csrfHeader)*
@@ -28,12 +27,13 @@ Abstract base class for all consumers.
     * *[.listClass](#AbstractConsumer+listClass)*
     * *[.parserDataPath](#AbstractConsumer+parserDataPath)*
     * *[.unserializableFields](#AbstractConsumer+unserializableFields)*
+    * *[.client](#AbstractConsumer+client)*
     * *[.delete(path, query)](#AbstractConsumer+delete) ⇒ <code>Promise</code>*
     * *[.get(path, query)](#AbstractConsumer+get) ⇒ <code>Promise</code>*
     * *[.patch(path, data)](#AbstractConsumer+patch) ⇒ <code>Promise</code>*
     * *[.post(path, data)](#AbstractConsumer+post) ⇒ <code>Promise</code>*
     * *[.put(path, data)](#AbstractConsumer+put) ⇒ <code>Promise</code>*
-    * *[.request(method, path, data)](#AbstractConsumer+request) ⇒ <code>Promise</code>*
+    * *[.request(method, [path], [data])](#AbstractConsumer+request) ⇒ <code>Promise</code>*
     * *[.isSafeMethod(method)](#AbstractConsumer+isSafeMethod) ⇒ <code>boolean</code>*
     * *[.addCsrfToken()](#AbstractConsumer+addCsrfToken)*
     * *[.getCookie(name)](#AbstractConsumer+getCookie) ⇒ <code>string</code>*
@@ -58,12 +58,6 @@ Configures Consumer instance.
 | objectClass | <code>AbstractConsumerObject</code> |  | Class to cast results to. |
 | [options] | <code>Object</code> | <code></code> | Additional configuration. |
 
-<a name="AbstractConsumer+client"></a>
-
-### *abstractConsumer.client*
-{HttpClient} The Aurelia HttpClient instance to work with.
-
-**Kind**: instance property of <code>[AbstractConsumer](#AbstractConsumer)</code>  
 <a name="AbstractConsumer+contentType"></a>
 
 ### *abstractConsumer.contentType*
@@ -122,6 +116,12 @@ Configures Consumer instance.
 
 ### *abstractConsumer.unserializableFields*
 {string[]} Keys on this.objectClass that should not be passed to the API.
+
+**Kind**: instance property of <code>[AbstractConsumer](#AbstractConsumer)</code>  
+<a name="AbstractConsumer+client"></a>
+
+### *abstractConsumer.client*
+{AbstractHTTPClient} The HttpClient instance to work with.
 
 **Kind**: instance property of <code>[AbstractConsumer](#AbstractConsumer)</code>  
 <a name="AbstractConsumer+delete"></a>
@@ -186,7 +186,7 @@ Performs a PUT request.
 
 <a name="AbstractConsumer+request"></a>
 
-### *abstractConsumer.request(method, path, data) ⇒ <code>Promise</code>*
+### *abstractConsumer.request(method, [path], [data]) ⇒ <code>Promise</code>*
 Performs a request.
 
 **Kind**: instance method of <code>[AbstractConsumer](#AbstractConsumer)</code>  
@@ -194,8 +194,8 @@ Performs a request.
 | Param | Type | Description |
 | --- | --- | --- |
 | method | <code>string</code> | The method to use. |
-| path | <code>string</code> | Path on the endpoint. |
-| data | <code>Object</code> | Data payload. |
+| [path] | <code>string</code> | Path on the endpoint, may contain query parameters for backwards compatibility. |
+| [data] | <code>Object</code> | Data payload. |
 
 <a name="AbstractConsumer+isSafeMethod"></a>
 
@@ -346,7 +346,6 @@ Gets called if request doesnt resolve successfully.
 
 * [AbstractConsumer](#AbstractConsumer)
     * *[new AbstractConsumer(endpoint, objectClass, [options])](#new_AbstractConsumer_new)*
-    * *[.client](#AbstractConsumer+client)*
     * *[.contentType](#AbstractConsumer+contentType)*
     * *[.csrfCookie](#AbstractConsumer+csrfCookie)*
     * *[.csrfHeader](#AbstractConsumer+csrfHeader)*
@@ -357,12 +356,13 @@ Gets called if request doesnt resolve successfully.
     * *[.listClass](#AbstractConsumer+listClass)*
     * *[.parserDataPath](#AbstractConsumer+parserDataPath)*
     * *[.unserializableFields](#AbstractConsumer+unserializableFields)*
+    * *[.client](#AbstractConsumer+client)*
     * *[.delete(path, query)](#AbstractConsumer+delete) ⇒ <code>Promise</code>*
     * *[.get(path, query)](#AbstractConsumer+get) ⇒ <code>Promise</code>*
     * *[.patch(path, data)](#AbstractConsumer+patch) ⇒ <code>Promise</code>*
     * *[.post(path, data)](#AbstractConsumer+post) ⇒ <code>Promise</code>*
     * *[.put(path, data)](#AbstractConsumer+put) ⇒ <code>Promise</code>*
-    * *[.request(method, path, data)](#AbstractConsumer+request) ⇒ <code>Promise</code>*
+    * *[.request(method, [path], [data])](#AbstractConsumer+request) ⇒ <code>Promise</code>*
     * *[.isSafeMethod(method)](#AbstractConsumer+isSafeMethod) ⇒ <code>boolean</code>*
     * *[.addCsrfToken()](#AbstractConsumer+addCsrfToken)*
     * *[.getCookie(name)](#AbstractConsumer+getCookie) ⇒ <code>string</code>*
@@ -387,12 +387,6 @@ Configures Consumer instance.
 | objectClass | <code>AbstractConsumerObject</code> |  | Class to cast results to. |
 | [options] | <code>Object</code> | <code></code> | Additional configuration. |
 
-<a name="AbstractConsumer+client"></a>
-
-### *abstractConsumer.client*
-{HttpClient} The Aurelia HttpClient instance to work with.
-
-**Kind**: instance property of <code>[AbstractConsumer](#AbstractConsumer)</code>  
 <a name="AbstractConsumer+contentType"></a>
 
 ### *abstractConsumer.contentType*
@@ -451,6 +445,12 @@ Configures Consumer instance.
 
 ### *abstractConsumer.unserializableFields*
 {string[]} Keys on this.objectClass that should not be passed to the API.
+
+**Kind**: instance property of <code>[AbstractConsumer](#AbstractConsumer)</code>  
+<a name="AbstractConsumer+client"></a>
+
+### *abstractConsumer.client*
+{AbstractHTTPClient} The HttpClient instance to work with.
 
 **Kind**: instance property of <code>[AbstractConsumer](#AbstractConsumer)</code>  
 <a name="AbstractConsumer+delete"></a>
@@ -515,7 +515,7 @@ Performs a PUT request.
 
 <a name="AbstractConsumer+request"></a>
 
-### *abstractConsumer.request(method, path, data) ⇒ <code>Promise</code>*
+### *abstractConsumer.request(method, [path], [data]) ⇒ <code>Promise</code>*
 Performs a request.
 
 **Kind**: instance method of <code>[AbstractConsumer](#AbstractConsumer)</code>  
@@ -523,8 +523,8 @@ Performs a request.
 | Param | Type | Description |
 | --- | --- | --- |
 | method | <code>string</code> | The method to use. |
-| path | <code>string</code> | Path on the endpoint. |
-| data | <code>Object</code> | Data payload. |
+| [path] | <code>string</code> | Path on the endpoint, may contain query parameters for backwards compatibility. |
+| [data] | <code>Object</code> | Data payload. |
 
 <a name="AbstractConsumer+isSafeMethod"></a>
 
