@@ -41,7 +41,8 @@ export class AxiosHTTPClient extends AbstractHTTPClient {
             headers: this.headers,
             params: query,
             transformResponse: json => json,  // Use Consumer instance for parsing.
-            data: JSON.stringify(data)  // Bypass Axios serializer for data.
+            data: JSON.stringify(data),  // Bypass Axios serializer for data.
+            withCredentials: true,
         };
     }
 
