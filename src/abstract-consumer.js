@@ -250,8 +250,13 @@ export class AbstractConsumer {
         if (this.parserDataPath) {
             let parts = this.parserDataPath.split('.');
             parts.forEach(part => {
-                parserObject = parserObject[part]
+                parserObject = parserObject[part];
             });
+        }
+
+        // this.parserDataPath was not found in response.
+        if (!parserObject) {
+            parserObject = object;
         }
 
         // Parse as list if response is a array.
