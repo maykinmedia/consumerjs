@@ -293,7 +293,7 @@ Gets called when result JSON.parse is an array.
 | responseData | <code>Object</code> | The response data as Object. |
 | method | <code>string</code> | The request method. |
 | path | <code>string</code> | The request path. |
-| data | <code>Object</code> | The request data payload. |
+| data | <code>Object</code> | The request data payload. TODO: Cleanup |
 
 <a name="AbstractConsumer+parseScalar"></a>
 
@@ -309,7 +309,7 @@ Gets called when result JSON.parse is not an array.
 | responseData | <code>Object</code> | The response data as Object. |
 | method | <code>string</code> | The request method. |
 | path | <code>string</code> | The request path. |
-| data | <code>Object</code> | The request data payload. |
+| data | <code>Object</code> | The request data payload. TODO: Cleanup, rename |
 
 <a name="AbstractConsumer+parseEntity"></a>
 
@@ -622,7 +622,7 @@ Gets called when result JSON.parse is an array.
 | responseData | <code>Object</code> | The response data as Object. |
 | method | <code>string</code> | The request method. |
 | path | <code>string</code> | The request path. |
-| data | <code>Object</code> | The request data payload. |
+| data | <code>Object</code> | The request data payload. TODO: Cleanup |
 
 <a name="AbstractConsumer+parseScalar"></a>
 
@@ -638,7 +638,7 @@ Gets called when result JSON.parse is not an array.
 | responseData | <code>Object</code> | The response data as Object. |
 | method | <code>string</code> | The request method. |
 | path | <code>string</code> | The request path. |
-| data | <code>Object</code> | The request data payload. |
+| data | <code>Object</code> | The request data payload. TODO: Cleanup, rename |
 
 <a name="AbstractConsumer+parseEntity"></a>
 

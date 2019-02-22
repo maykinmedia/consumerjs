@@ -45,7 +45,7 @@ export class AbstractConsumer {
         this.listClass = List;
 
         /** {string} An optional dot separated path to the received objectClass' data. */
-        this.parserDataPath = '';
+        this.parserDataPath = '';  // TODO: Specify for both list and object.
 
         /** {string[]} Keys on this.objectClass that should not be passed to the API. */
         this.unserializableFields = ['__consumer__'];
@@ -239,25 +239,32 @@ export class AbstractConsumer {
             return;
         }
 
+        // Convert json to object.
         let object = json;
-        let parserObject = json;
-
-        if (!Array.isArray(json) && !isObject(json)) {
+        if (typeof json === 'string') {
             object = JSON.parse(json);
-            parserObject = JSON.parse(json);
         }
 
-        if (this.parserDataPath.length) {
+        // Extract the relevant data.
+        let parserObject = JSON.parse(JSON.stringify(object)); // Clone.
+        if (this.parserDataPath) {
             let parts = this.parserDataPath.split('.');
-
-            parts.map(part => {
+            parts.forEach(part => {
                 parserObject = parserObject[part];
             });
         }
 
+        // this.parserDataPath was not found in response.
+        if (!parserObject) {
+            parserObject = object;
+        }
+
+        // Parse as list if response is a array.
         if (Array.isArray(parserObject)) {
             return this.parseList(parserObject, object, method, path, data);
         }
+
+        // Parse as single item otherwise.
         return this.parseScalar(parserObject, object, method, path, data);
     }
 
@@ -269,6 +276,7 @@ export class AbstractConsumer {
      * @param {string} method The request method.
      * @param {string} path The request path.
      * @param {Object} data The request data payload.
+     * TODO: Cleanup
      * @returns {AbstractList}
      */
     parseList(array, responseData, method, path, data) {
@@ -284,6 +292,7 @@ export class AbstractConsumer {
      * @param {string} method The request method.
      * @param {string} path The request path.
      * @param {Object} data The request data payload.
+     * TODO: Cleanup, rename
      * @returns {AbstractConsumerObject}
      */
     parseScalar(object, responseData, method, path, data) {
