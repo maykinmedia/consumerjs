@@ -1,6 +1,6 @@
-var gulp = require('gulp');
-var del = require('del');
-var paths = require('../paths');
+const gulp = require('gulp');
+const del = require('del');
+const paths = require('../paths');
 
 
 /**
@@ -9,7 +9,7 @@ var paths = require('../paths');
  * Cleans output directory
  */
 function clean(cb) {
-    del([paths.output]);
+    del([paths.doc, paths.output]);
     cb();
 }
 

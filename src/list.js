@@ -1,3 +1,4 @@
+/** @module */
 import { AbstractList } from './abstract-list';
 
 

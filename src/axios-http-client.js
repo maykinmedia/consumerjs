@@ -1,3 +1,4 @@
+/** @module */
 import axios, {CancelToken} from 'axios';
 import URI from 'urijs';
 

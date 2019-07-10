@@ -1,3 +1,5 @@
+/** @module */
+
 /**
  * Returns a new object describing the changed field in objNew.
  * Each field is compared against objOld:

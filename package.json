@@ -28,7 +28,6 @@
     "gulp-hub": "^4.2.0",
     "gulp-jshint": "^2.0.1",
     "gulp-jshint-jslint-file-reporter": "^0.1.0",
-    "gulp-rename": "^1.2.2",
     "istanbul-instrumenter-loader": "^1.0.0",
     "jasmine-core": "^2.4.1",
     "jsdoc-to-markdown": "^5.0.0",

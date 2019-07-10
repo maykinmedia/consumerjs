@@ -1,3 +1,4 @@
+/** @module */
 import { AureliaCookie } from 'aurelia-cookie';
 import URI from 'urijs';
 

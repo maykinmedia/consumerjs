@@ -1,3 +1,5 @@
+/** @module */
+
 /**
  * Abstract base class for object derived from Consumer
  * @abstract

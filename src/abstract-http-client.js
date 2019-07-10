@@ -1,3 +1,4 @@
+/** @module */
 import { AbstractConsumer } from "./abstract-consumer";
 
 /* jshint unused: false */

@@ -1,3 +1,4 @@
+/** @module */
 import { AbstractConsumer } from './abstract-consumer';
 import { CrudConsumerObject } from './crud-consumer-object';
 

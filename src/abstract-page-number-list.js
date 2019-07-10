@@ -1,3 +1,4 @@
+/** @module */
 import URI from 'urijs';
 import { AbstractList } from './abstract-list';
 

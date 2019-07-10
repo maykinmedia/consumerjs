@@ -1,3 +1,4 @@
+/** @module */
 import { AbstractConsumerObject } from './abstract-consumer-object';
 import { diff, excludeUnserializableFields } from './utils';
 
