@@ -9,7 +9,7 @@ var del = require('del');
  * Cleans output directory
  */
 function clean(cb) {
-    del([paths.doc, paths.output]);
+    del([paths.output]);
     cb();
 }
 
