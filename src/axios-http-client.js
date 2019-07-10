@@ -11,11 +11,11 @@ import {HttpResponseMessage} from './http-response-message';
  */
 export class AxiosHTTPClient extends AbstractHTTPClient {
     /**
-     * Configures AxiosHTTPClient instance.
-     * @param {Object} [options] Additional configuration.
+     * Configures HTTPClient instance.
+     * @param {AbstractConsumer} consumer Reference to consumer instantiating this object.
      */
-    constructor(options) {
-        super(options);
+    constructor(consumer) {
+        super(consumer);
 
         /** @type {Object} */
         this.cancelSource = CancelToken.source();
@@ -42,7 +42,9 @@ export class AxiosHTTPClient extends AbstractHTTPClient {
             params: query,
             transformResponse: json => json,  // Use Consumer instance for parsing.
             data: JSON.stringify(data),  // Bypass Axios serializer for data.
-            withCredentials: true,
+            withCredentials: this.consumer.csrfProtection,
+            xsrfCookieName: this.consumer.csrfCookie,
+            xsrfHeaderName: this.consumer.csrfHeader
         };
     }
 
