@@ -1,6 +1,6 @@
 {
   "name": "consumerjs",
-  "version": "2.0.1",
+  "version": "3.0.0",
   "description": "Consumerjs simplifies REST with an ORM like approach. Built on top of Axios.",
   "main": "dist/consumerjs.js",
   "scripts": {
