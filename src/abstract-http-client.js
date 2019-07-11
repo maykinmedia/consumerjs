@@ -1,3 +1,6 @@
+/** @module */
+import { AbstractConsumer } from "./abstract-consumer";
+
 /* jshint unused: false */
 
 /**
@@ -7,18 +10,17 @@
 export class AbstractHTTPClient {
     /**
      * Configures HTTPClient instance.
-     * @param {Object} [options] Additional configuration.
+     * @param {AbstractConsumer} consumer Reference to consumer instantiating this object.
      */
-    constructor(options) {
+    constructor(consumer) {
+        /** {AbstractConsumer} Reference to consumer instantiating this object. */
+        this.consumer = consumer;
+
         /** @type {string} Base URL for all requests, gets concatenated with path passed to request methods. */
-        this.baseURL = '';
+        this.baseURL = this.consumer.endpoint;
 
         /** @type {Object} An optional object holding key value pairs of additional headers. */
-        this.headers = {};
-
-        if (options) {
-            Object.assign(this, options);
-        }
+        this.headers = this.consumer.defaultHeaders;
     }
 
     /**

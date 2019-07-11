@@ -1,3 +1,4 @@
+/** @module */
 import { AbstractPageNumberList } from './abstract-page-number-list';
 
 

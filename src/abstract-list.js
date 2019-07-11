@@ -1,3 +1,5 @@
+/** @module */
+
 /**
  * Abstract base class for list of consumer objects.
  * @abstract

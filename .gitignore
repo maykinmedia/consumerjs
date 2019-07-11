@@ -1,6 +1,6 @@
 ### Code Coverage ###
 coverage/
-build/reports/
+reports/
 
 ### Dependencies ###
 node_modules/

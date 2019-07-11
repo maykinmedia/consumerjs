@@ -1,32 +1,36 @@
-## Classes
+<a name="module_http-response-message"></a>
 
-<dl>
-<dt><a href="#HttpResponseMessage">HttpResponseMessage</a></dt>
-<dd><p>Response object modeled after aurelia-http-client HTTPResponseMessage.</p>
-</dd>
-<dt><a href="#HttpResponseMessage">HttpResponseMessage</a></dt>
-<dd></dd>
-</dl>
+## http-response-message
 
-<a name="HttpResponseMessage"></a>
+* [http-response-message](#module_http-response-message)
+    * [.HttpResponseMessage](#module_http-response-message.HttpResponseMessage)
+        * [new exports.HttpResponseMessage(response)](#new_module_http-response-message.HttpResponseMessage_new)
+        * [.headers](#module_http-response-message.HttpResponseMessage+headers) : <code>Object</code>
+        * [.response](#module_http-response-message.HttpResponseMessage+response) : <code>Object</code>
+        * [.responseType](#module_http-response-message.HttpResponseMessage+responseType) : <code>Object</code>
+        * [.statusCode](#module_http-response-message.HttpResponseMessage+statusCode) : <code>Object</code>
+        * [.statusText](#module_http-response-message.HttpResponseMessage+statusText) : <code>Object</code>
+        * [.toString()](#module_http-response-message.HttpResponseMessage+toString) ⇒ <code>string</code>
 
-## HttpResponseMessage
+<a name="module_http-response-message.HttpResponseMessage"></a>
+
+### http-response-message.HttpResponseMessage
 Response object modeled after aurelia-http-client HTTPResponseMessage.
 
-**Kind**: global class  
+**Kind**: static class of [<code>http-response-message</code>](#module_http-response-message)  
 
-* [HttpResponseMessage](#HttpResponseMessage)
-    * [new HttpResponseMessage(response)](#new_HttpResponseMessage_new)
-    * [.headers](#HttpResponseMessage+headers) : <code>Object</code>
-    * [.response](#HttpResponseMessage+response) : <code>Object</code>
-    * [.responseType](#HttpResponseMessage+responseType) : <code>Object</code>
-    * [.statusCode](#HttpResponseMessage+statusCode) : <code>Object</code>
-    * [.statusText](#HttpResponseMessage+statusText) : <code>Object</code>
-    * [.toString()](#HttpResponseMessage+toString) ⇒ <code>string</code>
+* [.HttpResponseMessage](#module_http-response-message.HttpResponseMessage)
+    * [new exports.HttpResponseMessage(response)](#new_module_http-response-message.HttpResponseMessage_new)
+    * [.headers](#module_http-response-message.HttpResponseMessage+headers) : <code>Object</code>
+    * [.response](#module_http-response-message.HttpResponseMessage+response) : <code>Object</code>
+    * [.responseType](#module_http-response-message.HttpResponseMessage+responseType) : <code>Object</code>
+    * [.statusCode](#module_http-response-message.HttpResponseMessage+statusCode) : <code>Object</code>
+    * [.statusText](#module_http-response-message.HttpResponseMessage+statusText) : <code>Object</code>
+    * [.toString()](#module_http-response-message.HttpResponseMessage+toString) ⇒ <code>string</code>
 
-<a name="new_HttpResponseMessage_new"></a>
+<a name="new_module_http-response-message.HttpResponseMessage_new"></a>
 
-### new HttpResponseMessage(response)
+#### new exports.HttpResponseMessage(response)
 Creates HttpResponseMessage.
 
 
@@ -34,79 +38,29 @@ Creates HttpResponseMessage.
 | --- | --- |
 | response | <code>Object</code> | 
 
-<a name="HttpResponseMessage+headers"></a>
+<a name="module_http-response-message.HttpResponseMessage+headers"></a>
 
-### httpResponseMessage.headers : <code>Object</code>
-**Kind**: instance property of <code>[HttpResponseMessage](#HttpResponseMessage)</code>  
-<a name="HttpResponseMessage+response"></a>
+#### httpResponseMessage.headers : <code>Object</code>
+**Kind**: instance property of [<code>HttpResponseMessage</code>](#module_http-response-message.HttpResponseMessage)  
+<a name="module_http-response-message.HttpResponseMessage+response"></a>
 
-### httpResponseMessage.response : <code>Object</code>
-**Kind**: instance property of <code>[HttpResponseMessage](#HttpResponseMessage)</code>  
-<a name="HttpResponseMessage+responseType"></a>
+#### httpResponseMessage.response : <code>Object</code>
+**Kind**: instance property of [<code>HttpResponseMessage</code>](#module_http-response-message.HttpResponseMessage)  
+<a name="module_http-response-message.HttpResponseMessage+responseType"></a>
 
-### httpResponseMessage.responseType : <code>Object</code>
-**Kind**: instance property of <code>[HttpResponseMessage](#HttpResponseMessage)</code>  
-<a name="HttpResponseMessage+statusCode"></a>
+#### httpResponseMessage.responseType : <code>Object</code>
+**Kind**: instance property of [<code>HttpResponseMessage</code>](#module_http-response-message.HttpResponseMessage)  
+<a name="module_http-response-message.HttpResponseMessage+statusCode"></a>
 
-### httpResponseMessage.statusCode : <code>Object</code>
-**Kind**: instance property of <code>[HttpResponseMessage](#HttpResponseMessage)</code>  
-<a name="HttpResponseMessage+statusText"></a>
+#### httpResponseMessage.statusCode : <code>Object</code>
+**Kind**: instance property of [<code>HttpResponseMessage</code>](#module_http-response-message.HttpResponseMessage)  
+<a name="module_http-response-message.HttpResponseMessage+statusText"></a>
 
-### httpResponseMessage.statusText : <code>Object</code>
-**Kind**: instance property of <code>[HttpResponseMessage](#HttpResponseMessage)</code>  
-<a name="HttpResponseMessage+toString"></a>
+#### httpResponseMessage.statusText : <code>Object</code>
+**Kind**: instance property of [<code>HttpResponseMessage</code>](#module_http-response-message.HttpResponseMessage)  
+<a name="module_http-response-message.HttpResponseMessage+toString"></a>
 
-### httpResponseMessage.toString() ⇒ <code>string</code>
+#### httpResponseMessage.toString() ⇒ <code>string</code>
 Creates a string representation for this HttpResponseMessage.
 
-**Kind**: instance method of <code>[HttpResponseMessage](#HttpResponseMessage)</code>  
-<a name="HttpResponseMessage"></a>
-
-## HttpResponseMessage
-**Kind**: global class  
-
-* [HttpResponseMessage](#HttpResponseMessage)
-    * [new HttpResponseMessage(response)](#new_HttpResponseMessage_new)
-    * [.headers](#HttpResponseMessage+headers) : <code>Object</code>
-    * [.response](#HttpResponseMessage+response) : <code>Object</code>
-    * [.responseType](#HttpResponseMessage+responseType) : <code>Object</code>
-    * [.statusCode](#HttpResponseMessage+statusCode) : <code>Object</code>
-    * [.statusText](#HttpResponseMessage+statusText) : <code>Object</code>
-    * [.toString()](#HttpResponseMessage+toString) ⇒ <code>string</code>
-
-<a name="new_HttpResponseMessage_new"></a>
-
-### new HttpResponseMessage(response)
-Creates HttpResponseMessage.
-
-
-| Param | Type |
-| --- | --- |
-| response | <code>Object</code> | 
-
-<a name="HttpResponseMessage+headers"></a>
-
-### httpResponseMessage.headers : <code>Object</code>
-**Kind**: instance property of <code>[HttpResponseMessage](#HttpResponseMessage)</code>  
-<a name="HttpResponseMessage+response"></a>
-
-### httpResponseMessage.response : <code>Object</code>
-**Kind**: instance property of <code>[HttpResponseMessage](#HttpResponseMessage)</code>  
-<a name="HttpResponseMessage+responseType"></a>
-
-### httpResponseMessage.responseType : <code>Object</code>
-**Kind**: instance property of <code>[HttpResponseMessage](#HttpResponseMessage)</code>  
-<a name="HttpResponseMessage+statusCode"></a>
-
-### httpResponseMessage.statusCode : <code>Object</code>
-**Kind**: instance property of <code>[HttpResponseMessage](#HttpResponseMessage)</code>  
-<a name="HttpResponseMessage+statusText"></a>
-
-### httpResponseMessage.statusText : <code>Object</code>
-**Kind**: instance property of <code>[HttpResponseMessage](#HttpResponseMessage)</code>  
-<a name="HttpResponseMessage+toString"></a>
-
-### httpResponseMessage.toString() ⇒ <code>string</code>
-Creates a string representation for this HttpResponseMessage.
-
-**Kind**: instance method of <code>[HttpResponseMessage](#HttpResponseMessage)</code>  
+**Kind**: instance method of [<code>HttpResponseMessage</code>](#module_http-response-message.HttpResponseMessage)  

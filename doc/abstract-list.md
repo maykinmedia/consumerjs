@@ -1,28 +1,28 @@
-## Classes
+<a name="module_abstract-list"></a>
 
-<dl>
-<dt><a href="#AbstractList">AbstractList</a></dt>
-<dd><p>Abstract base class for list of consumer objects.</p>
-</dd>
-<dt><a href="#AbstractList">AbstractList</a></dt>
-<dd></dd>
-</dl>
+## abstract-list
 
-<a name="AbstractList"></a>
+* [abstract-list](#module_abstract-list)
+    * *[.AbstractList](#module_abstract-list.AbstractList)*
+        * *[new exports.AbstractList(objects, consumer, responseData)](#new_module_abstract-list.AbstractList_new)*
+        * *[.responseData](#module_abstract-list.AbstractList+responseData)*
+        * *[.__consumer__](#module_abstract-list.AbstractList+__consumer__)*
 
-## *AbstractList*
+<a name="module_abstract-list.AbstractList"></a>
+
+### *abstract-list.AbstractList*
 Abstract base class for list of consumer objects.
 
-**Kind**: global abstract class  
+**Kind**: static abstract class of [<code>abstract-list</code>](#module_abstract-list)  
 
-* *[AbstractList](#AbstractList)*
-    * *[new AbstractList(objects, consumer, responseData)](#new_AbstractList_new)*
-    * *[.responseData](#AbstractList+responseData)*
-    * *[.__consumer__](#AbstractList+__consumer__)*
+* *[.AbstractList](#module_abstract-list.AbstractList)*
+    * *[new exports.AbstractList(objects, consumer, responseData)](#new_module_abstract-list.AbstractList_new)*
+    * *[.responseData](#module_abstract-list.AbstractList+responseData)*
+    * *[.__consumer__](#module_abstract-list.AbstractList+__consumer__)*
 
-<a name="new_AbstractList_new"></a>
+<a name="new_module_abstract-list.AbstractList_new"></a>
 
-### *new AbstractList(objects, consumer, responseData)*
+#### *new exports.AbstractList(objects, consumer, responseData)*
 Creates a new object.
 
 
@@ -32,49 +32,15 @@ Creates a new object.
 | consumer | <code>Consumer</code> | Consumer instance for this object. |
 | responseData | <code>Object</code> | The response data as Object. |
 
-<a name="AbstractList+responseData"></a>
+<a name="module_abstract-list.AbstractList+responseData"></a>
 
-### *abstractList.responseData*
+#### *abstractList.responseData*
 {Object} The response data as Object.
 
-**Kind**: instance property of <code>[AbstractList](#AbstractList)</code>  
-<a name="AbstractList+__consumer__"></a>
+**Kind**: instance property of [<code>AbstractList</code>](#module_abstract-list.AbstractList)  
+<a name="module_abstract-list.AbstractList+__consumer__"></a>
 
-### *abstractList.__consumer__*
+#### *abstractList.\_\_consumer\_\_*
 {AbstractConsumer} Reference to consumer instantiating this object.
 
-**Kind**: instance property of <code>[AbstractList](#AbstractList)</code>  
-<a name="AbstractList"></a>
-
-## AbstractList
-**Kind**: global class  
-
-* [AbstractList](#AbstractList)
-    * *[new AbstractList(objects, consumer, responseData)](#new_AbstractList_new)*
-    * *[.responseData](#AbstractList+responseData)*
-    * *[.__consumer__](#AbstractList+__consumer__)*
-
-<a name="new_AbstractList_new"></a>
-
-### *new AbstractList(objects, consumer, responseData)*
-Creates a new object.
-
-
-| Param | Type | Description |
-| --- | --- | --- |
-| objects | <code>Array.&lt;AbstractConsumerObject&gt;</code> | Items to populate list with. |
-| consumer | <code>Consumer</code> | Consumer instance for this object. |
-| responseData | <code>Object</code> | The response data as Object. |
-
-<a name="AbstractList+responseData"></a>
-
-### *abstractList.responseData*
-{Object} The response data as Object.
-
-**Kind**: instance property of <code>[AbstractList](#AbstractList)</code>  
-<a name="AbstractList+__consumer__"></a>
-
-### *abstractList.__consumer__*
-{AbstractConsumer} Reference to consumer instantiating this object.
-
-**Kind**: instance property of <code>[AbstractList](#AbstractList)</code>  
+**Kind**: instance property of [<code>AbstractList</code>](#module_abstract-list.AbstractList)  

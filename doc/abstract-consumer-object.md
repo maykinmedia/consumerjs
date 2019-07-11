@@ -1,28 +1,28 @@
-## Classes
+<a name="module_abstract-consumer-object"></a>
 
-<dl>
-<dt><a href="#AbstractConsumerObject">AbstractConsumerObject</a></dt>
-<dd><p>Abstract base class for object derived from Consumer</p>
-</dd>
-<dt><a href="#AbstractConsumerObject">AbstractConsumerObject</a></dt>
-<dd></dd>
-</dl>
+## abstract-consumer-object
 
-<a name="AbstractConsumerObject"></a>
+* [abstract-consumer-object](#module_abstract-consumer-object)
+    * *[.AbstractConsumerObject](#module_abstract-consumer-object.AbstractConsumerObject)*
+        * *[new exports.AbstractConsumerObject(data, consumer)](#new_module_abstract-consumer-object.AbstractConsumerObject_new)*
+        * *[.__consumer__](#module_abstract-consumer-object.AbstractConsumerObject+__consumer__)*
+        * *[.createFromObject(data)](#module_abstract-consumer-object.AbstractConsumerObject+createFromObject)*
 
-## *AbstractConsumerObject*
+<a name="module_abstract-consumer-object.AbstractConsumerObject"></a>
+
+### *abstract-consumer-object.AbstractConsumerObject*
 Abstract base class for object derived from Consumer
 
-**Kind**: global abstract class  
+**Kind**: static abstract class of [<code>abstract-consumer-object</code>](#module_abstract-consumer-object)  
 
-* *[AbstractConsumerObject](#AbstractConsumerObject)*
-    * *[new AbstractConsumerObject(data, consumer)](#new_AbstractConsumerObject_new)*
-    * *[.__consumer__](#AbstractConsumerObject+__consumer__)*
-    * *[.createFromObject(data)](#AbstractConsumerObject+createFromObject)*
+* *[.AbstractConsumerObject](#module_abstract-consumer-object.AbstractConsumerObject)*
+    * *[new exports.AbstractConsumerObject(data, consumer)](#new_module_abstract-consumer-object.AbstractConsumerObject_new)*
+    * *[.__consumer__](#module_abstract-consumer-object.AbstractConsumerObject+__consumer__)*
+    * *[.createFromObject(data)](#module_abstract-consumer-object.AbstractConsumerObject+createFromObject)*
 
-<a name="new_AbstractConsumerObject_new"></a>
+<a name="new_module_abstract-consumer-object.AbstractConsumerObject_new"></a>
 
-### *new AbstractConsumerObject(data, consumer)*
+#### *new exports.AbstractConsumerObject(data, consumer)*
 Creates a new object.
 
 
@@ -31,56 +31,18 @@ Creates a new object.
 | data | <code>Object</code> | Data to parse. |
 | consumer | <code>Consumer</code> | Consumer instance for this object. |
 
-<a name="AbstractConsumerObject+__consumer__"></a>
+<a name="module_abstract-consumer-object.AbstractConsumerObject+__consumer__"></a>
 
-### *abstractConsumerObject.__consumer__*
+#### *abstractConsumerObject.\_\_consumer\_\_*
 {AbstractConsumer} Reference to consumer instantiating this object.
 
-**Kind**: instance property of <code>[AbstractConsumerObject](#AbstractConsumerObject)</code>  
-<a name="AbstractConsumerObject+createFromObject"></a>
+**Kind**: instance property of [<code>AbstractConsumerObject</code>](#module_abstract-consumer-object.AbstractConsumerObject)  
+<a name="module_abstract-consumer-object.AbstractConsumerObject+createFromObject"></a>
 
-### *abstractConsumerObject.createFromObject(data)*
+#### *abstractConsumerObject.createFromObject(data)*
 Populates object with data consumed in data.
 
-**Kind**: instance method of <code>[AbstractConsumerObject](#AbstractConsumerObject)</code>  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| data | <code>Object</code> | Data to parse. |
-
-<a name="AbstractConsumerObject"></a>
-
-## AbstractConsumerObject
-**Kind**: global class  
-
-* [AbstractConsumerObject](#AbstractConsumerObject)
-    * *[new AbstractConsumerObject(data, consumer)](#new_AbstractConsumerObject_new)*
-    * *[.__consumer__](#AbstractConsumerObject+__consumer__)*
-    * *[.createFromObject(data)](#AbstractConsumerObject+createFromObject)*
-
-<a name="new_AbstractConsumerObject_new"></a>
-
-### *new AbstractConsumerObject(data, consumer)*
-Creates a new object.
-
-
-| Param | Type | Description |
-| --- | --- | --- |
-| data | <code>Object</code> | Data to parse. |
-| consumer | <code>Consumer</code> | Consumer instance for this object. |
-
-<a name="AbstractConsumerObject+__consumer__"></a>
-
-### *abstractConsumerObject.__consumer__*
-{AbstractConsumer} Reference to consumer instantiating this object.
-
-**Kind**: instance property of <code>[AbstractConsumerObject](#AbstractConsumerObject)</code>  
-<a name="AbstractConsumerObject+createFromObject"></a>
-
-### *abstractConsumerObject.createFromObject(data)*
-Populates object with data consumed in data.
-
-**Kind**: instance method of <code>[AbstractConsumerObject](#AbstractConsumerObject)</code>  
+**Kind**: instance method of [<code>AbstractConsumerObject</code>](#module_abstract-consumer-object.AbstractConsumerObject)  
 
 | Param | Type | Description |
 | --- | --- | --- |

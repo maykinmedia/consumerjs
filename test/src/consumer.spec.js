@@ -231,8 +231,8 @@ describe('Consumer', function() {
         class Post extends ConsumerObject {}
 
         let consumer = new Consumer('http://example.com/api', Post);
-
-        spyOn(consumer, 'getCookie').and.returnValue('ABC');
+        
+        document.cookie = consumer.csrfCookie + '=ABC';
 
         consumer.post('/posts/200')
             .then(() => {
@@ -244,13 +244,14 @@ describe('Consumer', function() {
             });
     });
 
-    it('should ignore csrf on safe requests', function(done) {
+    it('should be able to disable csrf', function(done) {
         class Post extends ConsumerObject {}
 
         let consumer = new Consumer('http://example.com/api', Post);
+        consumer.csrfProtection = false;
 
-        spyOn(consumer, 'getCookie').and.returnValue('ABC');
-
+        document.cookie = consumer.csrfCookie + '=ABC';
+        
         consumer.get('/posts/200')
             .then(() => {
                 let request = jasmine.Ajax.requests.mostRecent();

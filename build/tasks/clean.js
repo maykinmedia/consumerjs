@@ -1,6 +1,6 @@
-var gulp = require('gulp');
-var paths = require('../paths');
-var del = require('del');
+const gulp = require('gulp');
+const del = require('del');
+const paths = require('../paths');
 
 
 /**

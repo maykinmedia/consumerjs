@@ -1,6 +1,9 @@
-<a name="List"></a>
+<a name="module_list"></a>
 
-## List
+## list
+<a name="module_list.List"></a>
+
+### list.List
 List of consumer objects.
 
-**Kind**: global class  
+**Kind**: static class of [<code>list</code>](#module_list)  

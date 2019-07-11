@@ -1,3 +1,5 @@
+/** @module */
+
 /**
  * Response object modeled after aurelia-http-client HTTPResponseMessage.
  * @class

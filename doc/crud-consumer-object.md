@@ -1,38 +1,41 @@
-## Classes
+<a name="module_crud-consumer-object"></a>
 
-<dl>
-<dt><a href="#CrudConsumerObject">CrudConsumerObject</a></dt>
-<dd><p>Base class for object derived from Consumer.
-Contains various methods for common CRUD tasks.
-Should be extended to provide methods for objects.</p>
-</dd>
-<dt><a href="#CrudConsumerObject">CrudConsumerObject</a></dt>
-<dd></dd>
-</dl>
+## crud-consumer-object
 
-<a name="CrudConsumerObject"></a>
+* [crud-consumer-object](#module_crud-consumer-object)
+    * *[.CrudConsumerObject](#module_crud-consumer-object.CrudConsumerObject)*
+        * *[new exports.CrudConsumerObject(data, consumer)](#new_module_crud-consumer-object.CrudConsumerObject_new)*
+        * *[.__initial_state__](#module_crud-consumer-object.CrudConsumerObject+__initial_state__)*
+        * *[.update()](#module_crud-consumer-object.CrudConsumerObject+update) ⇒ <code>Promise</code>*
+        * *[.save()](#module_crud-consumer-object.CrudConsumerObject+save) ⇒ <code>Promise</code>*
+        * *[.delete()](#module_crud-consumer-object.CrudConsumerObject+delete) ⇒ <code>Promise</code>*
+        * *[.getPath()](#module_crud-consumer-object.CrudConsumerObject+getPath) ⇒ <code>string</code> \| <code>false</code>*
+        * *[.getPK()](#module_crud-consumer-object.CrudConsumerObject+getPK) ⇒ <code>\*</code> \| <code>false</code>*
+        * *[.getChangedFields()](#module_crud-consumer-object.CrudConsumerObject+getChangedFields) ⇒ <code>Object</code>*
 
-## *CrudConsumerObject*
+<a name="module_crud-consumer-object.CrudConsumerObject"></a>
+
+### *crud-consumer-object.CrudConsumerObject*
 Base class for object derived from Consumer.
 Contains various methods for common CRUD tasks.
 Should be extended to provide methods for objects.
 
-**Kind**: global abstract class  
+**Kind**: static abstract class of [<code>crud-consumer-object</code>](#module_crud-consumer-object)  
 **See**: [abstract-consumer-object.md](abstract-consumer-object.md) for inherited API.  
 
-* *[CrudConsumerObject](#CrudConsumerObject)*
-    * *[new CrudConsumerObject(data, consumer)](#new_CrudConsumerObject_new)*
-    * *[.__initial_state__](#CrudConsumerObject+__initial_state__)*
-    * *[.update()](#CrudConsumerObject+update) ⇒ <code>Promise</code>*
-    * *[.save()](#CrudConsumerObject+save) ⇒ <code>Promise</code>*
-    * *[.delete()](#CrudConsumerObject+delete) ⇒ <code>Promise</code>*
-    * *[.getPath()](#CrudConsumerObject+getPath) ⇒ <code>string</code> &#124; <code>false</code>*
-    * *[.getPK()](#CrudConsumerObject+getPK) ⇒ <code>\*</code> &#124; <code>false</code>*
-    * *[.getChangedFields()](#CrudConsumerObject+getChangedFields) ⇒ <code>Object</code>*
+* *[.CrudConsumerObject](#module_crud-consumer-object.CrudConsumerObject)*
+    * *[new exports.CrudConsumerObject(data, consumer)](#new_module_crud-consumer-object.CrudConsumerObject_new)*
+    * *[.__initial_state__](#module_crud-consumer-object.CrudConsumerObject+__initial_state__)*
+    * *[.update()](#module_crud-consumer-object.CrudConsumerObject+update) ⇒ <code>Promise</code>*
+    * *[.save()](#module_crud-consumer-object.CrudConsumerObject+save) ⇒ <code>Promise</code>*
+    * *[.delete()](#module_crud-consumer-object.CrudConsumerObject+delete) ⇒ <code>Promise</code>*
+    * *[.getPath()](#module_crud-consumer-object.CrudConsumerObject+getPath) ⇒ <code>string</code> \| <code>false</code>*
+    * *[.getPK()](#module_crud-consumer-object.CrudConsumerObject+getPK) ⇒ <code>\*</code> \| <code>false</code>*
+    * *[.getChangedFields()](#module_crud-consumer-object.CrudConsumerObject+getChangedFields) ⇒ <code>Object</code>*
 
-<a name="new_CrudConsumerObject_new"></a>
+<a name="new_module_crud-consumer-object.CrudConsumerObject_new"></a>
 
-### *new CrudConsumerObject(data, consumer)*
+#### *new exports.CrudConsumerObject(data, consumer)*
 Creates a new object.
 
 
@@ -41,137 +44,57 @@ Creates a new object.
 | data | <code>Object</code> | Data to parse. |
 | consumer | <code>CrudConsumer</code> | Consumer instance for this object. |
 
-<a name="CrudConsumerObject+__initial_state__"></a>
+<a name="module_crud-consumer-object.CrudConsumerObject+__initial_state__"></a>
 
-### *crudConsumerObject.__initial_state__*
+#### *crudConsumerObject.\_\_initial\_state\_\_*
 {Object} A clone of the initial state before any modifications were made.
 
-**Kind**: instance property of <code>[CrudConsumerObject](#CrudConsumerObject)</code>  
-<a name="CrudConsumerObject+update"></a>
+**Kind**: instance property of [<code>CrudConsumerObject</code>](#module_crud-consumer-object.CrudConsumerObject)  
+<a name="module_crud-consumer-object.CrudConsumerObject+update"></a>
 
-### *crudConsumerObject.update() ⇒ <code>Promise</code>*
+#### *crudConsumerObject.update() ⇒ <code>Promise</code>*
 Partially Updates the object by performing a PATCH request.
 Only sends the changed fields as data.
 If no fields have changed, request is omitted and a resolving Promise is returned.
 After the requests resolves the initial state is updated (to allow future change detections).
 
-**Kind**: instance method of <code>[CrudConsumerObject](#CrudConsumerObject)</code>  
-<a name="CrudConsumerObject+save"></a>
+**Kind**: instance method of [<code>CrudConsumerObject</code>](#module_crud-consumer-object.CrudConsumerObject)  
+<a name="module_crud-consumer-object.CrudConsumerObject+save"></a>
 
-### *crudConsumerObject.save() ⇒ <code>Promise</code>*
+#### *crudConsumerObject.save() ⇒ <code>Promise</code>*
 Fully Updates the object by performing a PUT request.
 Sends all fields as data.
 After the requests resolves the initial state is updated (to allow future change detections).
 
-**Kind**: instance method of <code>[CrudConsumerObject](#CrudConsumerObject)</code>  
-<a name="CrudConsumerObject+delete"></a>
+**Kind**: instance method of [<code>CrudConsumerObject</code>](#module_crud-consumer-object.CrudConsumerObject)  
+<a name="module_crud-consumer-object.CrudConsumerObject+delete"></a>
 
-### *crudConsumerObject.delete() ⇒ <code>Promise</code>*
+#### *crudConsumerObject.delete() ⇒ <code>Promise</code>*
 Removes this object.
 
-**Kind**: instance method of <code>[CrudConsumerObject](#CrudConsumerObject)</code>  
-<a name="CrudConsumerObject+getPath"></a>
+**Kind**: instance method of [<code>CrudConsumerObject</code>](#module_crud-consumer-object.CrudConsumerObject)  
+<a name="module_crud-consumer-object.CrudConsumerObject+getPath"></a>
 
-### *crudConsumerObject.getPath() ⇒ <code>string</code> &#124; <code>false</code>*
+#### *crudConsumerObject.getPath() ⇒ <code>string</code> \| <code>false</code>*
 Returns the path for this object.
 Path is assumed to be the primary key.
 If no key is found, false is returned.
 
-**Kind**: instance method of <code>[CrudConsumerObject](#CrudConsumerObject)</code>  
-<a name="CrudConsumerObject+getPK"></a>
+**Kind**: instance method of [<code>CrudConsumerObject</code>](#module_crud-consumer-object.CrudConsumerObject)  
+<a name="module_crud-consumer-object.CrudConsumerObject+getPK"></a>
 
-### *crudConsumerObject.getPK() ⇒ <code>\*</code> &#124; <code>false</code>*
+#### *crudConsumerObject.getPK() ⇒ <code>\*</code> \| <code>false</code>*
 Tries to return the primary key of this object.
 First tries this.pk, this.id otherwise.
 If this.pk and this.id are both empty, false is returned.
 
-**Kind**: instance method of <code>[CrudConsumerObject](#CrudConsumerObject)</code>  
-**Returns**: <code>\*</code> &#124; <code>false</code> - Value of pk/id or false.  
-<a name="CrudConsumerObject+getChangedFields"></a>
+**Kind**: instance method of [<code>CrudConsumerObject</code>](#module_crud-consumer-object.CrudConsumerObject)  
+**Returns**: <code>\*</code> \| <code>false</code> - Value of pk/id or false.  
+<a name="module_crud-consumer-object.CrudConsumerObject+getChangedFields"></a>
 
-### *crudConsumerObject.getChangedFields() ⇒ <code>Object</code>*
+#### *crudConsumerObject.getChangedFields() ⇒ <code>Object</code>*
 Returns an object containing the changed properties of this object.
 Property names in this.\_\_consumer\_\_.unserializableFields are ignored.
 Properties are compared against this.\_\_initial_state\_\_.
 
-**Kind**: instance method of <code>[CrudConsumerObject](#CrudConsumerObject)</code>  
-<a name="CrudConsumerObject"></a>
-
-## CrudConsumerObject
-**Kind**: global class  
-
-* [CrudConsumerObject](#CrudConsumerObject)
-    * *[new CrudConsumerObject(data, consumer)](#new_CrudConsumerObject_new)*
-    * *[.__initial_state__](#CrudConsumerObject+__initial_state__)*
-    * *[.update()](#CrudConsumerObject+update) ⇒ <code>Promise</code>*
-    * *[.save()](#CrudConsumerObject+save) ⇒ <code>Promise</code>*
-    * *[.delete()](#CrudConsumerObject+delete) ⇒ <code>Promise</code>*
-    * *[.getPath()](#CrudConsumerObject+getPath) ⇒ <code>string</code> &#124; <code>false</code>*
-    * *[.getPK()](#CrudConsumerObject+getPK) ⇒ <code>\*</code> &#124; <code>false</code>*
-    * *[.getChangedFields()](#CrudConsumerObject+getChangedFields) ⇒ <code>Object</code>*
-
-<a name="new_CrudConsumerObject_new"></a>
-
-### *new CrudConsumerObject(data, consumer)*
-Creates a new object.
-
-
-| Param | Type | Description |
-| --- | --- | --- |
-| data | <code>Object</code> | Data to parse. |
-| consumer | <code>CrudConsumer</code> | Consumer instance for this object. |
-
-<a name="CrudConsumerObject+__initial_state__"></a>
-
-### *crudConsumerObject.__initial_state__*
-{Object} A clone of the initial state before any modifications were made.
-
-**Kind**: instance property of <code>[CrudConsumerObject](#CrudConsumerObject)</code>  
-<a name="CrudConsumerObject+update"></a>
-
-### *crudConsumerObject.update() ⇒ <code>Promise</code>*
-Partially Updates the object by performing a PATCH request.
-Only sends the changed fields as data.
-If no fields have changed, request is omitted and a resolving Promise is returned.
-After the requests resolves the initial state is updated (to allow future change detections).
-
-**Kind**: instance method of <code>[CrudConsumerObject](#CrudConsumerObject)</code>  
-<a name="CrudConsumerObject+save"></a>
-
-### *crudConsumerObject.save() ⇒ <code>Promise</code>*
-Fully Updates the object by performing a PUT request.
-Sends all fields as data.
-After the requests resolves the initial state is updated (to allow future change detections).
-
-**Kind**: instance method of <code>[CrudConsumerObject](#CrudConsumerObject)</code>  
-<a name="CrudConsumerObject+delete"></a>
-
-### *crudConsumerObject.delete() ⇒ <code>Promise</code>*
-Removes this object.
-
-**Kind**: instance method of <code>[CrudConsumerObject](#CrudConsumerObject)</code>  
-<a name="CrudConsumerObject+getPath"></a>
-
-### *crudConsumerObject.getPath() ⇒ <code>string</code> &#124; <code>false</code>*
-Returns the path for this object.
-Path is assumed to be the primary key.
-If no key is found, false is returned.
-
-**Kind**: instance method of <code>[CrudConsumerObject](#CrudConsumerObject)</code>  
-<a name="CrudConsumerObject+getPK"></a>
-
-### *crudConsumerObject.getPK() ⇒ <code>\*</code> &#124; <code>false</code>*
-Tries to return the primary key of this object.
-First tries this.pk, this.id otherwise.
-If this.pk and this.id are both empty, false is returned.
-
-**Kind**: instance method of <code>[CrudConsumerObject](#CrudConsumerObject)</code>  
-**Returns**: <code>\*</code> &#124; <code>false</code> - Value of pk/id or false.  
-<a name="CrudConsumerObject+getChangedFields"></a>
-
-### *crudConsumerObject.getChangedFields() ⇒ <code>Object</code>*
-Returns an object containing the changed properties of this object.
-Property names in this.\_\_consumer\_\_.unserializableFields are ignored.
-Properties are compared against this.\_\_initial_state\_\_.
-
-**Kind**: instance method of <code>[CrudConsumerObject](#CrudConsumerObject)</code>  
+**Kind**: instance method of [<code>CrudConsumerObject</code>](#module_crud-consumer-object.CrudConsumerObject)  

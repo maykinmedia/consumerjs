@@ -1,3 +1,4 @@
+/** @module */
 import { AureliaCookie } from 'aurelia-cookie';
 import URI from 'urijs';
 
@@ -20,6 +21,9 @@ export class AbstractConsumer {
     constructor(endpoint, objectClass, options=null) {
         /** {string} The value of the Content-Type header. */
         this.contentType = 'application/json';
+
+        /** {boolean} Wheter CSRF prtection is active. */
+        this.csrfProtection = true;
 
         /** {string} The name for the CSRF cookie. */
         this.csrfCookie = 'csrftoken';
@@ -51,7 +55,7 @@ export class AbstractConsumer {
         this.unserializableFields = ['__consumer__'];
 
         /** {AbstractHTTPClient} The HttpClient instance to work with. */
-        this.client = new AxiosHTTPClient({baseURL: endpoint, headers: this.defaultHeaders});
+        this.client = new AxiosHTTPClient(this);
 
         if (options) {
             Object.assign(this, options);
@@ -130,11 +134,6 @@ export class AbstractConsumer {
         // Set content type
         this.addHeader('Content-Type', this.contentType);
 
-        // Set csrf token if needed
-        if (!this.isSafeMethod(method) && this.csrfCookie && this.csrfHeader) {
-            this.addCsrfToken();
-        }
-
         // Set default headers
         for (let header of Object.keys(this.defaultHeaders)) {
             this.addHeader(header, this.defaultHeaders[header]);
@@ -156,25 +155,6 @@ export class AbstractConsumer {
         consumerPromise.abort = clientPromise.abort;
         consumerPromise.cancel = clientPromise.cancel;
         return consumerPromise;
-    }
-
-    /**
-     * Returns whether the request is safe (should not mutate any data).
-     * @param {string} method The method type (GET, POST etc.).
-     * @returns {boolean}
-     */
-    isSafeMethod(method) {
-        let saveMethods = ['GET', 'HEAD', 'OPTIONS', 'TRACE'];
-        return saveMethods.indexOf(method.toUpperCase()) > -1;
-    }
-
-    /**
-     * Looks for cookie this.csrfCookie and passes it's value to this.csrfHeader.
-     */
-    addCsrfToken() {
-        let csrfToken = this.getCookie(this.csrfCookie);
-        this.defaultHeaders[this.csrfHeader] = csrfToken;
-        this.addHeader(this.csrfHeader, csrfToken);
     }
 
     /**

@@ -1,27 +1,15 @@
-## Functions
+<a name="module_utils"></a>
 
-<dl>
-<dt><a href="#diff">diff(objOld, objNew)</a> ⇒ <code>Object</code></dt>
-<dd><p>Returns a new object describing the changed field in objNew.
-Each field is compared against objOld:</p>
-<ul>
-<li>Only changed fields are included.</li>
-<li>Arrays are considered as a single entity (if one items differs, the entire array is considered changed).</li>
-<li>Objects are checked recusively.</li>
-<li>Primitives are checked by value.</li>
-</ul>
-</dd>
-<dt><a href="#excludeUnserializableFields">excludeUnserializableFields(object, [unserializableFields])</a> ⇒ <code>Object</code></dt>
-<dd><p>Returns object without keys listed in object.unserializableFields.</p>
-</dd>
-<dt><a href="#isObject">isObject(object)</a> ⇒ <code>boolean</code></dt>
-<dd><p>Returns whether object is an object.</p>
-</dd>
-</dl>
+## utils
 
-<a name="diff"></a>
+* [utils](#module_utils)
+    * [.diff(objOld, objNew)](#module_utils.diff) ⇒ <code>Object</code>
+    * [.excludeUnserializableFields(object, [unserializableFields])](#module_utils.excludeUnserializableFields) ⇒ <code>Object</code>
+    * [.isObject(object)](#module_utils.isObject) ⇒ <code>boolean</code>
 
-## diff(objOld, objNew) ⇒ <code>Object</code>
+<a name="module_utils.diff"></a>
+
+### utils.diff(objOld, objNew) ⇒ <code>Object</code>
 Returns a new object describing the changed field in objNew.
 Each field is compared against objOld:
 - Only changed fields are included.
@@ -29,31 +17,31 @@ Each field is compared against objOld:
 - Objects are checked recusively.
 - Primitives are checked by value.
 
-**Kind**: global function  
+**Kind**: static method of [<code>utils</code>](#module_utils)  
 
 | Param | Type |
 | --- | --- |
 | objOld | <code>Object</code> | 
 | objNew | <code>Object</code> | 
 
-<a name="excludeUnserializableFields"></a>
+<a name="module_utils.excludeUnserializableFields"></a>
 
-## excludeUnserializableFields(object, [unserializableFields]) ⇒ <code>Object</code>
+### utils.excludeUnserializableFields(object, [unserializableFields]) ⇒ <code>Object</code>
 Returns object without keys listed in object.unserializableFields.
 
-**Kind**: global function  
+**Kind**: static method of [<code>utils</code>](#module_utils)  
 
 | Param | Type | Default |
 | --- | --- | --- |
 | object | <code>Object</code> |  | 
 | [unserializableFields] | <code>Array.&lt;string&gt;</code> | <code>object.\_\_consumer\_\_.unserializableFields</code> | 
 
-<a name="isObject"></a>
+<a name="module_utils.isObject"></a>
 
-## isObject(object) ⇒ <code>boolean</code>
+### utils.isObject(object) ⇒ <code>boolean</code>
 Returns whether object is an object.
 
-**Kind**: global function  
+**Kind**: static method of [<code>utils</code>](#module_utils)  
 
 | Param | Type |
 | --- | --- |

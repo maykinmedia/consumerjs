@@ -1,7 +1,10 @@
-<a name="Consumer"></a>
+<a name="module_consumer"></a>
 
-## *Consumer*
+## consumer
+<a name="module_consumer.Consumer"></a>
+
+### *consumer.Consumer*
 Extend, instantiate and configure to request API endpoints.
 
-**Kind**: global abstract class  
+**Kind**: static abstract class of [<code>consumer</code>](#module_consumer)  
 **See**: [abstract-consumer.md](abstract-consumer.md) for inherited API.  
