@@ -4,9 +4,10 @@
 
 * [axios-http-client](#module_axios-http-client)
     * [.AxiosHTTPClient](#module_axios-http-client.AxiosHTTPClient)
-        * [new exports.AxiosHTTPClient(consumer)](#new_module_axios-http-client.AxiosHTTPClient_new)
+        * [new exports.AxiosHTTPClient(consumer, [options])](#new_module_axios-http-client.AxiosHTTPClient_new)
         * [.cancelSource](#module_axios-http-client.AxiosHTTPClient+cancelSource) : <code>Object</code>
         * [.getConfiguration([data], [query])](#module_axios-http-client.AxiosHTTPClient+getConfiguration) ⇒ <code>Object</code>
+        * [.serializeParams(params)](#module_axios-http-client.AxiosHTTPClient+serializeParams) ⇒ <code>Object</code>
         * [.createResponse(response)](#module_axios-http-client.AxiosHTTPClient+createResponse) ⇒ <code>HttpResponseMessage</code>
         * [.createError(error)](#module_axios-http-client.AxiosHTTPClient+createError) ⇒ <code>Promise.&lt;never&gt;</code>
         * [.withAbort(axiosPromise)](#module_axios-http-client.AxiosHTTPClient+withAbort) ⇒ <code>Promise</code>
@@ -26,9 +27,10 @@ HTTP client based on Axios.
 **Kind**: static class of [<code>axios-http-client</code>](#module_axios-http-client)  
 
 * [.AxiosHTTPClient](#module_axios-http-client.AxiosHTTPClient)
-    * [new exports.AxiosHTTPClient(consumer)](#new_module_axios-http-client.AxiosHTTPClient_new)
+    * [new exports.AxiosHTTPClient(consumer, [options])](#new_module_axios-http-client.AxiosHTTPClient_new)
     * [.cancelSource](#module_axios-http-client.AxiosHTTPClient+cancelSource) : <code>Object</code>
     * [.getConfiguration([data], [query])](#module_axios-http-client.AxiosHTTPClient+getConfiguration) ⇒ <code>Object</code>
+    * [.serializeParams(params)](#module_axios-http-client.AxiosHTTPClient+serializeParams) ⇒ <code>Object</code>
     * [.createResponse(response)](#module_axios-http-client.AxiosHTTPClient+createResponse) ⇒ <code>HttpResponseMessage</code>
     * [.createError(error)](#module_axios-http-client.AxiosHTTPClient+createError) ⇒ <code>Promise.&lt;never&gt;</code>
     * [.withAbort(axiosPromise)](#module_axios-http-client.AxiosHTTPClient+withAbort) ⇒ <code>Promise</code>
@@ -41,13 +43,14 @@ HTTP client based on Axios.
 
 <a name="new_module_axios-http-client.AxiosHTTPClient_new"></a>
 
-#### new exports.AxiosHTTPClient(consumer)
+#### new exports.AxiosHTTPClient(consumer, [options])
 Configures HTTPClient instance.
 
 
 | Param | Type | Description |
 | --- | --- | --- |
 | consumer | <code>AbstractConsumer</code> | Reference to consumer instantiating this object. |
+| [options] | <code>Object</code> | Additional configuration. |
 
 <a name="module_axios-http-client.AxiosHTTPClient+cancelSource"></a>
 
@@ -65,6 +68,17 @@ Makes sure the response schema closely matches former versions using aurelia-htt
 | --- | --- | --- |
 | [data] | <code>Object</code> | Data payload. |
 | [query] | <code>Object</code> | Query parameters. |
+
+<a name="module_axios-http-client.AxiosHTTPClient+serializeParams"></a>
+
+#### axiosHTTPClient.serializeParams(params) ⇒ <code>Object</code>
+Serialize params to take this.arrayFormat into account.
+
+**Kind**: instance method of [<code>AxiosHTTPClient</code>](#module_axios-http-client.AxiosHTTPClient)  
+
+| Param | Type |
+| --- | --- |
+| params | <code>Object</code> | 
 
 <a name="module_axios-http-client.AxiosHTTPClient+createResponse"></a>
 

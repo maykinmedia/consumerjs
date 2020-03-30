@@ -8,6 +8,7 @@ import Consumer, {
     PageNumberList,
     utils,
 } from '../../src/index';
+import {AbstractHTTPClient, AxiosHTTPClient, LinkedPageNumberList, List} from '../../src';
 
 
 describe('Module', function() {
@@ -39,8 +40,24 @@ describe('Module', function() {
         expect(AbstractPageNumberList).toBeTruthy();
     });
 
+    it('should export List', function() {
+        expect(List).toBeTruthy();
+    });
+
     it('should export PageNumberList', function() {
         expect(PageNumberList).toBeTruthy();
+    });
+
+    it('should export LinkedPageNumberList', function() {
+        expect(LinkedPageNumberList).toBeTruthy();
+    });
+
+    it('should export AbstractHTTPClient', function() {
+        expect(AbstractHTTPClient).toBeTruthy();
+    });
+
+    it('should export AxiosHTTPClient', function() {
+        expect(AxiosHTTPClient).toBeTruthy();
     });
 
     it('should export utils', function() {

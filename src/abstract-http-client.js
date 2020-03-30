@@ -1,5 +1,5 @@
 /** @module */
-import { AbstractConsumer } from "./abstract-consumer";
+import {AbstractConsumer} from './abstract-consumer';
 
 /* jshint unused: false */
 
@@ -12,7 +12,7 @@ export class AbstractHTTPClient {
      * Configures HTTPClient instance.
      * @param {AbstractConsumer} consumer Reference to consumer instantiating this object.
      */
-    constructor(consumer) {
+    constructor(consumer, options) {
         /** {AbstractConsumer} Reference to consumer instantiating this object. */
         this.consumer = consumer;
 
@@ -21,6 +21,13 @@ export class AbstractHTTPClient {
 
         /** @type {Object} An optional object holding key value pairs of additional headers. */
         this.headers = this.consumer.defaultHeaders;
+
+        /** @type {string} - How to shape array query parameters: "repeat" or "brackets". */
+        this.arrayFormat = 'repeat';
+
+        if (options) {
+            Object.assign(this, options);
+        }
     }
 
     /**

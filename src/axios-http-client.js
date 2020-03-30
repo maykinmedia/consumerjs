@@ -14,12 +14,17 @@ export class AxiosHTTPClient extends AbstractHTTPClient {
     /**
      * Configures HTTPClient instance.
      * @param {AbstractConsumer} consumer Reference to consumer instantiating this object.
+     * @param {Object} [options] Additional configuration.
      */
-    constructor(consumer) {
-        super(consumer);
+    constructor(consumer, options) {
+        super(consumer, options);
 
         /** @type {Object} */
         this.cancelSource = CancelToken.source();
+
+        if (options) {
+            Object.assign(this, options);
+        }
     }
 
     /**
@@ -42,11 +47,33 @@ export class AxiosHTTPClient extends AbstractHTTPClient {
             headers: this.headers,
             params: query,
             transformResponse: json => json,  // Use Consumer instance for parsing.
+            paramsSerializer: this.serializeParams.bind(this),
             data: JSON.stringify(data),  // Bypass Axios serializer for data.
             withCredentials: this.consumer.csrfProtection,
             xsrfCookieName: this.consumer.csrfCookie,
             xsrfHeaderName: this.consumer.csrfHeader
         };
+    }
+
+    /**
+     * Serialize params to take this.arrayFormat into account.
+     * @param {Object} params
+     * @return {Object}
+     */
+    serializeParams(params) {
+        const querystring = Object.entries(params).reduce((acc, [key, value]) => {
+            let keyStr = `&${key}=`;
+
+            if (this.arrayFormat === 'brackets') {
+                keyStr = `&${key}[]=`;
+            }
+
+            if (Array.isArray(value)) {
+                value = value.join(keyStr);
+            }
+            return acc + keyStr + value;
+        }, '');
+        return querystring.replace('&', '');
     }
 
     /**

@@ -8,6 +8,7 @@
         * *[.consumer](#module_abstract-http-client.AbstractHTTPClient+consumer)*
         * *[.baseURL](#module_abstract-http-client.AbstractHTTPClient+baseURL) : <code>string</code>*
         * *[.headers](#module_abstract-http-client.AbstractHTTPClient+headers) : <code>Object</code>*
+        * *[.arrayFormat](#module_abstract-http-client.AbstractHTTPClient+arrayFormat) : <code>string</code>*
         * *[.setBaseURL(baseURL)](#module_abstract-http-client.AbstractHTTPClient+setBaseURL)*
         * *[.addHeader(name, value)](#module_abstract-http-client.AbstractHTTPClient+addHeader)*
         * *[.delete([path], [data])](#module_abstract-http-client.AbstractHTTPClient+delete) ⇒ <code>Promise</code>*
@@ -29,6 +30,7 @@ Abstract base class for http clients.
     * *[.consumer](#module_abstract-http-client.AbstractHTTPClient+consumer)*
     * *[.baseURL](#module_abstract-http-client.AbstractHTTPClient+baseURL) : <code>string</code>*
     * *[.headers](#module_abstract-http-client.AbstractHTTPClient+headers) : <code>Object</code>*
+    * *[.arrayFormat](#module_abstract-http-client.AbstractHTTPClient+arrayFormat) : <code>string</code>*
     * *[.setBaseURL(baseURL)](#module_abstract-http-client.AbstractHTTPClient+setBaseURL)*
     * *[.addHeader(name, value)](#module_abstract-http-client.AbstractHTTPClient+addHeader)*
     * *[.delete([path], [data])](#module_abstract-http-client.AbstractHTTPClient+delete) ⇒ <code>Promise</code>*
@@ -64,6 +66,12 @@ Base URL for all requests, gets concatenated with path passed to request methods
 
 #### *abstractHTTPClient.headers : <code>Object</code>*
 An optional object holding key value pairs of additional headers.
+
+**Kind**: instance property of [<code>AbstractHTTPClient</code>](#module_abstract-http-client.AbstractHTTPClient)  
+<a name="module_abstract-http-client.AbstractHTTPClient+arrayFormat"></a>
+
+#### *abstractHTTPClient.arrayFormat : <code>string</code>*
+- How to shape array query parameters: "repeat" or "brackets".
 
 **Kind**: instance property of [<code>AbstractHTTPClient</code>](#module_abstract-http-client.AbstractHTTPClient)  
 <a name="module_abstract-http-client.AbstractHTTPClient+setBaseURL"></a>
