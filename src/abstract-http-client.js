@@ -100,9 +100,11 @@ export class AbstractHTTPClient {
 
         if (path.match('://')) {
             return path;
-        } else {
+        } else if (path) {
             let concatenatedURL = this.baseURL + '/' + path;
             return concatenatedURL.replace(/([^:])\/\/+/g, '$1/');  // Removes double slashes (//) in path.
         }
+
+        return this.baseURL;
     }
 }
