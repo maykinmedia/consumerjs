@@ -91,8 +91,8 @@ describe('LinkedPageNumberList', function() {
         jasmine.Ajax
           .stubRequest('http://example.com/api/posts/?page=5')
           .andReturn({ status: 200, responseText: p5 });
-          
-      
+
+
         this.consumer = new CrudConsumer('http://example.com/api/', CrudConsumerObject, {
             parserDataPath: 'results',
             listClass: LinkedPageNumberList
