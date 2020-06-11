@@ -7,6 +7,7 @@
         * *[new exports.AbstractConsumerObject(data, consumer)](#new_module_abstract-consumer-object.AbstractConsumerObject_new)*
         * *[.__consumer__](#module_abstract-consumer-object.AbstractConsumerObject+__consumer__)*
         * *[.createFromObject(data)](#module_abstract-consumer-object.AbstractConsumerObject+createFromObject)*
+        * *[.asJSON()](#module_abstract-consumer-object.AbstractConsumerObject+asJSON)*
 
 <a name="module_abstract-consumer-object.AbstractConsumerObject"></a>
 
@@ -19,6 +20,7 @@ Abstract base class for object derived from Consumer
     * *[new exports.AbstractConsumerObject(data, consumer)](#new_module_abstract-consumer-object.AbstractConsumerObject_new)*
     * *[.__consumer__](#module_abstract-consumer-object.AbstractConsumerObject+__consumer__)*
     * *[.createFromObject(data)](#module_abstract-consumer-object.AbstractConsumerObject+createFromObject)*
+    * *[.asJSON()](#module_abstract-consumer-object.AbstractConsumerObject+asJSON)*
 
 <a name="new_module_abstract-consumer-object.AbstractConsumerObject_new"></a>
 
@@ -48,3 +50,9 @@ Populates object with data consumed in data.
 | --- | --- | --- |
 | data | <code>Object</code> | Data to parse. |
 
+<a name="module_abstract-consumer-object.AbstractConsumerObject+asJSON"></a>
+
+#### *abstractConsumerObject.asJSON()*
+Serialize consumer object as JSON excluding this.unserializableFields
+
+**Kind**: instance method of [<code>AbstractConsumerObject</code>](#module_abstract-consumer-object.AbstractConsumerObject)  
