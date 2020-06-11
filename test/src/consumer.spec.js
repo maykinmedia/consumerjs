@@ -509,4 +509,21 @@ describe('Consumer', function() {
                 done();
             });
     });
+
+    it('should JSON serialize object', function (done) {
+        class PostConsumer extends Consumer {
+            constructor() {
+                super();
+                this.endpoint = 'http://example.com/api/posts';
+                this.objectClass = ConsumerObject;
+            }
+        }
+        let consumer = new PostConsumer();
+
+        consumer.get('200')
+            .then((response) => {
+                expect(response.asJSON()).toEqual('{"title":"FooBar"}');
+                done();
+            });
+    })
 });

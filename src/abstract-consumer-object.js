@@ -1,5 +1,7 @@
 /** @module */
 
+import { excludeUnserializableFields } from "./utils";
+
 /**
  * Abstract base class for object derived from Consumer
  * @abstract
@@ -30,5 +32,12 @@ export class AbstractConsumerObject {
                 this[key] = data[key];
             }
         }
+    }
+
+    /**
+     * Serialize consumer object as JSON excluding this.unserializableFields
+     */
+    asJSON() {
+        return JSON.stringify(excludeUnserializableFields(this));
     }
 }
